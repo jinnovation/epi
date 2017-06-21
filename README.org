@@ -10,6 +10,7 @@
   - [[#strings][Strings]]
   - [[#linked-lists][Linked Lists]]
   - [[#stacks-and-queues][Stacks and Queues]]
+    - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
   - [[#binary-trees][Binary Trees]]
   - [[#heaps][Heaps]]
   - [[#searching][Searching]]
@@ -117,6 +118,73 @@
    
 ** Stacks and Queues
    
+*** DONE Implement a stack with =max= API
+    CLOSED: [2017-06-21 Wed 01:06]
+
+    Design a stack that includes a max operation, in addition to push and
+    pop. The max method should return the maximum value stored in the stack.
+    
+**** Solution
+
+     We can use an augmentation of a "vanilla" stack for this purpose. Each
+     element of this augmented stack -- call it a "max stack" -- will maintain a
+     record of the maximum value at or below its current level. This will allow
+     us to preserve the following invariant for given max-stack =S=:
+
+     #+BEGIN_VERBATIM
+     S.head.max = max(S)
+     #+END_VERBATIM
+
+     We can implement the max-stack as follows:
+
+     #+BEGIN_SRC python :results silent :session
+       class MaxStack():
+           def __init__(self, *args):
+               self.record = []
+               for v in args:
+                   self.push(v)
+           def push(self, v):
+               if not self.record:
+                   self.record.append((v,v))
+               else:
+                   self.record.append((v,max(v,self.record[-1][1])))
+               return self
+           def pop(self):
+               if not self.record:
+                   return None
+               out = self.record[-1][0]
+               self.record = self.record[0:-1]
+               return out
+           # drop silently pops 
+           def drop(self):
+               self.pop()
+               return self
+           def max(self):
+               if not self.record:
+                   return None
+               return self.record[-1][1]
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           MaxStack(1,4,3,2,5).max() == 5,
+           MaxStack(1,4,3,2,5).drop().max() == 4,
+           MaxStack(2,3,4,1).drop().drop().max() == 3,
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     This implementation is:
+
+     - O(1) for push;
+     - O(1) for pop;
+     - O(1) for max lookup.
+
+
+     Space complexity is O(2n) = O(n), where n is the stack size.
+     
 ** Binary Trees
    
 ** Heaps

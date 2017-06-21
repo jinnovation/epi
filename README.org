@@ -77,10 +77,12 @@
 
      #+BEGIN_SRC python :results none :session
        PARITIES_2 = {
-           int("00",2): 0,
-           int("01",2): 1,
-           int("10",2): 1,
-           int("11",2): 0,
+           int(w,2): p for w,p in [
+               ("00", 0),
+               ("01", 1),
+               ("10", 1),
+               ("11", 0),
+           ]
        }
      #+END_SRC
 

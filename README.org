@@ -235,6 +235,7 @@
      #+END_SRC
 
      Our solution is as follows:
+
      #+BEGIN_SRC python :results silent :session
        def merge(A,B):
            if A is None:
@@ -260,19 +261,28 @@
 
      #+BEGIN_SRC python :results value :session
        all([
+           # base cases
            merge(None,None) == None,
            merge(None, LL(1).append(LL(2))) == LL(1).append(LL(2)),
            merge(LL(1).append(LL(3)), None) == LL(1).append(LL(3)),
+
+           # "normal" case
            merge(
                LL(1).append(LL(3).append(LL(5))),
                LL(2).append(LL(4).append(LL(6))),
            ) == LL(1).append(LL(2).append(LL(3).append(LL(4).append(LL(5).append(LL(6)))))),
+
+           # remainder case
+           merge(
+               LL(1).append(LL(5)),
+               LL(2).append(LL(6).append(LL(10))),
+           ) == LL(1).append(LL(2).append(LL(5).append(LL(6).append(LL(10))))),
        ])
      #+END_SRC
 
      #+RESULTS:
      : True
-     
+
 ** 8 Stacks and Queues
    
 *** DONE 8.1 Implement a stack with =max= API

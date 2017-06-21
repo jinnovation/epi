@@ -2,9 +2,10 @@
 #+AUTHOR: Jonathan Jin
 #+STARTUP: logdone showall
 
-* Table of Contents                                                  :TOC:TOC_2:
+* Table of Contents                                                  :TOC:TOC_3:
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
   - [[#primitive-types][Primitive Types]]
+    - [[#computing-the-parity-of-a-word][Computing the parity of a word]]
   - [[#arrays][Arrays]]
   - [[#strings][Strings]]
   - [[#linked-lists][Linked Lists]]

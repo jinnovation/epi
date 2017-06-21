@@ -4,37 +4,43 @@
 
 * Table of Contents                                                  :TOC:TOC_3:
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
-  - [[#primitive-types][Primitive Types]]
-    - [[#computing-the-parity-of-a-word][Computing the parity of a word]]
-  - [[#arrays][Arrays]]
-  - [[#strings][Strings]]
-  - [[#linked-lists][Linked Lists]]
-  - [[#stacks-and-queues][Stacks and Queues]]
-    - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
-  - [[#binary-trees][Binary Trees]]
-  - [[#heaps][Heaps]]
-  - [[#searching][Searching]]
-  - [[#hash-tables][Hash Tables]]
-  - [[#sorting][Sorting]]
-  - [[#binary-search-trees][Binary Search Trees]]
-  - [[#recursion][Recursion]]
-  - [[#dynamic-programming][Dynamic Programming]]
-  - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
-  - [[#graphs][Graphs]]
-  - [[#parallel-computing][Parallel Computing]]
+  - [[#4-primitive-types][4 Primitive Types]]
+    - [[#41-computing-the-parity-of-a-word][4.1 Computing the parity of a word]]
+  - [[#5-arrays][5 Arrays]]
+    - [[#51-the-dutch-national-flag-problem][5.1 The Dutch national flag problem]]
+    - [[#56-buy-and-sell-a-stock-once][5.6 Buy and sell a stock once]]
+  - [[#6-strings][6 Strings]]
+    - [[#62-base-conversion][6.2 Base conversion]]
+    - [[#64-replace-and-remove][6.4 Replace and remove]]
+  - [[#7-linked-lists][7 Linked Lists]]
+    - [[#71-merge-two-sorted-lists][7.1 Merge two sorted lists]]
+  - [[#8-stacks-and-queues][8 Stacks and Queues]]
+    - [[#81-implement-a-stack-with-max-api][8.1 Implement a stack with =max= API]]
+  - [[#9-binary-trees][9 Binary Trees]]
+    - [[#91-test-if-a-binary-tree-is-height-balanced][9.1 Test if a binary tree is height-balanced]]
+  - [[#10-heaps][10 Heaps]]
+  - [[#11-searching][11 Searching]]
+  - [[#12-hash-tables][12 Hash Tables]]
+  - [[#13-sorting][13 Sorting]]
+  - [[#14-binary-search-trees][14 Binary Search Trees]]
+  - [[#15-recursion][15 Recursion]]
+  - [[#16-dynamic-programming][16 Dynamic Programming]]
+  - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
+  - [[#18-graphs][18 Graphs]]
+  - [[#19-parallel-computing][19 Parallel Computing]]
 - [[#domain-specific-problems][Domain Specific Problems]]
-  - [[#design-problems][Design Problems]]
-  - [[#language-questions][Language Questions]]
-  - [[#object-oriented-design][Object-Oriented Design]]
-  - [[#common-tools][Common Tools]]
+  - [[#20-design-problems][20 Design Problems]]
+  - [[#21-language-questions][21 Language Questions]]
+  - [[#22-object-oriented-design][22 Object-Oriented Design]]
+  - [[#23-common-tools][23 Common Tools]]
 - [[#honors-class][Honors Class]]
 - [[#unlicense][(Un)license]]
 
 * Data Structures and Algorithms
 
-** Primitive Types
+** 4 Primitive Types
 
-*** DONE Computing the parity of a word
+*** DONE 4.1 Computing the parity of a word
     CLOSED: [2017-06-21 Wed 00:44]
     
     The parity of a binary word is 1 if the number of 1s in the word is odd;
@@ -112,15 +118,164 @@
      This revised implementation is O(n/w) = O(n), where w is the word length of
      the lookup key.
      
-** Arrays
+** 5 Arrays
    
-** Strings
+*** TODO 5.1 The Dutch national flag problem
+
+    Write a program that takes an array A and an index i into A, and rearranges
+    the elements such that all elements less than A[i] (the "pivot") appear
+    first, followed by eleents equal to the pivot followed by elements greater
+    than the pivot.
+
+    /Hint/: Think about the partition step in quicksort.
+
+**** Solution
+
+*** TODO 5.6 Buy and sell a stock once
+
+    This problem is concerned with the problem of optimally buying and selling a
+    stock once. As an example, consider the following sequence of stock prices:
+    =<310, 315, 275, 295, 260, 270, 290, 230, 255, 250>=. The maximum profit
+    that can be made with one buy and one sell is 30 -- buy at 260 and sell
+    at 290. Note that 260 is not the lowest price, nor 290 the highest price.
+
+    Write a program that takes an array denoting the daily stock price, and
+    returns the maximum profit that could be made by buying and then selling one
+    share of that stock.
+    
+** 6 Strings
    
-** Linked Lists
+*** TODO 6.2 Base conversion
+
+    In the decimal number system, the position of a digit is used to signify the
+    power of 10 that digit is to be multiplied with. For example, "314" denotes
+    the number 3 * 100 + 1 * 10 + 4 * 1. The base b number system generalizes
+    the decimal number system: the string "a_{k-1}a_{k-2}...a_{1}a_{1}", where 0 \leq a_i \leq
+    b, denotes in base-b the integer a_0 \times b^0 + a_1 \times b^1 + a_2 \times
+    b^2 + ... + a_{k-1} \times b^{k-1}.
+
+    Write a program that performs base conversion. The input is a string, an
+    integer b_1, and antoher integer b_2. The string represents an integer in base
+    b_1. The output should be the string representing the integer in base
+    b_2. Assume 2 \leq b_1, b_2 \leq 16. Use "A" to represent 10, "B" for 11, ..., and
+    "F" for 15. (For example, if the string is "615", b_1 is 7 and b_2 is 13, then
+    the result should be "1A7", since 6 \times 7^2 + 1 \times 7 + 5 = 1 \times 13^2 + 10 \times 13 + 7).
+
+*** TODO 6.4 Replace and remove
+
+    Consider the following two rules that are to be applied to an array of characters.
+
+    - Replace each "a" by two "d"s.
+    - Delete each entry containing a "b".
+
+
+    For example, applying these rules to the array =<a,c,d,b,b,c,a>= results in
+    the array =<d,d,c,d,c,d,d>=.
+
+    Write a program which takes as input an array of characters, and removes
+    each "b" and replaces each "a" by two "d"s. Specifically, along with the
+    array, you are provided an integer-valued size. Size denotes the number of
+    entries of the array that the operation is to be applied to. You do not
+    have to worry about preserving subsequent entries. For example, if the array
+    is =<a,b,a,c,_>= and the size is 4, then you can return =<d,d,d,d,c>=. You
+    can assume there is enough space in the array to hold the final result.
+    
+** 7 Linked Lists
+
+*** DONE 7.1 Merge two sorted lists
+    CLOSED: [2017-06-21 Wed 12:53]
+
+    Write a program that takes two lists, assumed to be sorted, and returns
+    their merge. The only field your program can change in a node is its =next=
+    field.
+
+    /Hint/: Two sorted arrays can be merged using two indices. For lists, take
+    care when one iterator reaches the end.
+    
+**** Solution
+
+     We describe a solution that completes the task in linear time and constant
+     space.
+
+     Call input lists =A= and =B=.
+
+     We decide on the head of the return list with respect to comparison. We
+     save a reference =H= to this head for final return; in the meantime, we
+     create an additional "work-in-progress" reference =l= that we will use to
+     iteratively wire up the return value.
+
+     While neither =A= nor =B= have reached their ends, we compare the head
+     values of each; whichever is less than or equal to the other, becomes the
+     new target for =l.next=. We then increment both the assignee and =l= to
+     their next links.
+
+     Once one of =A= or =B= have reached their end, we treat the other as the
+     "remainder" list. Since the two input lists are given to be sorted, we have
+     the invariant that every element in the remainder is greater than or equal
+     to the current =l=. As such, we assign =l.next = remainder=.
+
+     For this solution's purpose, we define a lightweight linked-list API as
+     follows:
+
+     #+BEGIN_SRC python :results silent :session
+       class LL():
+           def __init__(self, v):
+               self.v = v
+               self.next = None
+           def append(self, l):
+               self.next = l
+           def __eq__(self,l):
+               me = self
+               while me is not None and l is not None:
+                   if me.v != l.v:
+                       return False
+                   me = me.next
+                   l = l.next
+               return me is None and l is None 
+     #+END_SRC
+
+     Our solution is as follows:
+     #+BEGIN_SRC python :results silent :session
+       def merge(A,B):
+           if A is None:
+               return B
+           if B is None:
+               return A
+           if A.v < B.v:
+               head = A
+               A = A.next
+           else:
+               head = B
+               B = B.next
+           l = head # wip tracker
+           cursors = { "A": A, "B": B }
+           while cursors["A"] is not None and cursors["B"] is not None:
+               k_next = "A" if cursors["A"].v < cursors["B"].v else "B"
+               l.next = cursors[k_next]
+               l = l.next
+               cursors[k_next] = cursors[k_next].next
+           l.next = cursors["A"] if cursors["A"] is not None else cursors["B"]
+           return head
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           merge(None,None) == None,
+           merge(None, LL(1).append(LL(2))) == LL(1).append(LL(2)),
+           merge(LL(1).append(LL(3)), None) == LL(1).append(LL(3)),
+           merge(
+               LL(1).append(LL(3).append(LL(5))),
+               LL(2).append(LL(4).append(LL(6))),
+           ) == LL(1).append(LL(2).append(LL(3).append(LL(4).append(LL(5).append(LL(6)))))),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+     
+** 8 Stacks and Queues
    
-** Stacks and Queues
-   
-*** DONE Implement a stack with =max= API
+*** DONE 8.1 Implement a stack with =max= API
     CLOSED: [2017-06-21 Wed 01:06]
 
     Design a stack that includes a max operation, in addition to push and
@@ -187,37 +342,39 @@
 
      Space complexity is O(2n) = O(n), where n is the stack size.
      
-** Binary Trees
+** 9 Binary Trees
+
+*** TODO 9.1 Test if a binary tree is height-balanced
+    
+** 10 Heaps
    
-** Heaps
+** 11 Searching
    
-** Searching
+** 12 Hash Tables
    
-** Hash Tables
+** 13 Sorting
    
-** Sorting
+** 14 Binary Search Trees
    
-** Binary Search Trees
+** 15 Recursion
    
-** Recursion
+** 16 Dynamic Programming
    
-** Dynamic Programming
+** 17 Greedy Algorithms and Invariants
    
-** Greedy Algorithms and Invariants
+** 18 Graphs
    
-** Graphs
-   
-** Parallel Computing
+** 19 Parallel Computing
    
 * Domain Specific Problems
   
-** Design Problems
+** 20 Design Problems
    
-** Language Questions
+** 21 Language Questions
    
-** Object-Oriented Design
+** 22 Object-Oriented Design
    
-** Common Tools
+** 23 Common Tools
    
 * Honors Class
   

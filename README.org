@@ -2,8 +2,77 @@
 #+AUTHOR: Jonathan Jin
 #+STARTUP: logdone showall
 
-* Table of Contents                                                  :TOC:TOC_1:
+* Table of Contents                                                  :TOC:TOC_2:
+- [[#data-structures-and-algorithms][Data Structures and Algorithms]]
+  - [[#primitive-types][Primitive Types]]
+  - [[#arrays][Arrays]]
+  - [[#strings][Strings]]
+  - [[#linked-lists][Linked Lists]]
+  - [[#stacks-and-queues][Stacks and Queues]]
+  - [[#binary-trees][Binary Trees]]
+  - [[#heaps][Heaps]]
+  - [[#searching][Searching]]
+  - [[#hash-tables][Hash Tables]]
+  - [[#sorting][Sorting]]
+  - [[#binary-search-trees][Binary Search Trees]]
+  - [[#recursion][Recursion]]
+  - [[#dynamic-programming][Dynamic Programming]]
+  - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
+  - [[#graphs][Graphs]]
+  - [[#parallel-computing][Parallel Computing]]
+- [[#domain-specific-problems][Domain Specific Problems]]
+  - [[#design-problems][Design Problems]]
+  - [[#language-questions][Language Questions]]
+  - [[#object-oriented-design][Object-Oriented Design]]
+  - [[#common-tools][Common Tools]]
+- [[#honors-class][Honors Class]]
 - [[#unlicense][(Un)license]]
+
+* Data Structures and Algorithms
+
+** Primitive Types
+
+** Arrays
+
+** Strings
+
+** Linked Lists
+
+** Stacks and Queues
+
+** Binary Trees
+
+** Heaps
+
+** Searching
+
+** Hash Tables
+
+** Sorting
+  
+** Binary Search Trees
+
+** Recursion
+
+** Dynamic Programming
+
+** Greedy Algorithms and Invariants
+
+** Graphs
+
+** Parallel Computing
+
+* Domain Specific Problems
+
+** Design Problems
+
+** Language Questions
+
+** Object-Oriented Design
+
+** Common Tools
+
+* Honors Class
 
 * (Un)license
 

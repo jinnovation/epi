@@ -32,50 +32,126 @@
 
 ** Primitive Types
 
+*** DONE Computing the parity of a word
+    CLOSED: [2017-06-21 Wed 00:44]
+    
+    The parity of a binary word is 1 if the number of 1s in the word is odd;
+    otherwise, it is 0. For example, the parity of 1011 is 1, and the parity of
+    10001000 is 0. Parity checks are used to detect single bit errors in data
+    storage and communication. It is fairly straightforward to write code that
+    computes the parity of a single 64-bit word
+    
+**** Solution
+
+     We assume that the word is provided as a 64-bit unsigned integer.
+
+     A naive implementation would be to iterate through every bit of the word,
+     XOR-ing a counter for every 1-bit.
+
+     #+BEGIN_SRC python :results silent :session
+       def parity(word):
+           p = 0
+           for shift in range(0,64):
+               p ^= (word>>shift)&1
+           return p
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([parity(int(w,2))==p for w,p in [
+           ("1011", 1),
+           ("0000", 0),
+       ]])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     This implementation is O(n), where n is the length of the input word.
+
+     We can, however, optimize this function further by precomputing the
+     parities of words and storing the parities in a lookup table. For
+     illustration's purpose, we'll define a lookup table that stores the
+     parities of all words of length 2:
+
+     #+BEGIN_SRC python :results none :session
+       PARITIES_2 = {
+           int("00",2): 0,
+           int("01",2): 1,
+           int("10",2): 1,
+           int("11",2): 0,
+       }
+     #+END_SRC
+
+     Resulting in the following implementation:
+
+     #+BEGIN_SRC python :results none :session
+       def memoized_parity(word):
+           p = 0
+           memo_word_length = 2
+           for s in range(0,64/memo_word_length):
+               mask = 2^memo_word_length - 1
+               shift = s * memo_word_length
+               p ^= PARITIES_2[(word >> shift) & mask]
+           return p
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([memoized_parity(int(w,2))==p for w,p in [
+           ("1011", 1),
+           ("0000", 0),
+       ]])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     This revised implementation is O(n/w) = O(n), where w is the word length of
+     the lookup key.
+     
 ** Arrays
-
+   
 ** Strings
-
+   
 ** Linked Lists
-
+   
 ** Stacks and Queues
-
+   
 ** Binary Trees
-
+   
 ** Heaps
-
+   
 ** Searching
-
+   
 ** Hash Tables
-
+   
 ** Sorting
-  
+   
 ** Binary Search Trees
-
+   
 ** Recursion
-
+   
 ** Dynamic Programming
-
+   
 ** Greedy Algorithms and Invariants
-
+   
 ** Graphs
-
+   
 ** Parallel Computing
-
+   
 * Domain Specific Problems
-
+  
 ** Design Problems
-
+   
 ** Language Questions
-
+   
 ** Object-Oriented Design
-
+   
 ** Common Tools
-
+   
 * Honors Class
-
+  
 * (Un)license
-
+  
   #+BEGIN_SRC text :eval never
     This is free and unencumbered software released into the public domain.
 

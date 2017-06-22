@@ -131,7 +131,8 @@
 
 **** Solution
 
-*** TODO 5.6 Buy and sell a stock once
+*** DONE 5.6 Buy and sell a stock once
+    CLOSED: [2017-06-22 Thu 12:28]
 
     This problem is concerned with the problem of optimally buying and selling a
     stock once. As an example, consider the following sequence of stock prices:
@@ -143,6 +144,44 @@
     returns the maximum profit that could be made by buying and then selling one
     share of that stock.
     
+**** Solution
+
+     Note that this problem is an example of the knapsack problem. A naive
+     solution would reuse the knapsack problem's canonical DP-based solution to
+     solve this problem in O(n^2). This approach is naive due to its attempt to
+     reduce a simpler problem (this one) into a more difficult one (the knapsack
+     problem). Specifically, we note that the problem doesn't ask for exactly
+     *which* stocks to buy and sell for maximum profit -- only the profit
+     amount.
+
+     We first note that a lower buying price always results in a higher profit
+     with the same selling price.
+
+     We can then implement a O(n) solution that compares the "current profit" --
+     defined as difference between the current sell-price under consideration
+     and the as-yet-seen lowest buy price, with a rolling maximum of that
+     value. Every time we see a value less than the as-yet-seen lowest buy
+     price, we update accordingly. Once we reach the end of the list, we return
+     the rolling max value.
+
+     #+BEGIN_SRC python :results silent :session
+       def max_profit(*args):
+           min_so_far = args[0]
+           profit = 0
+           for p in args:
+               profit = max(profit, p - min_so_far)
+               if p < min_so_far:
+                   min_so_far = p
+           return profit
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       max_profit(310,315,275,295,260,270,290,230,255,250) == 30
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
 ** 6 Strings
    
 *** TODO 6.2 Base conversion
@@ -155,7 +194,7 @@
     b^2 + ... + a_{k-1} \times b^{k-1}.
 
     Write a program that performs base conversion. The input is a string, an
-    integer b_1, and antoher integer b_2. The string represents an integer in base
+    integer b_1, and another integer b_2. The string represents an integer in base
     b_1. The output should be the string representing the integer in base
     b_2. Assume 2 \leq b_1, b_2 \leq 16. Use "A" to represent 10, "B" for 11, ..., and
     "F" for 15. (For example, if the string is "615", b_1 is 7 and b_2 is 13, then
@@ -163,7 +202,8 @@
 
 *** TODO 6.4 Replace and remove
 
-    Consider the following two rules that are to be applied to an array of characters.
+    Consider the following two rules that are to be applied to an array of
+    characters.
 
     - Replace each "a" by two "d"s.
     - Delete each entry containing a "b".

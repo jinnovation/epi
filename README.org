@@ -146,13 +146,12 @@
     
 **** Solution
 
-     Note that this problem is an example of the knapsack problem. A naive
-     solution would reuse the knapsack problem's canonical DP-based solution to
-     solve this problem in O(n^2). This approach is naive due to its attempt to
-     reduce a simpler problem (this one) into a more difficult one (the knapsack
-     problem). Specifically, we note that the problem doesn't ask for exactly
+     Note that this problem is a simplification of the knapsack problem. A naive
+     solution would reduce this problem to its inspiration, giving us a O(n^2)
+     solution.  However, we note that the problem doesn't ask for exactly
      *which* stocks to buy and sell for maximum profit -- only the profit
-     amount.
+     amount. This simplification means that we do not need the comprehensive
+     bookkeeping that a DP-based solution to the knapsack problem provides us.
 
      We first note that a lower buying price always results in a higher profit
      with the same selling price.

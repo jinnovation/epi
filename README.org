@@ -413,18 +413,53 @@
     twist on this.
 
     Write a method that takes a sorted array and a key and returns the index of
-    the /first/ occurrence of the key in the array. 
-    
+    the /first/ occurrence of the key in the array.
+     
 ** 12 Hash Tables
 
-*** TODO 12.2 Is an anonymous letter constructible?
+*** DONE 12.2 Is an anonymous letter constructible?
+    CLOSED: [2017-06-23 Fri 12:41]
 
     Write a program which takes text for an anonymous letter and text for a
-    magazine and determinest if it is possible to write the anonymous letter
+    magazine and determines if it is possible to write the anonymous letter
     using the magazine. The letter can be written using the magazine if for each
     character in the letter, the number of times it appears in the anonymous
     letter is no more than the number of times it appears in the magazine.
-    
+
+**** Solution
+
+     We implement a solution that reduces the letter and the magazine into
+     dictionaries. We then check that the magazine dictionary contains all of
+     the letter dictionary's keys and, for each of those keys, that it maps to a
+     count greater than or equal to that contained in the letter dictionary.
+
+     This solution is in time O(n) with respect to the cumulative length of the
+     letter and magazine. Space is, similarly, O(n).
+
+     For the sake of simplicity, we assume that inputs do not contain
+     spaces. Accounting for spaces is trivial and would simply involve splitting
+     each input on whitespace characters and iterating across sub-lists.
+
+     #+BEGIN_SRC python :results output :session
+       def is_possible(l, m):
+           def to_dict(s):
+               out = {}
+               for c in s:
+                   if c not in out:
+                       out[c] = 0
+                   out[c] += 1
+               return out
+
+           dl = to_dict(l)
+           dm = to_dict(m)
+
+           for k,v in dl.iteritems():
+               if k not in dm or dm[k] < v:
+                   return False
+
+           return True
+     #+END_SRC
+     
 ** 13 Sorting
 
 *** TODO 13.1 Compute the intersection of two sorted arrays
@@ -455,7 +490,7 @@
 ** 15 Recursion
 
 *** TODO 15.1 Tower of Hanoi
-    
+     
 ** 16 Dynamic Programming
 
 *** IN-PROGRESS 16.1 Count the number of score combinations

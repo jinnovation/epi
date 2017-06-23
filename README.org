@@ -1,6 +1,7 @@
 #+TITLE: Elements of Programming Interviews: Solutions
 #+AUTHOR: Jonathan Jin
 #+STARTUP: logdone showall
+#+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d)
 
 * Table of Contents                                                  :TOC:TOC_3:
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
@@ -26,11 +27,11 @@
   - [[#13-sorting][13 Sorting]]
     - [[#131-compute-the-intersection-of-two-sorted-arrays][13.1 Compute the intersection of two sorted arrays]]
   - [[#14-binary-search-trees][14 Binary Search Trees]]
-    - [[#141-test-if-a-binary-tree-satisfies-the-bst-property][14.1 Test if a binary tree satisfies the BST property]]
+    - [[#written-141-test-if-a-binary-tree-satisfies-the-bst-property][WRITTEN 14.1 Test if a binary tree satisfies the BST property]]
   - [[#15-recursion][15 Recursion]]
     - [[#151-tower-of-hanoi][15.1 Tower of Hanoi]]
   - [[#16-dynamic-programming][16 Dynamic Programming]]
-    - [[#in-progress-161-count-the-number-of-score-combinations][IN-PROGRESS 16.1 Count the number of score combinations]]
+    - [[#written-161-count-the-number-of-score-combinations][WRITTEN 16.1 Count the number of score combinations]]
   - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
   - [[#18-graphs][18 Graphs]]
     - [[#181-search-a-maze][18.1 Search a maze]]
@@ -462,17 +463,65 @@
      
 ** 13 Sorting
 
-*** TODO 13.1 Compute the intersection of two sorted arrays
+*** DONE 13.1 Compute the intersection of two sorted arrays
+    CLOSED: [2017-06-23 Fri 15:24]
 
     Write a program which takes as input two sorted arrays, and returns a new
     array containing elements that are present in both of the input arrays. The
     input arrays may have duplicate entries, but the returned array should be
     free of duplicates. For example, if the input is =<2,3,3,5,5,6,7,7,8,12>=
     and =<5,5,6,8,8,9,10,10>=, your output should be =<5,6,8>=.
-    
+
+**** Solution
+
+     #+BEGIN_SRC python :results output :session
+       def intersection(A,B):
+           if not A or not B:
+               return []
+           out = []
+           lower,upper = A, B
+           while lower and upper:
+               lower = lower if lower[0] < upper[0] else upper
+               upper = upper if lower[0] < upper[0] else lower
+               while lower and lower[0] != upper[0]:
+                   lower = lower[1:]
+               if not lower or not upper:
+                   break
+               item = lower[0]
+               out.append(item)
+               while lower and lower[0] == item:
+                   lower = lower[1:]
+               while upper and upper[0] == item:
+                   upper = upper[1:]
+           return out
+     #+END_SRC
+
+     #+RESULTS:
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           intersection([],[]) == [],
+           intersection([],[1,2,3]) == [],
+           intersection([1,2,3],[]) == [],
+           intersection(
+               [1,2,3,4,5],
+               [4,4,5,6,7],
+           ) == [4,5,6,7],
+           intersection(
+               [1,2,3],
+               [4,5,6],
+           ) == [],
+       ])  
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     This implementation is linear on its inputs.
+
 ** 14 Binary Search Trees
 
-*** DONE 14.1 Test if a binary tree satisfies the BST property
+*** WRITTEN 14.1 Test if a binary tree satisfies the BST property
     CLOSED: [2017-06-23 Fri 12:20]
 
     Write a program that takes as input a binary tree and checks if the tree
@@ -493,7 +542,8 @@
      
 ** 16 Dynamic Programming
 
-*** IN-PROGRESS 16.1 Count the number of score combinations
+*** WRITTEN 16.1 Count the number of score combinations
+    CLOSED: [2017-06-23 Fri 15:03]
 
     In an American football game, a play can lead to 2 points (safety), 3 points
     (field goal), or 7 points (touchdown, assuming the extra point). Many

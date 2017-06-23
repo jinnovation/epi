@@ -20,13 +20,20 @@
     - [[#91-test-if-a-binary-tree-is-height-balanced][9.1 Test if a binary tree is height-balanced]]
   - [[#10-heaps][10 Heaps]]
   - [[#11-searching][11 Searching]]
+    - [[#111-search-a-sorted-array-for-first-occurrence-of-k][11.1 Search a sorted array for first occurrence of =k=]]
   - [[#12-hash-tables][12 Hash Tables]]
+    - [[#122-is-an-anonymous-letter-constructible][12.2 Is an anonymous letter constructible?]]
   - [[#13-sorting][13 Sorting]]
+    - [[#131-compute-the-intersection-of-two-sorted-arrays][13.1 Compute the intersection of two sorted arrays]]
   - [[#14-binary-search-trees][14 Binary Search Trees]]
+    - [[#141-test-if-a-binary-tree-satisfies-the-bst-property][14.1 Test if a binary tree satisfies the BST property]]
   - [[#15-recursion][15 Recursion]]
+    - [[#151-tower-of-hanoi][15.1 Tower of Hanoi]]
   - [[#16-dynamic-programming][16 Dynamic Programming]]
+    - [[#161-count-the-number-of-score-combinations][16.1 Count the number of score combinations]]
   - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
   - [[#18-graphs][18 Graphs]]
+    - [[#181-search-a-maze][18.1 Search a maze]]
   - [[#19-parallel-computing][19 Parallel Computing]]
 - [[#domain-specific-problems][Domain Specific Problems]]
   - [[#20-design-problems][20 Design Problems]]
@@ -398,21 +405,82 @@
 ** 10 Heaps
    
 ** 11 Searching
-   
+
+*** TODO 11.1 Search a sorted array for first occurrence of =k=
+
+    Binary search commonly asks for the index of /any/ element of a sorted array
+    that is equal to a specified element. The following problem has a slight
+    twist on this.
+
+    Write a method that takes a sorted array and a key and returns the index of
+    the /first/ occurrence of the key in the array. 
+    
 ** 12 Hash Tables
-   
+
+*** TODO 12.2 Is an anonymous letter constructible?
+
+    Write a program which takes text for an anonymous letter and text for a
+    magazine and determinest if it is possible to write the anonymous letter
+    using the magazine. The letter can be written using the magazine if for each
+    character in the letter, the number of times it appears in the anonymous
+    letter is no more than the number of times it appears in the magazine.
+    
 ** 13 Sorting
-   
+
+*** TODO 13.1 Compute the intersection of two sorted arrays
+
+    Write a program which takes as input two sorted arrays, and returns a new
+    array containing elements that are present in both of the input arrays. The
+    input arrays may have duplicate entries, but the returned array should be
+    free of duplicates. For example, if the input is =<2,3,3,5,5,6,7,7,8,12>=
+    and =<5,5,6,8,8,9,10,10>=, your output should be =<5,6,8>=.
+    
 ** 14 Binary Search Trees
-   
+
+*** TODO 14.1 Test if a binary tree satisfies the BST property
+
+    Write a program that takes as input a binary tree and checks if the tree
+    satisfies the BST property.
+    
 ** 15 Recursion
-   
+
+*** TODO 15.1 Tower of Hanoi
+    
 ** 16 Dynamic Programming
-   
+
+*** TODO 16.1 Count the number of score combinations
+
+    In an American football game, a play can lead to 2 points (safety), 3 points
+    (field goal), or 7 points (touchdown, assuming the extra point). Many
+    different combinations of 2, 3, and 7 point plays can make up a final
+    score. For example, four combinations of plays yield a score of 12:
+
+    - 6 safeties;
+    - 3 safeties, 2 field goals;
+    - 1 safety, 1 field goal, and 1 touchdown;
+    - 4 field goals.
+
+
+    Write a program that takes a final score and scores for individual plays,
+    and returns the number of combinations of plays that result in the final
+    score.
+    
 ** 17 Greedy Algorithms and Invariants
    
 ** 18 Graphs
-   
+
+*** TODO 18.1 Search a maze
+
+    Given a 2D array of black and white entries representing a maxe with
+    designated entrance and exit points, find a path from the entrance to the
+    exit, if one exists.
+
+    /Hint/: Model the maze as a graph.
+
+**** Solution
+
+     We treat the 2D array as a graph and implement DFS.
+     
 ** 19 Parallel Computing
    
 * Domain Specific Problems

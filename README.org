@@ -30,7 +30,7 @@
   - [[#15-recursion][15 Recursion]]
     - [[#151-tower-of-hanoi][15.1 Tower of Hanoi]]
   - [[#16-dynamic-programming][16 Dynamic Programming]]
-    - [[#161-count-the-number-of-score-combinations][16.1 Count the number of score combinations]]
+    - [[#in-progress-161-count-the-number-of-score-combinations][IN-PROGRESS 16.1 Count the number of score combinations]]
   - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
   - [[#18-graphs][18 Graphs]]
     - [[#181-search-a-maze][18.1 Search a maze]]
@@ -437,18 +437,28 @@
     
 ** 14 Binary Search Trees
 
-*** TODO 14.1 Test if a binary tree satisfies the BST property
+*** DONE 14.1 Test if a binary tree satisfies the BST property
+    CLOSED: [2017-06-23 Fri 12:20]
 
     Write a program that takes as input a binary tree and checks if the tree
     satisfies the BST property.
-    
+
+**** Solution
+
+     Iterate through each subtree, keeping track of a local maximum and
+     minimum. In addition to asserting that the two leaves relate to the node as
+     necessary, similarly assert that the two leaves fall within the maximum and
+     minimum. When recursing into leaves, update either the maximum or the
+     minimum with the current node value depending on which leave is being
+     recursed into.
+
 ** 15 Recursion
 
 *** TODO 15.1 Tower of Hanoi
     
 ** 16 Dynamic Programming
 
-*** TODO 16.1 Count the number of score combinations
+*** IN-PROGRESS 16.1 Count the number of score combinations
 
     In an American football game, a play can lead to 2 points (safety), 3 points
     (field goal), or 7 points (touchdown, assuming the extra point). Many
@@ -464,7 +474,30 @@
     Write a program that takes a final score and scores for individual plays,
     and returns the number of combinations of plays that result in the final
     score.
-    
+
+**** Solution
+
+     We can memoize the number of combinations that lead to certain scores,
+     iterating through the memo to arrive at the desired final score and, as a
+     result, the final combination count.
+
+     Say we have possible play scores 2 and 3, and we'd like the number of
+     possible plays that could lead to a score of 9. We can represent our memo
+     as a two-dimensional array, where one axis is the score and the other
+     represents the set of plays that can comprise the score, the first index
+     representing, in this case, the set ={2}= and the second, the set ={2,3}=.
+
+     We note that, for a given score =S= and a given set of plays =P = {P', p}=,
+     number of combinations leading to score =S= =N(S, P)= equals (informally):
+
+     =N(S-p, P') + N(S-2p, P') + ... + N(0, P')=
+
+     We say that =N(x, y) = 0= for =x<0= and any =y=.
+
+     |         | *0* | *1* | *2* | *3* | *4* | *5* | *6* | *7* | *8* | *9* |
+     | ={2}=   |   1 |   0 |   1 |   0 |   1 |   0 |   1 |   0 |   1 |   0 |
+     | ={2,3}= |   1 |   0 |   1 |   1 |   1 |   1 |   2 |   1 |   2 |   2 |
+
 ** 17 Greedy Algorithms and Invariants
    
 ** 18 Graphs

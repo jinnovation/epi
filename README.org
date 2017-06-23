@@ -498,6 +498,9 @@
      | ={2}=   |   1 |   0 |   1 |   0 |   1 |   0 |   1 |   0 |   1 |   0 |
      | ={2,3}= |   1 |   0 |   1 |   1 |   1 |   1 |   2 |   1 |   2 |   2 |
 
+     A solution that uses this memoization strategy will be =O(S \times |P|)=, where
+     =S= is the score and =P= is the set of play scores. Likewise for space.
+
 ** 17 Greedy Algorithms and Invariants
    
 ** 18 Graphs

@@ -32,6 +32,7 @@
     - [[#151-tower-of-hanoi][15.1 Tower of Hanoi]]
   - [[#16-dynamic-programming][16 Dynamic Programming]]
     - [[#written-161-count-the-number-of-score-combinations][WRITTEN 16.1 Count the number of score combinations]]
+    - [[#163-count-the-number-of-ways-to-traverse-a-2d-array][16.3 Count the number of ways to traverse a 2D array]]
   - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
   - [[#18-graphs][18 Graphs]]
     - [[#181-search-a-maze][18.1 Search a maze]]
@@ -586,6 +587,44 @@
      A solution that uses this memoization strategy will be =O(S \times |P|)=, where
      =S= is the score and =P= is the set of play scores. Likewise for space.
 
+*** DONE 16.3 Count the number of ways to traverse a 2D array
+    CLOSED: [2017-06-23 Fri 19:18]
+
+**** Solution
+
+     Our memoization strategy is as follows. We use a matrix T of the same
+     shape as the input matrix M to track the number of ways to traverse to
+     that point in the input. Matrix T is populated according to function
+     T(i,j), which we define as follows:
+
+     - T(i,j) = T(i-1,j) + T(i, j-1)
+     - T(i, j) = 0 \forall j \in \real, i < 0
+     - T(i, j) = 0 \forall j < 0, i \in \real
+
+
+     Our solution then becomes as follows:
+
+     #+BEGIN_SRC python :results silent :session
+       def num_traversals(M):
+           t = [[0 for _ in M[0]] for _ in M]
+           def T(t, i,j):
+               if i == -1 or j == -1:
+                   return 0
+               if i == 0 and j == 0:
+                   return 1
+               return t[i-1][j] + t[i][j-1]
+           for i in range(0, len(M)):
+               for j in range(0, len(M[i])):
+                   t[i][j] = T(t, i, j)
+           return t[len(M)-1][len(M[0])-1]
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           num_traversals([[0,0,0,0,0] for _ in xrange(5)]) == 70,
+       ])
+     #+END_SRC
+     
 ** 17 Greedy Algorithms and Invariants
    
 ** 18 Graphs

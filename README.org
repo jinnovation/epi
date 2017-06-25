@@ -33,6 +33,7 @@
   - [[#16-dynamic-programming][16 Dynamic Programming]]
     - [[#written-161-count-the-number-of-score-combinations][WRITTEN 16.1 Count the number of score combinations]]
     - [[#163-count-the-number-of-ways-to-traverse-a-2d-array][16.3 Count the number of ways to traverse a 2D array]]
+    - [[#164-compute-the-binomial-coefficient-without-overflow][16.4 Compute the binomial coefficient without overflow]]
   - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
   - [[#18-graphs][18 Graphs]]
     - [[#181-search-a-maze][18.1 Search a maze]]
@@ -624,6 +625,58 @@
            num_traversals([[0,0,0,0,0] for _ in xrange(5)]) == 70,
        ])
      #+END_SRC
+
+     This implementation is linear for both time and space with respect to the
+     number of elements in the input matrix.
+
+*** DONE 16.4 Compute the binomial coefficient without overflow
+    CLOSED: [2017-06-24 Sat 21:10]
+
+**** Solution
+
+     For illustration's purpose, we outline a C matrix, where C[n][k] = C(n+1,k+1)
+     \forall n,k \in \real:
+
+     | 1 | 2 | 3 | 4 |
+     | 0 | 1 | 3 | 6 |
+     | 0 | 0 | 1 | 4 |
+     | 0 | 0 | 0 | 1 |
+
+     We note that this gives us the following recursive definition of the
+     binominal coefficient: C(n, k) = C(n-1, k-1) + C(n-1, k). A naive
+     implementation would directly translate this recursive definition into a
+     recursive implementation, resulting in re-computation of the same values
+     for exponential time complexity w.r.t nk. Instead, we memoize intermediate
+     results in a manner identical to the example matrix above:
+
+     #+BEGIN_SRC python :results output :session
+       def bico(n,k):
+           def C(_C, n, k):
+               if n == k:
+                   return 1
+               elif k == 0:
+                   return n + 1
+               elif k > n:
+                   return 0
+               else:
+                   return _C[k-1][n-1] + _C[k][n-1]
+           _C = [[0 for _ in xrange(n)] for _ in xrange(k)]
+           for _k in range(0, k):
+               for _n in range(0, n):
+                   _C[_k][_n] = C(_C, _n, _k)
+           return _C[k-1][n-1]
+     #+END_SRC
+
+     #+RESULTS:
+
+     #+BEGIN_SRC python :results output :session
+       all([
+           bico(29, 3) == 3654,
+           bico(3, 2) == 3,
+       ])
+     #+END_SRC
+
+     This solution is O(nk) for both time and space.
      
 ** 17 Greedy Algorithms and Invariants
    

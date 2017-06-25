@@ -23,6 +23,7 @@
   - [[#searching][Searching]]
     - [[#search-a-sorted-array-for-first-occurrence-of-k][Search a sorted array for first occurrence of =k=]]
   - [[#hash-tables][Hash Tables]]
+    - [[#test-for-palindromic-permutations][Test for palindromic permutations]]
     - [[#is-an-anonymous-letter-constructible][Is an anonymous letter constructible?]]
   - [[#sorting][Sorting]]
     - [[#compute-the-intersection-of-two-sorted-arrays][Compute the intersection of two sorted arrays]]
@@ -420,6 +421,59 @@
     the /first/ occurrence of the key in the array.
      
 ** Hash Tables
+
+*** DONE Test for palindromic permutations
+    CLOSED: [2017-06-25 Sun 00:14]
+
+    Write a program to test whether the letters forming a string can be permuted
+    to form a palindrome. For instance, "edified" can be permuted to form
+    "deified".
+
+**** Solution
+
+     We assume that there is no requirement that the resulting palindrome be a
+     word in the English language.
+
+     We note that, in the case of even-length strings, we require the count of
+     each letter to be evenly divisible by two. We additionally note that, in
+     the case of odd-length strings, there is one and only one letter with count
+     of one.
+
+     This implementation is O(n) in time and space.
+
+     #+BEGIN_SRC python :results silent :session
+       def can_palindrome(s):
+           lcs = {}
+           for c in s:
+               if c not in lcs:
+                   lcs[c] = 0
+               lcs[c] += 1
+           if len(s) % 2 == 0:
+               return all(v % 2 == 0 for k,v in lcs.iteritems())
+           else:
+               is_pivot_found = False
+               for k,v in lcs.iteritems():
+                   if v == 1:
+                       if is_pivot_found:
+                           return False
+                       else:
+                           is_pivot_found = True
+                           continue
+                   elif v % 2 != 0:
+                       return False
+               return True
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           can_palindrome("racecar"),
+           can_palindrome("rraacce"),
+           not can_palindrome("foobar"),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** DONE Is an anonymous letter constructible?
     CLOSED: [2017-06-23 Fri 12:41]

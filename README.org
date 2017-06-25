@@ -5,53 +5,53 @@
 
 * Table of Contents                                                  :TOC:TOC_3:
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
-  - [[#4-primitive-types][4 Primitive Types]]
-    - [[#41-computing-the-parity-of-a-word][4.1 Computing the parity of a word]]
-  - [[#5-arrays][5 Arrays]]
-    - [[#51-the-dutch-national-flag-problem][5.1 The Dutch national flag problem]]
-    - [[#56-buy-and-sell-a-stock-once][5.6 Buy and sell a stock once]]
-  - [[#6-strings][6 Strings]]
-    - [[#62-base-conversion][6.2 Base conversion]]
-    - [[#64-replace-and-remove][6.4 Replace and remove]]
-  - [[#7-linked-lists][7 Linked Lists]]
-    - [[#71-merge-two-sorted-lists][7.1 Merge two sorted lists]]
-  - [[#8-stacks-and-queues][8 Stacks and Queues]]
-    - [[#81-implement-a-stack-with-max-api][8.1 Implement a stack with =max= API]]
-  - [[#9-binary-trees][9 Binary Trees]]
-    - [[#91-test-if-a-binary-tree-is-height-balanced][9.1 Test if a binary tree is height-balanced]]
-  - [[#10-heaps][10 Heaps]]
-  - [[#11-searching][11 Searching]]
-    - [[#111-search-a-sorted-array-for-first-occurrence-of-k][11.1 Search a sorted array for first occurrence of =k=]]
-  - [[#12-hash-tables][12 Hash Tables]]
-    - [[#122-is-an-anonymous-letter-constructible][12.2 Is an anonymous letter constructible?]]
-  - [[#13-sorting][13 Sorting]]
-    - [[#131-compute-the-intersection-of-two-sorted-arrays][13.1 Compute the intersection of two sorted arrays]]
-  - [[#14-binary-search-trees][14 Binary Search Trees]]
-    - [[#written-141-test-if-a-binary-tree-satisfies-the-bst-property][WRITTEN 14.1 Test if a binary tree satisfies the BST property]]
-  - [[#15-recursion][15 Recursion]]
-    - [[#151-tower-of-hanoi][15.1 Tower of Hanoi]]
-  - [[#16-dynamic-programming][16 Dynamic Programming]]
-    - [[#written-161-count-the-number-of-score-combinations][WRITTEN 16.1 Count the number of score combinations]]
-    - [[#163-count-the-number-of-ways-to-traverse-a-2d-array][16.3 Count the number of ways to traverse a 2D array]]
-    - [[#164-compute-the-binomial-coefficient-without-overflow][16.4 Compute the binomial coefficient without overflow]]
-    - [[#165-search-for-a-sequence-in-a-2d-array][16.5 Search for a sequence in a 2D array]]
-  - [[#17-greedy-algorithms-and-invariants][17 Greedy Algorithms and Invariants]]
-  - [[#18-graphs][18 Graphs]]
-    - [[#181-search-a-maze][18.1 Search a maze]]
-  - [[#19-parallel-computing][19 Parallel Computing]]
+  - [[#primitive-types][Primitive Types]]
+    - [[#computing-the-parity-of-a-word][Computing the parity of a word]]
+  - [[#arrays][Arrays]]
+    - [[#the-dutch-national-flag-problem][The Dutch national flag problem]]
+    - [[#buy-and-sell-a-stock-once][Buy and sell a stock once]]
+  - [[#strings][Strings]]
+    - [[#base-conversion][Base conversion]]
+    - [[#replace-and-remove][Replace and remove]]
+  - [[#linked-lists][Linked Lists]]
+    - [[#merge-two-sorted-lists][Merge two sorted lists]]
+  - [[#stacks-and-queues][Stacks and Queues]]
+    - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
+  - [[#binary-trees][Binary Trees]]
+    - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
+  - [[#heaps][Heaps]]
+  - [[#searching][Searching]]
+    - [[#search-a-sorted-array-for-first-occurrence-of-k][Search a sorted array for first occurrence of =k=]]
+  - [[#hash-tables][Hash Tables]]
+    - [[#is-an-anonymous-letter-constructible][Is an anonymous letter constructible?]]
+  - [[#sorting][Sorting]]
+    - [[#compute-the-intersection-of-two-sorted-arrays][Compute the intersection of two sorted arrays]]
+  - [[#binary-search-trees][Binary Search Trees]]
+    - [[#written-test-if-a-binary-tree-satisfies-the-bst-property][WRITTEN Test if a binary tree satisfies the BST property]]
+  - [[#recursion][Recursion]]
+    - [[#tower-of-hanoi][Tower of Hanoi]]
+  - [[#dynamic-programming][Dynamic Programming]]
+    - [[#written-count-the-number-of-score-combinations][WRITTEN Count the number of score combinations]]
+    - [[#count-the-number-of-ways-to-traverse-a-2d-array][Count the number of ways to traverse a 2D array]]
+    - [[#compute-the-binomial-coefficient-without-overflow][Compute the binomial coefficient without overflow]]
+    - [[#search-for-a-sequence-in-a-2d-array][Search for a sequence in a 2D array]]
+  - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
+  - [[#graphs][Graphs]]
+    - [[#search-a-maze][Search a maze]]
+  - [[#parallel-computing][Parallel Computing]]
 - [[#domain-specific-problems][Domain Specific Problems]]
-  - [[#20-design-problems][20 Design Problems]]
-  - [[#21-language-questions][21 Language Questions]]
-  - [[#22-object-oriented-design][22 Object-Oriented Design]]
-  - [[#23-common-tools][23 Common Tools]]
+  - [[#design-problems][Design Problems]]
+  - [[#language-questions][Language Questions]]
+  - [[#object-oriented-design][Object-Oriented Design]]
+  - [[#common-tools][Common Tools]]
 - [[#honors-class][Honors Class]]
 - [[#unlicense][(Un)license]]
 
 * Data Structures and Algorithms
 
-** 4 Primitive Types
+** Primitive Types
 
-*** DONE 4.1 Computing the parity of a word
+*** DONE Computing the parity of a word
     CLOSED: [2017-06-21 Wed 00:44]
     
     The parity of a binary word is 1 if the number of 1s in the word is odd;
@@ -129,9 +129,9 @@
      This revised implementation is O(n/w) = O(n), where w is the word length of
      the lookup key.
      
-** 5 Arrays
+** Arrays
    
-*** TODO 5.1 The Dutch national flag problem
+*** TODO The Dutch national flag problem
 
     Write a program that takes an array A and an index i into A, and rearranges
     the elements such that all elements less than A[i] (the "pivot") appear
@@ -142,7 +142,7 @@
 
 **** Solution
 
-*** DONE 5.6 Buy and sell a stock once
+*** DONE Buy and sell a stock once
     CLOSED: [2017-06-22 Thu 12:28]
 
     This problem is concerned with the problem of optimally buying and selling a
@@ -192,9 +192,9 @@
      #+RESULTS:
      : True
 
-** 6 Strings
+** Strings
    
-*** TODO 6.2 Base conversion
+*** TODO Base conversion
 
     In the decimal number system, the position of a digit is used to signify the
     power of 10 that digit is to be multiplied with. For example, "314" denotes
@@ -210,7 +210,7 @@
     "F" for 15. (For example, if the string is "615", b_1 is 7 and b_2 is 13, then
     the result should be "1A7", since 6 \times 7^2 + 1 \times 7 + 5 = 1 \times 13^2 + 10 \times 13 + 7).
 
-*** TODO 6.4 Replace and remove
+*** TODO Replace and remove
 
     Consider the following two rules that are to be applied to an array of
     characters.
@@ -230,9 +230,9 @@
     is =<a,b,a,c,_>= and the size is 4, then you can return =<d,d,d,d,c>=. You
     can assume there is enough space in the array to hold the final result.
     
-** 7 Linked Lists
+** Linked Lists
 
-*** DONE 7.1 Merge two sorted lists
+*** DONE Merge two sorted lists
     CLOSED: [2017-06-21 Wed 12:53]
 
     Write a program that takes two lists, assumed to be sorted, and returns
@@ -333,9 +333,9 @@
      #+RESULTS:
      : True
 
-** 8 Stacks and Queues
+** Stacks and Queues
    
-*** DONE 8.1 Implement a stack with =max= API
+*** DONE Implement a stack with =max= API
     CLOSED: [2017-06-21 Wed 01:06]
 
     Design a stack that includes a max operation, in addition to push and
@@ -402,15 +402,15 @@
 
      Space complexity is O(2n) = O(n), where n is the stack size.
      
-** 9 Binary Trees
+** Binary Trees
 
-*** TODO 9.1 Test if a binary tree is height-balanced
+*** TODO Test if a binary tree is height-balanced
     
-** 10 Heaps
+** Heaps
    
-** 11 Searching
+** Searching
 
-*** TODO 11.1 Search a sorted array for first occurrence of =k=
+*** TODO Search a sorted array for first occurrence of =k=
 
     Binary search commonly asks for the index of /any/ element of a sorted array
     that is equal to a specified element. The following problem has a slight
@@ -419,9 +419,9 @@
     Write a method that takes a sorted array and a key and returns the index of
     the /first/ occurrence of the key in the array.
      
-** 12 Hash Tables
+** Hash Tables
 
-*** DONE 12.2 Is an anonymous letter constructible?
+*** DONE Is an anonymous letter constructible?
     CLOSED: [2017-06-23 Fri 12:41]
 
     Write a program which takes text for an anonymous letter and text for a
@@ -464,9 +464,9 @@
            return True
      #+END_SRC
      
-** 13 Sorting
+** Sorting
 
-*** DONE 13.1 Compute the intersection of two sorted arrays
+*** DONE Compute the intersection of two sorted arrays
     CLOSED: [2017-06-23 Fri 15:24]
 
     Write a program which takes as input two sorted arrays, and returns a new
@@ -522,9 +522,9 @@
 
      This implementation is linear on its inputs.
 
-** 14 Binary Search Trees
+** Binary Search Trees
 
-*** WRITTEN 14.1 Test if a binary tree satisfies the BST property
+*** WRITTEN Test if a binary tree satisfies the BST property
     CLOSED: [2017-06-23 Fri 12:20]
 
     Write a program that takes as input a binary tree and checks if the tree
@@ -539,13 +539,13 @@
      minimum with the current node value depending on which leave is being
      recursed into.
 
-** 15 Recursion
+** Recursion
 
-*** TODO 15.1 Tower of Hanoi
+*** TODO Tower of Hanoi
      
-** 16 Dynamic Programming
+** Dynamic Programming
 
-*** WRITTEN 16.1 Count the number of score combinations
+*** WRITTEN Count the number of score combinations
     CLOSED: [2017-06-23 Fri 15:03]
 
     In an American football game, a play can lead to 2 points (safety), 3 points
@@ -589,7 +589,7 @@
      A solution that uses this memoization strategy will be =O(S \times |P|)=, where
      =S= is the score and =P= is the set of play scores. Likewise for space.
 
-*** DONE 16.3 Count the number of ways to traverse a 2D array
+*** DONE Count the number of ways to traverse a 2D array
     CLOSED: [2017-06-23 Fri 19:18]
 
 **** Solution
@@ -630,7 +630,7 @@
      This implementation is linear for both time and space with respect to the
      number of elements in the input matrix.
 
-*** DONE 16.4 Compute the binomial coefficient without overflow
+*** DONE Compute the binomial coefficient without overflow
     CLOSED: [2017-06-24 Sat 21:10]
 
 **** Solution
@@ -679,7 +679,7 @@
 
      This solution is O(nk) for both time and space.
 
-*** DONE 16.5 Search for a sequence in a 2D array
+*** DONE Search for a sequence in a 2D array
     CLOSED: [2017-06-24 Sat 22:48]
 
     Write a program that takes as arguments a 2D array and a 1D array, and
@@ -774,11 +774,11 @@
      : True
 
      
-** 17 Greedy Algorithms and Invariants
+** Greedy Algorithms and Invariants
    
-** 18 Graphs
+** Graphs
 
-*** TODO 18.1 Search a maze
+*** TODO Search a maze
 
     Given a 2D array of black and white entries representing a maxe with
     designated entrance and exit points, find a path from the entrance to the
@@ -790,17 +790,17 @@
 
      We treat the 2D array as a graph and implement DFS.
      
-** 19 Parallel Computing
+** Parallel Computing
    
 * Domain Specific Problems
   
-** 20 Design Problems
+** Design Problems
    
-** 21 Language Questions
+** Language Questions
    
-** 22 Object-Oriented Design
+** Object-Oriented Design
    
-** 23 Common Tools
+** Common Tools
    
 * Honors Class
   

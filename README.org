@@ -159,7 +159,7 @@
 **** Solution
 
      Note that this problem is a simplification of the knapsack problem. A naive
-     solution would reduce this problem to its inspiration, giving us a O(n^2)
+     solution would reduce this problem to its inspiration, giving us a O(n^{2})
      solution.  However, we note that the problem doesn't ask for exactly
      *which* stocks to buy and sell for maximum profit -- only the profit
      amount. This simplification means that we do not need the comprehensive
@@ -201,15 +201,15 @@
     power of 10 that digit is to be multiplied with. For example, "314" denotes
     the number 3 * 100 + 1 * 10 + 4 * 1. The base b number system generalizes
     the decimal number system: the string "a_{k-1}a_{k-2}...a_{1}a_{1}", where 0 \leq a_i \leq
-    b, denotes in base-b the integer a_0 \times b^0 + a_1 \times b^1 + a_2 \times
-    b^2 + ... + a_{k-1} \times b^{k-1}.
+    b, denotes in base-b the integer a_0 \times b^{0} + a_1 \times b^{1} + a_2 \times
+    b^{2} + ... + a_{k-1} \times b^{k-1}.
 
     Write a program that performs base conversion. The input is a string, an
     integer b_1, and another integer b_2. The string represents an integer in base
     b_1. The output should be the string representing the integer in base
     b_2. Assume 2 \leq b_1, b_2 \leq 16. Use "A" to represent 10, "B" for 11, ..., and
     "F" for 15. (For example, if the string is "615", b_1 is 7 and b_2 is 13, then
-    the result should be "1A7", since 6 \times 7^2 + 1 \times 7 + 5 = 1 \times 13^2 + 10 \times 13 + 7).
+    the result should be "1A7", since 6 \times 7^{2} + 1 \times 7 + 5 = 1 \times 13^{2} + 10 \times 13 + 7).
 
 *** TODO Replace and remove
 

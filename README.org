@@ -698,7 +698,10 @@
      backwards through the trace. This is to prevent re-tracing of paths that
      are already known to be "lost causes" -- an implementation that would lead
      to time complexity of O(nml), where n and m are the matrix's dimensions and
-     l is the length of the sequence.
+     l is the length of the sequence. The result, where we preemptively avoid
+     tracing paths that have already been deemed to not match the argument
+     sequence, is an implementation that is in time O(nm) (traversal of the
+     input sequence is amortized).
 
      #+BEGIN_SRC python :results silent :session
        def contains_sequence(M, S):

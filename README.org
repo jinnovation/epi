@@ -19,6 +19,7 @@
     - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
   - [[#binary-trees][Binary Trees]]
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
+    - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
   - [[#heaps][Heaps]]
   - [[#searching][Searching]]
     - [[#search-a-sorted-array-for-first-occurrence-of-k][Search a sorted array for first occurrence of =k=]]
@@ -407,6 +408,26 @@
 
 *** TODO Test if a binary tree is height-balanced
     
+*** DONE Compute the LCA when nodes have parent pointers
+    CLOSED: [2017-06-25 Sun 18:37]
+
+**** Solution
+
+     We note that the solution is trivial if the nodes are at the same depth:
+     iterate in tandem until you reach the common ancestor node. This operation
+     is O(log n).
+
+     Otherwise, if the nodes are at different depths, we can iterate the deeper
+     node until both cursors are at the same depth, at which point the problem
+     reduces to the same-depth case.
+
+     Both of these cases require us to determine the depths of the two
+     nodes. This can be done by tracing the respective parent pointers to the
+     root and storing the traversal length.
+
+     We note that both depth-determination and final traversal are O(log n); the
+     combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
+
 ** Heaps
    
 ** Searching

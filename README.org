@@ -11,6 +11,7 @@
     - [[#the-dutch-national-flag-problem][The Dutch national flag problem]]
     - [[#buy-and-sell-a-stock-once][Buy and sell a stock once]]
   - [[#strings][Strings]]
+    - [[#interconvert-strings-and-integers][Interconvert strings and integers]]
     - [[#base-conversion][Base conversion]]
     - [[#replace-and-remove][Replace and remove]]
   - [[#linked-lists][Linked Lists]]
@@ -22,9 +23,11 @@
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
   - [[#heaps][Heaps]]
+    - [[#merge-sorted-files][Merge sorted files]]
   - [[#searching][Searching]]
     - [[#search-a-sorted-array-for-first-occurrence-of-k][Search a sorted array for first occurrence of =k=]]
   - [[#hash-tables][Hash Tables]]
+    - [[#partition-into-anagrams][Partition into anagrams]]
     - [[#test-for-palindromic-permutations][Test for palindromic permutations]]
     - [[#is-an-anonymous-letter-constructible][Is an anonymous letter constructible?]]
   - [[#sorting][Sorting]]
@@ -39,6 +42,7 @@
     - [[#compute-the-binomial-coefficient-without-overflow][Compute the binomial coefficient without overflow]]
     - [[#search-for-a-sequence-in-a-2d-array][Search for a sequence in a 2D array]]
   - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
+    - [[#the-3-sum-problem][The 3-sum problem]]
   - [[#graphs][Graphs]]
     - [[#search-a-maze][Search a maze]]
   - [[#parallel-computing][Parallel Computing]]
@@ -54,7 +58,7 @@
 
 ** Primitive Types
 
-*** DONE Computing the parity of a word
+*** DONE Computing the parity of a word                                     :C0:
     CLOSED: [2017-06-21 Wed 00:44]
     
     The parity of a binary word is 1 if the number of 1s in the word is odd;
@@ -134,7 +138,7 @@
      
 ** Arrays
    
-*** TODO The Dutch national flag problem
+*** TODO The Dutch national flag problem                                    :C0:
 
     Write a program that takes an array A and an index i into A, and rearranges
     the elements such that all elements less than A[i] (the "pivot") appear
@@ -145,7 +149,7 @@
 
 **** Solution
 
-*** DONE Buy and sell a stock once
+*** DONE Buy and sell a stock once                                          :C0:
     CLOSED: [2017-06-22 Thu 12:28]
 
     This problem is concerned with the problem of optimally buying and selling a
@@ -196,7 +200,9 @@
      : True
 
 ** Strings
-   
+
+*** TODO Interconvert strings and integers                                  :C0:
+    
 *** TODO Base conversion
 
     In the decimal number system, the position of a digit is used to signify the
@@ -235,7 +241,7 @@
     
 ** Linked Lists
 
-*** DONE Merge two sorted lists
+*** DONE Merge two sorted lists                                             :C0:
     CLOSED: [2017-06-21 Wed 12:53]
 
     Write a program that takes two lists, assumed to be sorted, and returns
@@ -338,7 +344,7 @@
 
 ** Stacks and Queues
    
-*** DONE Implement a stack with =max= API
+*** DONE Implement a stack with =max= API                                   :C0:
     CLOSED: [2017-06-21 Wed 01:06]
 
     Design a stack that includes a max operation, in addition to push and
@@ -445,7 +451,7 @@
 
 ** Binary Trees
 
-*** DONE Test if a binary tree is height-balanced
+*** DONE Test if a binary tree is height-balanced                           :C0:
     CLOSED: [2017-06-25 Sun 21:56]
 
     A binary tree is said to be balanced if for each node in the tree, the
@@ -505,10 +511,12 @@
      combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
 
 ** Heaps
-   
+
+*** TODO Merge sorted files                                                 :C0:
+    
 ** Searching
 
-*** TODO Search a sorted array for first occurrence of =k=
+*** TODO Search a sorted array for first occurrence of =k=                  :C0:
 
     Binary search commonly asks for the index of /any/ element of a sorted array
     that is equal to a specified element. The following problem has a slight
@@ -518,6 +526,8 @@
     the /first/ occurrence of the key in the array.
      
 ** Hash Tables
+
+*** TODO Partition into anagrams                                            :C0:
 
 *** DONE Test for palindromic permutations
     CLOSED: [2017-06-25 Sun 00:14]
@@ -617,7 +627,7 @@
      
 ** Sorting
 
-*** DONE Compute the intersection of two sorted arrays
+*** DONE Compute the intersection of two sorted arrays                      :C0:
     CLOSED: [2017-06-23 Fri 15:24]
 
     Write a program which takes as input two sorted arrays, and returns a new
@@ -675,7 +685,7 @@
 
 ** Binary Search Trees
 
-*** DONE Test if a binary tree satisfies the BST property
+*** DONE Test if a binary tree satisfies the BST property                   :C0:
     CLOSED: [2017-06-23 Fri 12:20]
 
     Write a program that takes as input a binary tree and checks if the tree
@@ -692,11 +702,11 @@
 
 ** Recursion
 
-*** TODO Tower of Hanoi
+*** TODO Tower of Hanoi                                                     :C0:
      
 ** Dynamic Programming
 
-*** WRITTEN Count the number of score combinations
+*** WRITTEN Count the number of score combinations                          :C0:
     CLOSED: [2017-06-23 Fri 15:03]
 
     In an American football game, a play can lead to 2 points (safety), 3 points
@@ -925,12 +935,14 @@
      : True
 
 ** Greedy Algorithms and Invariants
-   
+
+*** TODO The 3-sum problem                                                  :C0:
+    
 ** Graphs
 
-*** TODO Search a maze
+*** TODO Search a maze                                                      :C0:
 
-    Given a 2D array of black and white entries representing a maxe with
+    Given a 2D array of black and white entries representing a maze with
     designated entrance and exit points, find a path from the entrance to the
     exit, if one exists.
 

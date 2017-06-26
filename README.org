@@ -406,8 +406,45 @@
      
 ** Binary Trees
 
-*** TODO Test if a binary tree is height-balanced
+*** DONE Test if a binary tree is height-balanced
+    CLOSED: [2017-06-25 Sun 21:56]
+
+    A binary tree is said to be balanced if for each node in the tree, the
+    difference in the height of its left and right subtrees is at most one. A
+    perfect binary tree is balanced, as is a complete binary tree. A balanced
+    binary tree does not have to be perfect or complete.
+
+    Write a program that takes as input the root of a binary tree and checks
+    whether the tree is balanced.
     
+**** Solution
+
+     We can use a post-order traversal as the backbone for our implementation.
+
+     For each subtree, we determine its height. When traversing parent nodes, if
+     the difference in the height of its two subtrees is greater than 1, we
+     return false immediately. Otherwise, we return one greater than the greater
+     of the two children heights.
+
+     #+BEGIN_SRC python :results output :session
+       def is_height_balanced(T):
+           def height(n):
+               if not n:
+                   return 0
+               hl, hr = height(n.left), height(n.right)
+               if abs(hl - hr) > 1:
+                   raise Exception
+               return max(hl, hr) + 1
+           try:
+               height(T)
+           except Exception:
+               return False
+           return True
+     #+END_SRC
+
+     This implementation is O(n), where n is the number of nodes in the tree. It
+     is O(1) in space. 
+     
 *** DONE Compute the LCA when nodes have parent pointers
     CLOSED: [2017-06-25 Sun 18:37]
 

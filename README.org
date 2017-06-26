@@ -17,6 +17,7 @@
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
   - [[#stacks-and-queues][Stacks and Queues]]
     - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
+    - [[#test-a-string-over--for-well-formedness][Test a string over "{,},(,),[,]" for well-formedness]]
   - [[#binary-trees][Binary Trees]]
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
@@ -29,7 +30,7 @@
   - [[#sorting][Sorting]]
     - [[#compute-the-intersection-of-two-sorted-arrays][Compute the intersection of two sorted arrays]]
   - [[#binary-search-trees][Binary Search Trees]]
-    - [[#written-test-if-a-binary-tree-satisfies-the-bst-property][WRITTEN Test if a binary tree satisfies the BST property]]
+    - [[#test-if-a-binary-tree-satisfies-the-bst-property][Test if a binary tree satisfies the BST property]]
   - [[#recursion][Recursion]]
     - [[#tower-of-hanoi][Tower of Hanoi]]
   - [[#dynamic-programming][Dynamic Programming]]
@@ -403,6 +404,43 @@
 
 
      Space complexity is O(2n) = O(n), where n is the stack size.
+
+*** DONE Test a string over "{,},(,),[,]" for well-formedness
+    CLOSED: [2017-06-25 Sun 22:46]
+
+**** Solution
+
+     #+BEGIN_SRC python :results silent :session
+       def is_well_formed(S):
+           PAIRS = {
+               "{": "}",
+               "(": ")",
+               "[": "]",
+           }
+           opens = []
+           for c in S:
+               if c in PAIRS:
+                   opens.append(c)
+               elif c == PAIRS[opens[-1]]:
+                   opens = opens[:-1]
+               else:
+                   return False
+           return not opens
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           is_well_formed(""),
+           is_well_formed("()"),
+           is_well_formed("[]"),
+           is_well_formed("{}"),
+           is_well_formed("{[()]}"),
+           not is_well_formed("{[([)]}"),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
      
 ** Binary Trees
 
@@ -636,7 +674,7 @@
 
 ** Binary Search Trees
 
-*** WRITTEN Test if a binary tree satisfies the BST property
+*** DONE Test if a binary tree satisfies the BST property
     CLOSED: [2017-06-23 Fri 12:20]
 
     Write a program that takes as input a binary tree and checks if the tree
@@ -885,7 +923,6 @@
      #+RESULTS:
      : True
 
-     
 ** Greedy Algorithms and Invariants
    
 ** Graphs

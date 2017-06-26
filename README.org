@@ -17,7 +17,7 @@
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
   - [[#stacks-and-queues][Stacks and Queues]]
     - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
-    - [[#test-a-string-over--for-well-formedness][Test a string over "{,},(,),[,]" for well-formedness]]
+    - [[#test-a-string-of-parentheses-braces-and-brackets-for-well-formedness][Test a string of parentheses, braces, and brackets for well-formedness]]
   - [[#binary-trees][Binary Trees]]
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
@@ -405,7 +405,7 @@
 
      Space complexity is O(2n) = O(n), where n is the stack size.
 
-*** DONE Test a string over "{,},(,),[,]" for well-formedness
+*** DONE Test a string of parentheses, braces, and brackets for well-formedness
     CLOSED: [2017-06-25 Sun 22:46]
 
 **** Solution
@@ -421,7 +421,7 @@
            for c in S:
                if c in PAIRS:
                    opens.append(c)
-               elif c == PAIRS[opens[-1]]:
+               elif opens and c == PAIRS[opens[-1]]:
                    opens = opens[:-1]
                else:
                    return False
@@ -436,12 +436,13 @@
            is_well_formed("{}"),
            is_well_formed("{[()]}"),
            not is_well_formed("{[([)]}"),
+           not is_well_formed("}"),
        ])
      #+END_SRC
 
      #+RESULTS:
      : True
-     
+
 ** Binary Trees
 
 *** DONE Test if a binary tree is height-balanced

@@ -11,6 +11,7 @@
   - [[#arrays][Arrays]]
     - [[#the-dutch-national-flag-problem][The Dutch national flag problem]]
     - [[#sample-offline-data][Sample offline data]]
+    - [[#sample-online-data][Sample online data]]
     - [[#compute-the-spiral-ordering-of-a-2d-array][Compute the spiral ordering of a 2D array]]
     - [[#buy-and-sell-a-stock-once][Buy and sell a stock once]]
   - [[#strings][Strings]]
@@ -168,7 +169,38 @@
 
 **** Solution
 
-*** TODO Sample offline data                                                :C1:
+*** DONE Sample offline data                                                :C1:
+    CLOSED: [2017-06-27 Tue 00:00]
+
+    Implement an algorithm that takes as input an array of distinct elements and
+    a size, and returns a subset of the given size of the array elements. All
+    subsets should be equally likely.
+
+**** Solution
+
+     We can use reservoir sampling to achieve a linear-time implementation.
+
+     #+BEGIN_SRC python :results output :session
+       def sample(N, l):
+           from random import randint
+           reservoir = [N[i] for i in range(0, l)]
+           for i in range(l, len(N)):
+               _i = randint(0, i)
+               if _i < l:
+                   reservoir[_i] = N[i]
+           return reservoir
+     #+END_SRC
+
+*** DONE Sample online data
+    CLOSED: [2017-06-27 Tue 00:00]
+
+    Design a program that takes as input a size k, and reads packets,
+    continuously maintaining a uniform random subset of size k of the read
+    packets.
+
+**** Solution
+
+     Analogous to solution outlined in "Sample offline data."
 
 *** TODO Compute the spiral ordering of a 2D array                          :C1:
 

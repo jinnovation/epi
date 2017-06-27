@@ -923,7 +923,63 @@
 
 *** TODO Find the first key larger than a given value in a BST              :C1:
 
-*** TODO Find the k largest elements in a BST                               :C1:
+*** DONE Find the k largest elements in a BST                               :C1:
+    CLOSED: [2017-06-27 Tue 15:25]
+
+**** Solution
+
+     We can use reverse in-order traversal, yielding values until the count has
+     been satisfied.
+
+     #+BEGIN_SRC python :results silent :session
+       class Tree():
+           def __init__(self, v, l=None, r=None):
+               self.v = v
+               self.l = l
+               self.r = r
+     #+END_SRC
+
+     #+BEGIN_SRC python :results silent :session
+       def get_k_largest(T, k):
+           def _get_k_largest(T,k):
+               if not T:
+                   return [], k
+               vs, k_rem = _get_k_largest(T.r,k)
+               if k_rem == 0:
+                   return vs, 0
+               vs.append(T.v)
+               k_rem -= 1
+               if k_rem == 0:
+                   return vs, 0
+               lhs, k_rem = _get_k_largest(T.l, k_rem)
+               vs.extend(lhs)
+               if k_rem == 0:
+                   return vs, 0
+               return vs, k_rem 
+           vs, _ = _get_k_largest(T,k)
+           return vs
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           get_k_largest(Tree(
+               v = "A",
+               l = Tree(v = "B", l = Tree(v = "D"), r = Tree(v = "E")),
+               r = Tree(
+                   v = "C",
+                   l = Tree(v = "F"),
+                   r = Tree(
+                       v = "G",
+                       l = Tree(v = "H", r = Tree(v = "J")),
+                       r = Tree(v = "I"),
+                   ),
+               ),
+           ), 9) == ["I", "G", "J", "H", "C", "F", "A", "E", "B"],
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 ** Recursion
 

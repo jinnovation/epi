@@ -929,7 +929,8 @@
 **** Solution
 
      We can use reverse in-order traversal, yielding values until the count has
-     been satisfied.
+     been satisfied, for an implementation that is O(n) in time and O(log n) in
+     space, where n is the number of entries in the BST.
 
      #+BEGIN_SRC python :results silent :session
        class Tree():

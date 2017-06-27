@@ -201,8 +201,55 @@
 
 ** Strings
 
-*** TODO Interconvert strings and integers                                  :C0:
-    
+*** DONE Interconvert strings and integers                                  :C0:
+    CLOSED: [2017-06-26 Mon 22:08]
+
+    Implement string/integer inter-conversion functions.
+
+**** Solution
+     
+     #+BEGIN_SRC python :results silent :session
+        def stoi(s):
+            i = 0
+            for c in s:
+                i = 10 * i + ord(c) - ord("0")
+            return i
+     #+END_SRC
+     
+     #+BEGIN_SRC python :results value :session
+        all([
+            stoi("123") == 123,
+            stoi("0") == 0,
+            stoi("98765432198") == 98765432198,
+        ])      
+     #+END_SRC
+     
+     #+RESULTS:
+      : True
+
+     #+BEGIN_SRC python :results silent :session
+       def itos(i):
+           import math
+           s = ""
+           while True:
+               s += chr(ord("0") + i % 10)
+               i = int(math.floor(i / 10))
+               if i == 0:
+                   break
+           return s[::-1]
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           itos(123) == "123",
+           itos(0) == "0",
+           itos(98765432198) == "98765432198",
+       ])      
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
 *** TODO Base conversion
 
     In the decimal number system, the position of a digit is used to signify the

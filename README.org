@@ -574,7 +574,54 @@
      
 ** Hash Tables
 
-*** TODO Partition into anagrams                                            :C0:
+*** DONE Partition into anagrams                                            :C0:
+    CLOSED: [2017-06-26 Mon 22:19]
+
+    Write a program that takes as input a set of words and returns groups of
+    anagrams for those words. Each group must contain at least two words.
+
+**** Solution
+
+     We can implement solution that avoids the need to compare all pairs of
+     strings by hashing each string to its sorted version. Strings whose sorted
+     forms are equal are anagrams. This implementation uses n calls to sort for
+     O(n m log m), where n is the number of strings and m is the length of the
+     max string.
+
+     #+BEGIN_SRC python :results silent :session
+       def get_anagram_clusters(S):
+           cs = {}
+           for s in S:
+               k = ''.join(sorted(s))
+               if k not in cs:
+                   cs[k] = set()
+               cs[k].add(s)
+           return [v for _,v in cs.iteritems()]
+
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           s in get_anagram_clusters([
+               "debitcard",
+               "elvis",
+               "silent",
+               "badcredit",
+               "lives",
+               "freedom",
+               "listen",
+               "levis",
+               "money",
+           ]) for s in [
+               set(["debitcard", "badcredit"]),
+               set(["elvis", "lives", "levis"]),
+               set(["silent", "listen"]),
+           ]
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** DONE Test for palindromic permutations
     CLOSED: [2017-06-25 Sun 00:14]

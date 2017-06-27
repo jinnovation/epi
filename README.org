@@ -7,8 +7,11 @@
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
   - [[#primitive-types][Primitive Types]]
     - [[#computing-the-parity-of-a-word][Computing the parity of a word]]
+    - [[#compute-xy][Compute x^{y}]]
   - [[#arrays][Arrays]]
     - [[#the-dutch-national-flag-problem][The Dutch national flag problem]]
+    - [[#sample-offline-data][Sample offline data]]
+    - [[#compute-the-spiral-ordering-of-a-2d-array][Compute the spiral ordering of a 2D array]]
     - [[#buy-and-sell-a-stock-once][Buy and sell a stock once]]
   - [[#strings][Strings]]
     - [[#interconvert-strings-and-integers][Interconvert strings and integers]]
@@ -16,35 +19,49 @@
     - [[#replace-and-remove][Replace and remove]]
   - [[#linked-lists][Linked Lists]]
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
+    - [[#reverse-a-singly-linked-list][Reverse a singly linked list]]
+    - [[#test-for-cyclicity][Test for cyclicity]]
   - [[#stacks-and-queues][Stacks and Queues]]
     - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
     - [[#test-a-string-of-parentheses-braces-and-brackets-for-well-formedness][Test a string of parentheses, braces, and brackets for well-formedness]]
+    - [[#compute-binary-tree-nodes-in-order-of-increasing-depth][Compute binary tree nodes in order of increasing depth]]
   - [[#binary-trees][Binary Trees]]
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
   - [[#heaps][Heaps]]
     - [[#merge-sorted-files][Merge sorted files]]
+    - [[#compute-the-k-closest-stars][Compute the k closest stars]]
   - [[#searching][Searching]]
     - [[#search-a-sorted-array-for-first-occurrence-of-k][Search a sorted array for first occurrence of =k=]]
+    - [[#compute-the-integer-square-root][Compute the integer square root]]
+    - [[#find-the-k-th-largest-element][Find the k-th largest element]]
   - [[#hash-tables][Hash Tables]]
     - [[#partition-into-anagrams][Partition into anagrams]]
     - [[#test-for-palindromic-permutations][Test for palindromic permutations]]
     - [[#is-an-anonymous-letter-constructible][Is an anonymous letter constructible?]]
+    - [[#implement-an-isbn-cache][Implement an ISBN cache]]
   - [[#sorting][Sorting]]
     - [[#compute-the-intersection-of-two-sorted-arrays][Compute the intersection of two sorted arrays]]
+    - [[#implement-mergesort-in-place][Implement mergesort in-place]]
   - [[#binary-search-trees][Binary Search Trees]]
     - [[#test-if-a-binary-tree-satisfies-the-bst-property][Test if a binary tree satisfies the BST property]]
+    - [[#find-the-first-key-larger-than-a-given-value-in-a-bst][Find the first key larger than a given value in a BST]]
+    - [[#find-the-k-largest-elements-in-a-bst][Find the k largest elements in a BST]]
   - [[#recursion][Recursion]]
     - [[#tower-of-hanoi][Tower of Hanoi]]
+    - [[#generate-all-nonattacking-placements-of-n-queens][Generate all nonattacking placements of n-Queens]]
   - [[#dynamic-programming][Dynamic Programming]]
     - [[#written-count-the-number-of-score-combinations][WRITTEN Count the number of score combinations]]
+    - [[#compute-the-levenshtein-distance][Compute the Levenshtein distance]]
     - [[#count-the-number-of-ways-to-traverse-a-2d-array][Count the number of ways to traverse a 2D array]]
     - [[#compute-the-binomial-coefficient-without-overflow][Compute the binomial coefficient without overflow]]
     - [[#search-for-a-sequence-in-a-2d-array][Search for a sequence in a 2D array]]
   - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
     - [[#the-3-sum-problem][The 3-sum problem]]
+    - [[#the-gasup-problem][The gasup problem]]
   - [[#graphs][Graphs]]
     - [[#search-a-maze][Search a maze]]
+    - [[#transform-one-string-to-another][Transform one string to another]]
   - [[#parallel-computing][Parallel Computing]]
 - [[#domain-specific-problems][Domain Specific Problems]]
   - [[#design-problems][Design Problems]]
@@ -135,7 +152,9 @@
 
      This revised implementation is O(n/w) = O(n), where w is the word length of
      the lookup key.
-     
+
+*** TODO Compute x^{y}                                                         :C1:
+
 ** Arrays
    
 *** TODO The Dutch national flag problem                                    :C0:
@@ -148,6 +167,10 @@
     /Hint/: Think about the partition step in quicksort.
 
 **** Solution
+
+*** TODO Sample offline data                                                :C1:
+
+*** TODO Compute the spiral ordering of a 2D array                          :C1:
 
 *** DONE Buy and sell a stock once                                          :C0:
     CLOSED: [2017-06-22 Thu 12:28]
@@ -250,7 +273,7 @@
      #+RESULTS:
      : True
 
-*** TODO Base conversion
+*** TODO Base conversion                                                    :C1:
 
     In the decimal number system, the position of a digit is used to signify the
     power of 10 that digit is to be multiplied with. For example, "314" denotes
@@ -266,7 +289,7 @@
     "F" for 15. (For example, if the string is "615", b_1 is 7 and b_2 is 13, then
     the result should be "1A7", since 6 \times 7^{2} + 1 \times 7 + 5 = 1 \times 13^{2} + 10 \times 13 + 7).
 
-*** TODO Replace and remove
+*** TODO Replace and remove                                                 :C1:
 
     Consider the following two rules that are to be applied to an array of
     characters.
@@ -330,6 +353,7 @@
                self.next = None
            def append(self, l):
                self.next = l
+               return self
            def __eq__(self,l):
                me = self
                while me is not None and l is not None:
@@ -388,6 +412,50 @@
 
      #+RESULTS:
      : True
+
+*** DONE Reverse a singly linked list                                       :C1:
+    CLOSED: [2017-06-27 Tue 13:07]
+
+**** Solution
+
+     #+BEGIN_SRC python :results output :session
+       class LL():
+           def __init__(self, v):
+               self.v = v
+               self.next = None
+           def append(self, l):
+               self.next = l
+               return self
+           def __eq__(self,l):
+               me = self
+               while me is not None and l is not None:
+                   if me.v != l.v:
+                       return False
+                   me = me.next
+                   l = l.next
+               return me is None and l is None 
+     #+END_SRC
+
+     #+RESULTS:
+
+     #+BEGIN_SRC python :results output :session
+       def ll_rev(L):
+           tail = None
+           cursor = L
+           while cursor is not None:
+               nxt = cursor.next
+               cursor.next = tail
+               tail = cursor
+               cursor = nxt
+           return tail
+     #+END_SRC
+
+     #+BEGIN_SRC python :results output :session
+     ll_rev(LL(4).append(LL(5).append(LL(6)))) == LL(6).append(LL(5).append(LL(4)))
+     #+END_SRC
+
+
+*** TODO Test for cyclicity                                                 :C1:
 
 ** Stacks and Queues
    
@@ -496,6 +564,8 @@
      #+RESULTS:
      : True
 
+*** TODO Compute binary tree nodes in order of increasing depth             :C1:
+
 ** Binary Trees
 
 *** DONE Test if a binary tree is height-balanced                           :C0:
@@ -537,7 +607,7 @@
      This implementation is O(n), where n is the number of nodes in the tree. It
      is O(1) in space. 
      
-*** DONE Compute the LCA when nodes have parent pointers
+*** DONE Compute the LCA when nodes have parent pointers                    :C1:
     CLOSED: [2017-06-25 Sun 18:37]
 
 **** Solution
@@ -560,7 +630,8 @@
 ** Heaps
 
 *** TODO Merge sorted files                                                 :C0:
-    
+
+*** TODO Compute the k closest stars                                        :C1:
 ** Searching
 
 *** TODO Search a sorted array for first occurrence of =k=                  :C0:
@@ -571,7 +642,11 @@
 
     Write a method that takes a sorted array and a key and returns the index of
     the /first/ occurrence of the key in the array.
-     
+
+*** TODO Compute the integer square root                                    :C1:
+
+*** TODO Find the k-th largest element                                      :C1:
+
 ** Hash Tables
 
 *** DONE Partition into anagrams                                            :C0:
@@ -676,7 +751,7 @@
      #+RESULTS:
      : True
 
-*** DONE Is an anonymous letter constructible?
+*** DONE Is an anonymous letter constructible?                              :C1:
     CLOSED: [2017-06-23 Fri 12:41]
 
     Write a program which takes text for an anonymous letter and text for a
@@ -718,7 +793,9 @@
 
            return True
      #+END_SRC
-     
+
+*** TODO Implement an ISBN cache                                            :C1:
+
 ** Sorting
 
 *** DONE Compute the intersection of two sorted arrays                      :C0:
@@ -777,6 +854,7 @@
 
      This implementation is linear on its inputs.
 
+*** TODO Implement mergesort in-place                                       :C1:
 ** Binary Search Trees
 
 *** DONE Test if a binary tree satisfies the BST property                   :C0:
@@ -794,10 +872,16 @@
      minimum with the current node value depending on which leave is being
      recursed into.
 
+*** TODO Find the first key larger than a given value in a BST              :C1:
+
+*** TODO Find the k largest elements in a BST                               :C1:
+
 ** Recursion
 
 *** TODO Tower of Hanoi                                                     :C0:
-     
+
+*** TODO Generate all nonattacking placements of n-Queens                  :C1:
+
 ** Dynamic Programming
 
 *** WRITTEN Count the number of score combinations                          :C0:
@@ -843,6 +927,8 @@
 
      A solution that uses this memoization strategy will be =O(S \times |P|)=, where
      =S= is the score and =P= is the set of play scores. Likewise for space.
+
+*** TODO Compute the Levenshtein distance                                   :C1:
 
 *** DONE Count the number of ways to traverse a 2D array
     CLOSED: [2017-06-23 Fri 19:18]
@@ -1031,7 +1117,9 @@
 ** Greedy Algorithms and Invariants
 
 *** TODO The 3-sum problem                                                  :C0:
-    
+
+*** TODO The gasup problem                                                  :C1:
+
 ** Graphs
 
 *** DONE Search a maze                                                      :C0:
@@ -1147,6 +1235,20 @@
      #+RESULTS:
      : True
 
+*** TODO Transform one string to another                                    :C1:
+
+    Let s and t be strings and D a dictionary, i.e. a set of strings. Define s
+    to produce t if there exists a sequence of strings from the dictionary P =
+    <s_0, s_1, ..., s_{n-1}> such taht the first string is s, the last string is t,
+    and adjacent strings have the same length and differ in exactly one
+    character. The sequence P is called a /production sequence/. For example, if
+    the dictionary is ={bat, cot, dog, dag, dot, cat}=, then =<cat, cot, dot,
+    dog>= is a production sequence.
+
+    Given a dictionary D and two strings s and t, write a program to determine
+    if s produces t. Assume that all characters are lowercase alphabets. If s
+    does produce t, output the length of the shortest production sequence;
+    otherwise, output -1.
       
 ** Parallel Computing
    

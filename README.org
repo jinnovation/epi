@@ -929,6 +929,37 @@
 
     /Hint/: Exploit the fact that the keys are drawn from a small set.
 
+**** Solution
+
+     We assume that the input string consists solely of lowercase alphabetic
+     characters. However, the solution is generalizeable.
+
+     We point out that the character domain is finite -- specifically, of
+     size 26. As such, we use an array of size 26, with index representing
+     character, with "0" corresponding to "a" etc., to record the number of
+     times the corresponding letter appears in the input string. It is then
+     trivial to output the array values in alphabetical order.
+
+     Both the record-keeping operation and the output operation are linear. The
+     overall solution is linear in time and constant in space.
+
+     #+BEGIN_SRC python :results silent :session
+       def freqs(S):
+           counts = [0] * 26
+           for c in S:
+               counts[ord(c) - ord("a")] += 1
+           for i in range(len(counts)):
+               if counts[i] > 0:
+                   yield (chr(ord("a")+i), counts[i])
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+     list(freqs("bcdacebe")) == [("a",1),("b",2),("c",2),("d",1), ("e",2)]
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
 *** TODO Render a calendar                                                  :C2:
 
 *** TODO Compute the union of intervals                                     :C3:

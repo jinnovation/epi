@@ -960,7 +960,82 @@
      #+RESULTS:
      : True
 
-*** TODO Render a calendar                                                  :C2:
+*** DONE Render a calendar                                                  :C2:
+    CLOSED: [2017-06-28 Wed 18:20]
+
+    Write a program that takes a set of events, and determines the maximum
+    number of events that can take place concurrently.
+
+**** Solution
+
+     We assume that the domain is unbounded -- that is, that any event can occur
+     at any given time t.
+
+     We assume that an event E is represented as a tuple (t_{s}, t_{e}), where t_{s} is
+     the start time and t_{e} the end time.
+
+     Instead of considering discrete time values, we consider unit
+     intervals. For instance, the event (t, t+2) falls into two interval
+     "buckets" -- the first representing the interval [t, t+1], and the second
+     the interval [t+1, t+2].
+
+     We maintain a counter dictionary, keyed on the start times of these
+     intervals, that keeps track of how many events overlap with the key
+     interval. For each event E, we split E into its constituent unit intervals
+     and populate the counter accordingly. We choose dictionary for the
+     following reasons:
+
+     - We assume no bound on the domain of time T, so we choose a data structure
+       that doesn't require an explicit initial size for convenience;
+     - We make no assumptions about the proximity of the respective events'
+       intervals; we can very easily have events (0, 10) and (10000,
+       10010). Using an alternative storage construct, such as an array, would
+       require us to allocate upwards of 10000 buckets to store information for
+       these events, only for all but twenty of those buckets to be meaningless,
+       i.e. with value zero. A dictionary, on the other hand, allows us to only
+       allocate 20 buckets, for considerably greater space efficiency.
+
+
+     The resulting solution is O(nl) in time and space, where n is the number of
+     events and l is the max length of the event intervals.
+
+
+     #+BEGIN_SRC python :results silent :session
+       def atomize_interval(start, end):
+           for s in range(start, end):
+               yield (s, s+1)
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+     list(atomize_interval(0,5)) == [(0,1), (1,2), (2,3), (3,4), (4,5)]
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     #+BEGIN_SRC python :results silent :session
+       def max_sim(*E):
+           time_to_sim = {}
+           for e in E:
+               for i in atomize_interval(*e):
+                   if i[0] not in time_to_sim:
+                       time_to_sim[i[0]] = 0
+                   time_to_sim[i[0]] += 1
+           return time_to_sim[max(time_to_sim, key=(lambda k: time_to_sim[k]))]
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           max_sim((0,10)) == 1,
+           max_sim((0,10),(2,11),(3,12)) == 3,
+
+           # non-contiguous events
+           max_sim((0,10), (2,11), (100, 110), (101,111), (102,112), (103,113)) == 4,
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** TODO Compute the union of intervals                                     :C3:
 

@@ -29,6 +29,11 @@
   - [[#binary-trees][Binary Trees]]
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
+    - [[#test-if-a-binary-tree-is-symmetric][Test if a binary tree is symmetric]]
+    - [[#reconstruct-a-binary-tree-from-traversal-data][Reconstruct a binary tree from traversal data]]
+    - [[#implement-an-inorder-traversal-with-o1-space][Implement an inorder traversal with O(1) space]]
+    - [[#reconstruct-a-binary-tree-from-a-preorder-traversal-with-markers][Reconstruct a binary tree from a preorder traversal with markers]]
+    - [[#compute-the-right-sibling-tree][Compute the right sibling tree]]
   - [[#heaps][Heaps]]
     - [[#merge-sorted-files][Merge sorted files]]
     - [[#compute-the-k-closest-stars][Compute the k closest stars]]
@@ -682,6 +687,56 @@
 
      We note that both depth-determination and final traversal are O(log n); the
      combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
+
+*** TODO Test if a binary tree is symmetric                                 :C2:
+
+    A binary tree is symmetric if you can draw a vertical line through the root
+    and then the left subtree is the mirror image of the right subtree.
+
+    Write a program that checks whether a binary tree is symmetric.
+
+    /Hint/: The definition of symmetry is recursive.
+
+*** TODO Reconstruct a binary tree from traversal data                      :C2:
+
+    Given an inorder traversal sequence and a preorder traversal sequence of a
+    binary tree write a program to reconstruct the tree. Assume each node has a
+    unique key.
+
+    /Hint/: Focus on the root.
+
+*** TODO Implement an inorder traversal with O(1) space                     :C3:
+
+    The direct implementation of an inorder traversal using recursion has O(h)
+    space complexity, where h is the height of the tree. Recursion can be
+    removed with an explicit stack, but the space complexity remains O(n).
+
+    Write a nonrecursive program for computing the inorder traversal sequence
+    for a binary tree. Assume nodes have parent fields.
+
+    /Hint/: How can you tell whether a node is a left child or right child of
+    its parent?
+
+*** TODO Reconstruct a binary tree from a preorder traversal with markers   :C4:
+
+    Design an algorithm for reconstructing a binary tree from a preorder
+    traversal visit sequence that uses =null= to mark empty children.
+
+    /Hint/: It's difficult to solve this problem by examining the preorder
+    traversal visit sequence from left-to-right.
+
+*** TODO Compute the right sibling tree                                     :C4:
+
+    Assume each binary tree node has an extra field, call it level-next, that
+    holds a binary tree node (this field is distinct from the fields for the
+    left and right children). The level-next field will be used to compute a map
+    from nodes to their right siblings. The input is assumed to be perfect
+    binary tree.
+
+    Write a program that takes a perfect binary tree, and sets each node's
+    level-next field to the node on its right, if one exists.
+
+    /Hint/: Think of an appropriate traversal order.
 
 ** Heaps
 

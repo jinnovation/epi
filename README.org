@@ -688,7 +688,8 @@
      We note that both depth-determination and final traversal are O(log n); the
      combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
 
-*** TODO Test if a binary tree is symmetric                                 :C2:
+*** DONE Test if a binary tree is symmetric                                 :C2:
+    CLOSED: [2017-06-29 Thu 15:50]
 
     A binary tree is symmetric if you can draw a vertical line through the root
     and then the left subtree is the mirror image of the right subtree.
@@ -697,6 +698,53 @@
 
     /Hint/: The definition of symmetry is recursive.
 
+**** Solution
+
+     We note that trees  T_{1} and T_{2} are symmetric if their root values are equal
+     and T_{1}'s left child equals T_{2}'s right child and vice-versa.
+
+     We recursively check the input tree. The input root level is a special case
+     where we simply check children equality. We then begin recursive
+     "mirroring" comparison on the two child trees. "Mirroring" comparison
+     consists of first checking that the left-right and right-left child value
+     equalities are satisfied and then performing recursive mirroring comparison
+     on the left-right and right-left pairs.
+
+     #+BEGIN_SRC python :results silent :session
+       class Tree():
+           def __init__(self, v, l=none, r=none):
+               self.v = v
+               self.l = l
+               self.r = r
+     #+END_SRC
+
+     #+BEGIN_SRC python :results output :session
+       def is_sym(T):
+           def is_mirror(T1, T2):
+               return ((T1 is None and T2 is None)
+                       or (T1.v == T2.v
+                           and is_mirror(T1.l, T2.r)
+                           and is_mirror(T1.r, T2.l)))
+           return T is None or is_mirror(T.l, T.r)
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           is_sym(None),
+           is_sym(Tree(v=1, l=Tree(v=2), r=Tree(v=2))),
+           is_sym(Tree(
+               v=1,
+               l=Tree(v=2, l=Tree(v=3, l=Tree(v=10)), r=Tree(v=4)),
+               r=Tree(v=2, l=Tree(v=4), r=Tree(v=3, r=Tree(v=10))),
+           )),
+           not is_sym(Tree(v=1, l=Tree(v=2), r=Tree(v=3))),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     
 *** TODO Reconstruct a binary tree from traversal data                      :C2:
 
     Given an inorder traversal sequence and a preorder traversal sequence of a

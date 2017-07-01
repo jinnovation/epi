@@ -1,7 +1,7 @@
 #+TITLE: Elements of Programming Interviews: Solutions
 #+AUTHOR: Jonathan Jin
 #+STARTUP: logdone showall
-#+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d)
+#+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d) LOOKED-UP(l)
 
 * Table of Contents                                                  :TOC:TOC_3:
 - [[#data-structures-and-algorithms][Data Structures and Algorithms]]
@@ -30,7 +30,7 @@
     - [[#test-if-a-binary-tree-is-height-balanced][Test if a binary tree is height-balanced]]
     - [[#compute-the-lca-when-nodes-have-parent-pointers][Compute the LCA when nodes have parent pointers]]
     - [[#test-if-a-binary-tree-is-symmetric][Test if a binary tree is symmetric]]
-    - [[#reconstruct-a-binary-tree-from-traversal-data][Reconstruct a binary tree from traversal data]]
+    - [[#looked-up-reconstruct-a-binary-tree-from-traversal-data][LOOKED-UP Reconstruct a binary tree from traversal data]]
     - [[#implement-an-inorder-traversal-with-o1-space][Implement an inorder traversal with O(1) space]]
     - [[#reconstruct-a-binary-tree-from-a-preorder-traversal-with-markers][Reconstruct a binary tree from a preorder traversal with markers]]
     - [[#compute-the-right-sibling-tree][Compute the right sibling tree]]
@@ -745,13 +745,65 @@
      : True
 
      
-*** TODO Reconstruct a binary tree from traversal data                      :C2:
+*** LOOKED-UP Reconstruct a binary tree from traversal data                 :C2:
+    CLOSED: [2017-07-01 Sat 18:00]
 
     Given an inorder traversal sequence and a preorder traversal sequence of a
     binary tree write a program to reconstruct the tree. Assume each node has a
     unique key.
 
     /Hint/: Focus on the root.
+
+**** Solution
+
+     #+BEGIN_SRC python :results silent :session
+       def teq(t1, t2):
+           return (t1 is None and t2 is None) or (
+               t1.v == t2.v
+               and teq(t1.l, t2.l)
+               and teq(t1.r, t2.r))
+
+       class Tree():
+           def __init__(self, v, l=None, r=None):
+               self.v = v
+               self.l = l
+               self.r = r
+           def __eq__(self, T):
+               return teq(self, T)
+     #+END_SRC
+
+     #+BEGIN_SRC python :results silent :session
+       def recon(s_in, s_pre):
+           t = Tree(v=s_pre[0])
+           s_in_l = s_in[:s_in.index(t.v)]
+           s_pre_l = s_pre[1:len(s_in_l)+1]
+           s_in_r = s_in[s_in.index(t.v)+1:]
+           s_pre_r = s_pre[len(s_in_l)+1:]
+           if len(s_in_l) != len(s_pre_l) or len(s_in_r) != len(s_pre_r):
+               raise Exception()
+           if len(s_in_l) != 0:
+               t.l = recon(s_in_l, s_pre_l)
+           if len(s_in_r) != 0:
+               t.r = recon(s_in_r, s_pre_r)
+           return t
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       t = recon("DBFEGACH", "ABDEFGCH")
+
+       t == Tree(
+           v="A",
+           l=Tree(
+               v="B",
+               l=Tree(v="D"),
+               r = Tree(v="E", l = Tree(v="F"), r = Tree(v="G")),
+           ),
+           r = Tree(v = "C", r = Tree(v="H")),
+       )
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** TODO Implement an inorder traversal with O(1) space                     :C3:
 

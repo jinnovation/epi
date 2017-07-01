@@ -22,6 +22,10 @@
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
     - [[#reverse-a-singly-linked-list][Reverse a singly linked list]]
     - [[#test-for-cyclicity][Test for cyclicity]]
+    - [[#test-for-overlapping-lists----lists-are-cycle-free][Test for overlapping lists -- lists are cycle-free]]
+    - [[#remove-the-kth-last-element-from-a-list][Remove the k^{th} last element from a list]]
+    - [[#implement-even-odd-merge][Implement even-odd merge]]
+    - [[#test-whether-a-singly-linked-list-is-palindromic][Test whether a singly linked list is palindromic]]
   - [[#stacks-and-queues][Stacks and Queues]]
     - [[#implement-a-stack-with-max-api][Implement a stack with =max= API]]
     - [[#test-a-string-of-parentheses-braces-and-brackets-for-well-formedness][Test a string of parentheses, braces, and brackets for well-formedness]]
@@ -500,6 +504,17 @@
      #+END_SRC
 
 *** TODO Test for cyclicity                                                 :C1:
+
+*** TODO Test for overlapping lists -- lists are cycle-free                 :C2:
+
+    Write a program that takes two cycle-free singly linked lists, and
+    determines if there exists a node that is common to both lists.
+
+*** TODO Remove the k^{th} last element from a list                         :C2:
+
+*** TODO Implement even-odd merge                                           :C3:
+
+*** TODO Test whether a singly linked list is palindromic                   :C4:
 
 ** Stacks and Queues
    

@@ -522,8 +522,86 @@
      of both lists -- showing that there is no overlap -- or until you reach the
      overlap.
 
-*** TODO Remove the k^{th} last element from a list                         :C2:
+*** DONE Remove the k^{th} last element from a list                            :C2:
+    CLOSED: [2017-07-01 Sat 18:38]
 
+    Given a singly linked list and an integer k, write a program to remove the
+    kth last element from the list. Your algorithm cannot use more than a few
+    words of storage, regardless of the length of the list. In particular, you
+    cannot assume that it is possible to record the length of the list.
+
+    /Hint/: If you know the length of the list, can you find the kth last node
+    using two iterators?
+
+**** Solution
+
+     We note that we do not need to know the specific length of the list L in
+     order to find the kth-last element.
+
+     We use two cursors, c_{1} and c_{2}, where c_{2} is k steps ahead of c_{1}
+     in the list L. If L is not long enough to satisfy this invariant on
+     initialization, we terminate with an error.
+
+     We then iterate each cursor in tandem, keeping a separate pointer to the
+     previous item under c_{1} on each iteration -- call it c_{p} -- until c_{2}
+     reaches the terminus of the list -- concretely, the null-pointer of the
+     linked list. At this point, c_{1} is referring to the k-th last element
+     of L. We then delete the element the usual way.
+
+     This implementation is O(n) in time and O(1) in space.
+
+     #+BEGIN_SRC python :results silent :session
+       class LL():
+           def __init__(self, v):
+               self.v = v
+               self.next = None
+           def append(self, l):
+               self.next = l
+               return self
+           def __eq__(self,l):
+               me = self
+               while me is not None and l is not None:
+                   if me.v != l.v:
+                       return False
+                   me = me.next
+                   l = l.next
+               return me is None and l is None 
+
+       def cons(v, n=None):
+           l = LL(v)
+           l.next = n
+           return l
+     #+END_SRC
+
+     #+BEGIN_SRC python :results silent :session
+       def rm_kth_last(L, k):
+           out = L
+           c_p = None
+           c_1, c_2 = out, out
+           for _ in range(k):
+               if c_2.next is None:
+                   raise Exception
+               c_2 = c_2.next
+           while c_2 is not None:
+               c_p = c_1
+               c_1 = c_1.next
+               c_2 = c_2.next
+           c_p.next = c_1.next
+           return out
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           rm_kth_last(cons(1,cons(2,cons(3))), 1) == cons(1,cons(2)),
+           rm_kth_last(cons(1,cons(2,cons(3,cons(4,cons(5))))), 3) == cons(1,cons(2,cons(4,cons(5)))),
+       ])
+
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     
 *** TODO Implement even-odd merge                                           :C3:
 
 *** TODO Test whether a singly linked list is palindromic                   :C4:

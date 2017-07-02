@@ -1318,8 +1318,64 @@
      minimum with the current node value depending on which leave is being
      recursed into.
 
-*** TODO Find the first key larger than a given value in a BST              :C1:
+*** DONE Find the first key larger than a given value in a BST              :C1:
+    CLOSED: [2017-07-01 Sat 22:43]
+
+    Write a program that takes as input a BST and a value, and returns the first
+    key that would appear in an inorder traversal which is greater than the
+    input value.
+
+    /Hint/: Perform binary search, keeping some additional state.
     
+**** Solution
+
+     Given BST T and value v, perform binary search, keeping track of the
+     current "minimum greater-than" value v_{gt}, which we can initialize to +\infin. On
+     finding v within T, if v_{gt} = +\infin, return the right-hand sub-value of v;
+     otherwise, return v_{gt}.
+
+     This implementation is O(1) in space (for v_{gt}) and O(h) in time.
+
+     #+BEGIN_SRC python :results silent :session
+       class Tree():
+           def __init__(self, v, l=None, r=None):
+               self.v = v
+               self.l = l
+               self.r = r
+     #+END_SRC
+
+     #+BEGIN_SRC python :results silent :session
+       def first_gt(T, v):
+           v_gt = None
+           cursor = T
+           while cursor.v != v:
+               if cursor.v < v:
+                   cursor = cursor.r
+               elif cursor.v > v:
+                   v_gt = cursor.v if v_gt is None else min(v_gt, cursor.v)
+                   cursor = cursor.l
+           return v_gt if v_gt != None else cursor.r.v if cursor.r is not None else cursor.r
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       _t = Tree(
+           v=5,
+           l=Tree(v=2, l=Tree(v=1), r=Tree(v=4, l=Tree(v=3))),
+           r=Tree(
+               v=8,
+               l=Tree(v=7, l=Tree(v=6)),
+               r=Tree(v=10, l=Tree(v=9), r=Tree(v=11))))
+       all([
+           first_gt(_t, 6) == 7,
+           first_gt(_t, 10) == 11,
+           first_gt(_t, 11) == None,
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+      
 *** DONE Find the k largest elements in a BST                               :C1:
     CLOSED: [2017-06-27 Tue 15:25]
 

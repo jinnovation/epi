@@ -62,6 +62,12 @@
     - [[#test-if-a-binary-tree-satisfies-the-bst-property][Test if a binary tree satisfies the BST property]]
     - [[#find-the-first-key-larger-than-a-given-value-in-a-bst][Find the first key larger than a given value in a BST]]
     - [[#find-the-k-largest-elements-in-a-bst][Find the k largest elements in a BST]]
+    - [[#compute-the-lca-in-a-bst][Compute the LCA in a BST]]
+    - [[#the-most-visited-pages-problem][The most visited pages problem]]
+    - [[#reconstruct-a-bst-from-traversal-data][Reconstruct a BST from traversal data]]
+    - [[#build-a-minimum-height-bst-from-a-sorted-array][Build a minimum height BST from a sorted array]]
+    - [[#enumerate-numbers-of-the-form-a--b-sqrt2][Enumerate numbers of the form a + b sqrt(2)]]
+    - [[#insertion-and-deletion-in-a-bst][Insertion and deletion in a BST]]
   - [[#recursion][Recursion]]
     - [[#tower-of-hanoi][Tower of Hanoi]]
     - [[#generate-all-nonattacking-placements-of-n-queens][Generate all nonattacking placements of n-Queens]]
@@ -1378,6 +1384,18 @@
       
 *** DONE Find the k largest elements in a BST                               :C1:
     CLOSED: [2017-06-27 Tue 15:25]
+    
+*** TODO Compute the LCA in a BST                                           :C2:
+
+*** TODO The most visited pages problem                                     :C2:
+
+*** TODO Reconstruct a BST from traversal data                              :C3:
+
+*** TODO Build a minimum height BST from a sorted array                     :C3:
+
+*** TODO Enumerate numbers of the form a + b sqrt(2)                        :C4:
+
+*** TODO Insertion and deletion in a BST                                    :C4:
 
 **** Solution
 

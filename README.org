@@ -79,7 +79,7 @@
     - [[#search-for-a-sequence-in-a-2d-array][Search for a sequence in a 2D array]]
   - [[#greedy-algorithms-and-invariants][Greedy Algorithms and Invariants]]
     - [[#the-3-sum-problem][The 3-sum problem]]
-    - [[#the-gasup-problem][The gasup problem]]
+    - [[#looked-up-the-gasup-problem][LOOKED-UP The gasup problem]]
   - [[#graphs][Graphs]]
     - [[#search-a-maze][Search a maze]]
     - [[#written-transform-one-string-to-another][WRITTEN Transform one string to another]]
@@ -1808,7 +1808,35 @@
      #+RESULTS:
      : True
 
-*** TODO The gasup problem                                                  :C1:
+*** LOOKED-UP The gasup problem                                             :C1:
+    CLOSED: [2017-07-02 Sun 16:46]
+
+    A number of cities are arranged on a circular road. You need to visit all
+    the cities and come back to the starting city. A certain amount of gas is
+    available at each city. The amount of gas summed up over all cities is equal
+    to the amount of gas required to go around the road once. Your gas tank has
+    unlimited capacity. Call a city /ample/ if you can begin at that city with
+    an empty tank, refill at it, then travel through all the remaining cities,
+    refilling at each, and return to the ample city, without running out of gas
+    at any point.
+
+    Given an instance of the gasup problem, how would you efficiently compute an
+    ample city, if one exists?
+
+    /Hint/: Think about starting with more than enough gas to complete the
+    circuit without gassing up. Track the amount of gas as you perform the
+    circuit, gassing up at each city.
+    
+**** Solution
+
+     Find the city/cities for which gas level is at minimum on arrival (ignoring
+     impossibility of negative gas levels). Call one of these cities c. Since we
+     have that total amount of gas at each city is enough to complete the full
+     circle, and that, due to being at a minimum on arrival, we will never have
+     less gas than we would have on entry to c, we know that we can complete the
+     full circle from c. Finding the exact value of c is a simple matter of
+     finding the minimum entry gas level of each city, which can be done in
+     linear time.
 
 ** Graphs
 

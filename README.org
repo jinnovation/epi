@@ -1385,7 +1385,71 @@
 *** DONE Find the k largest elements in a BST                               :C1:
     CLOSED: [2017-06-27 Tue 15:25]
     
-*** TODO Compute the LCA in a BST                                           :C2:
+*** DONE Compute the LCA in a BST                                           :C2:
+    CLOSED: [2017-07-01 Sat 23:38]
+
+    Design an algorithm that takes as input a BST and two nodes, and returns the
+    LCA of the two nodes. Assume all keys are distinct. Nodes do not have
+    references to their parents.
+
+    /Hint/: Take advantage of the BST property.
+
+**** Solution
+
+     We note that the BST property gives us that the LCA is between the max of
+     the two nodes values and the min.
+
+     We use a cursor C that starts at the head of input tree T. We iterate C
+     according to the BST principle depending on if its current value is greater
+     than or less than the max or the min of the two node values,
+     respectively. Once we arrive at a node that's in between the max and the
+     min, we are done.
+
+     This implementation is O(h) in time.
+
+     #+BEGIN_SRC python :results silent :session
+       class Tree():
+           def __init__(self, v, l=None, r=None):
+               self.v = v
+               self.l = l
+               self.r = r
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       def lca(T, v1, v2):
+           while not(T.v > min(v1,v2) and T.v < max(v1,v2)):
+               if T is None:
+                   raise Exception
+               if T.v > max(v1,v2):
+                   T = T.l
+               elif T.v < min(v1,v2):
+                   T = T.r
+           return T.v
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       _t = Tree(
+           v=19,
+           l = Tree(
+               v=7,
+               l=Tree(v=3, l=Tree(v=2), r=Tree(v=5)),
+               r=Tree(v=11, r=Tree(v=17, l=Tree(v=13))),
+           ),
+           r=Tree(
+               v=43,
+               l=Tree(v=23, r=Tree(v=37, l=Tree(v=29, r=Tree(v=31)), r=Tree(v=41))),
+               r=Tree(v=47, r=Tree(v=53)),
+           )
+       )
+
+       all([
+           lca(_t, 5, 17) == 7,
+           lca(_t, 13, 53) == 19,
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** TODO The most visited pages problem                                     :C2:
 

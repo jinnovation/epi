@@ -87,6 +87,7 @@
   - [[#graphs][Graphs]]
     - [[#search-a-maze][Search a maze]]
     - [[#written-transform-one-string-to-another][WRITTEN Transform one string to another]]
+    - [[#paint-a-boolean-matrix][Paint a Boolean matrix]]
   - [[#parallel-computing][Parallel Computing]]
 - [[#domain-specific-problems][Domain Specific Problems]]
   - [[#design-problems][Design Problems]]
@@ -178,7 +179,7 @@
      This revised implementation is O(n/w) = O(n), where w is the word length of
      the lookup key.
 
-*** TODO Compute x^{y}                                                         :C1:
+*** TODO Compute x^{y}                                                      :C1:
 
     Compute x^{y} without using arithmetic operators, i.e. using only assignment,
     bitwise operators, and equality checks.
@@ -532,7 +533,7 @@
      of both lists -- showing that there is no overlap -- or until you reach the
      overlap.
 
-*** DONE Remove the k^{th} last element from a list                            :C2:
+*** DONE Remove the k^{th} last element from a list                         :C2:
     CLOSED: [2017-07-01 Sat 18:38]
 
     Given a singly linked list and an integer k, write a program to remove the
@@ -2003,7 +2004,69 @@
      Note that we don't need to necessarily "create" a graph per se; edges can
      be "discovered" ad-hoc by finding words in the dictionary that are one
      character off from the current vertex.
-       
+
+*** DONE Paint a Boolean matrix                                             :C2:
+    CLOSED: [2017-07-02 Sun 17:29]
+
+    Implement a routine that takes an n x m Boolean array A together with an
+    entry (x,y) and flips the color of the region associated with (x,y).
+
+    /Hint/: Solve this conceptually, then think about implementation
+    optimizations.
+    
+**** Solution
+
+     Record the target value of (x,y); if (x,y) is True, target is False, and
+     vice-versa. From (x,y), fan out -- recursively or with a queue -- to all
+     neighbor entries. If neighbor n is already set to the target, do nothing;
+     otherwise, set n to the target, and add n's neighbors to the visitation
+     queue. Continue in this way until the visitation queue is empty.
+
+     Time O(n) and space O(n) for the size of the array.
+
+     #+BEGIN_SRC python :results output :session
+       def flip_region(Ab, i, j):
+           def neighbors(Ab, i, j):
+               if i > 0:
+                   yield (i-1,j)
+               if i < len(Ab) - 1:
+                   yield (i+1, j)
+               if j > 0:
+                   yield (i, j-1)
+               if j < len(Ab[0]) - 1:
+                   yield (i, j+1)
+           _Ab = Ab
+           target = not _Ab[i][j]
+           visit_queue = [(i,j)]
+           while visit_queue:
+               _i, _j = visit_queue.pop(0)
+               curr = _Ab[_i][_j]
+               if curr == target:
+                   continue
+               for n in neighbors(_Ab, _i, _j):
+                   _Ab[_i][_j] = target
+                   visit_queue.append(n)
+           return _Ab
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           flip_region([
+               [1,0,1],
+               [0,1,1],
+               [1,1,1],
+           ], 0, 2) == [
+               [1,0,0],
+               [0,0,0],
+               [0,0,0],
+           ],
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     
 ** Parallel Computing
    
 * Domain Specific Problems

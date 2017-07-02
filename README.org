@@ -1757,7 +1757,56 @@
 
 ** Greedy Algorithms and Invariants
 
-*** TODO The 3-sum problem                                                  :C0:
+*** DONE The 3-sum problem                                                  :C0:
+    CLOSED: [2017-07-02 Sun 13:01]
+
+    Design an algorithm that takes as input an array and a number, and
+    determines if there are three entries in the array (not necessarily
+    distinct) which add up to the specified number. For example, if the array is
+    =<11,2,5,7,3>= then there are three entries in the array which add up to 21
+    (3, 7, 11, and 5, 5, 11) (note that we can use 5 twice, since the problem
+    statement said we c an use the same entry more than once). However, no three
+    entries add up to 22.
+
+    /Hint/: How would you check if a given array entry can be added to two more
+    entries to get the specified number?
+
+**** Solution
+
+     Note that we do not need to return the specific set of three entries --
+     only determine that it exists.
+
+     First we sort the array A in O(n log n). Then, for each index i, we iterate
+     through indices j and k in opposite directions to determine if any satisfy
+     A[j] + A[k] = v - A[i]. This brings our final time complexity to O(n^{2}).
+
+     #+BEGIN_SRC python :results silent :session
+       def has_three_sum(A, v):
+           for a in A:
+               j = 0
+               k = len(A) - 1
+               while j < k:
+                   _v = a + A[j] + A[k]
+                   if _v < v:
+                       j += 1
+                   elif _v > v:
+                       k -= 1
+                   else:
+                       return True
+           return False
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           has_three_sum([11,2,5,7,3], 21),
+           not has_three_sum([11,2,5,7,3], 100),
+           not has_three_sum([11,2,5,7,3], 0),
+       ])
+
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** TODO The gasup problem                                                  :C1:
 

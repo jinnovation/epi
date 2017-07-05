@@ -19,6 +19,7 @@
     - [[#base-conversion][Base conversion]]
     - [[#replace-and-remove][Replace and remove]]
     - [[#test-palindromicity][Test palindromicity]]
+    - [[#compute-all-mnemonics-for-a-phone-number][Compute all mnemonics for a phone number]]
   - [[#linked-lists][Linked Lists]]
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
     - [[#reverse-a-singly-linked-list][Reverse a singly linked list]]
@@ -417,6 +418,53 @@
      #+RESULTS:
      : True
 
+*** DONE Compute all mnemonics for a phone number                           :C3:
+    CLOSED: [2017-07-05 Wed 11:36]
+
+    Write a program which takes as input a phone number, specified as a string
+    of digits, and returns all possible character sequences that correspond to
+    the phone nuber. The cell phone keypad is specified by a mapping that takes
+    a digit and returns the corresponding set of characters. The character
+    sequencs do not have to be legal words or phrases.
+
+**** Solution
+
+     We maintain a static mapping from digits to sets of characters and use
+     recursion to generate the power set of each digits' set.
+
+     Complexity O(4^{n}), since each recursion step "fans out" at most four times
+     (due to keypad mapping).
+
+     #+BEGIN_SRC python :results output :session
+       def mnemonics(S):
+           MAP = {
+               "0": ["0"],
+               "1": ["1"],
+               "2": set("abc"),
+               "3": set("def"),
+               "4": set("ghi"),
+               "5": set("jkl"),
+               "6": set("mno"),
+               "7": set("pqrs"),
+               "8": set("tuv"),
+               "9": set("wxyz"),
+           }
+           if S == "":
+               return []
+           elif S[0] not in MAP:
+               raise Exception
+           return set([c+t for c in MAP[S[0]] for t in mnemonics(S[1:])])
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           mnemonics("2276696") | { "ACRONYM", "ABPOMZN" },
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+     
 ** Linked Lists
 
 *** DONE Merge two sorted lists                                             :C0:

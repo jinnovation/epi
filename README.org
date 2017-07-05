@@ -18,6 +18,7 @@
     - [[#interconvert-strings-and-integers][Interconvert strings and integers]]
     - [[#base-conversion][Base conversion]]
     - [[#replace-and-remove][Replace and remove]]
+    - [[#test-palindromicity][Test palindromicity]]
   - [[#linked-lists][Linked Lists]]
     - [[#merge-two-sorted-lists][Merge two sorted lists]]
     - [[#reverse-a-singly-linked-list][Reverse a singly linked list]]
@@ -368,7 +369,54 @@
     have to worry about preserving subsequent entries. For example, if the array
     is =<a,b,a,c,_>= and the size is 4, then you can return =<d,d,d,d,c>=. You
     can assume there is enough space in the array to hold the final result.
-    
+
+*** DONE Test palindromicity                                                :C2:
+    CLOSED: [2017-07-05 Wed 11:18]
+
+    For the purpose of this problem, define a palindromic string to be a string
+    which when all the nonalphanumeric are removed it reads the same front to
+    back ignoring case.
+
+    Implement a function which takes as input a string s and returns true if s
+    is a palindromic string.
+
+**** Solution
+
+     Use two cursors; one that starts at start of string, and one at the end.
+
+     Each step, perform equality comparison of the chars under each, returning
+     early with False if equality does not hold. Continue until i_{s} > i_{e}
+     and return True if reach end of iteration. 
+
+     Time O(n) and space O(1).
+
+     #+BEGIN_SRC python :results output :session
+       def is_pal(S):
+           i_s, i_e = 0, len(S) - 1
+           while i_s < i_e:
+               if S[i_s].lower() != S[i_e].lower():
+                   return False
+               i_s += 1
+               i_e -= 1
+               while not S[i_s].isalnum() and i_s < i_e:
+                   i_s += 1
+               while not S[i_e].isalnum() and i_s < i_e:
+                   i_e -= 1
+           return True
+     #+END_SRC
+
+     #+RESULTS:
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           is_pal("A man, a plan, a canal, Panama"),
+           not is_pal(",,a,b,,"),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
 ** Linked Lists
 
 *** DONE Merge two sorted lists                                             :C0:

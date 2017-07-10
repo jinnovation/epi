@@ -1057,7 +1057,8 @@
 *** TODO Compute the k closest stars                                        :C1:
 ** Searching
 
-*** TODO Search a sorted array for first occurrence of =k=                  :C0:
+*** DONE Search a sorted array for first occurrence of =k=                  :C0:
+    CLOSED: [2017-07-10 Mon 12:26]
 
     Binary search commonly asks for the index of /any/ element of a sorted array
     that is equal to a specified element. The following problem has a slight
@@ -1066,6 +1067,47 @@
     Write a method that takes a sorted array and a key and returns the index of
     the /first/ occurrence of the key in the array.
 
+**** Solution
+
+     A brute-force solution would be to iterate through the array A in its
+     entirety, from start to end, until key k is found. This solution would be
+     O(n), which isn't terrible but would fail to take advantage of the fact
+     that A is sorted.
+
+     To improve, we employ binary search, returning the identity of the first
+     occurrence of k if k \in A and null otherwise. To account for relative
+     indices in recursion, we pass in an "offset" that the returned index is
+     then modulated by.
+
+     #+BEGIN_SRC python :results silent :session
+       def first_occurrence(A, k):
+           import math
+           def fo(A, k, offset):
+               if A == []:
+                   return None
+               if len(A) == 1:
+                   return offset if A[0]==k else None
+               i_mid = int(math.floor(len(A) / 2))
+               if A[i_mid] >= k:
+                   i = fo(A[:i_mid], k, offset=0)
+                   return offset+i_mid if not i else i
+               else:
+                   return fo(A[i_mid+1:], k, offset=i_mid+1)
+           return fo(A,k,0)
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           first_occurrence([1,2,3], 3) == 2,
+           first_occurrence([1,2,2,2,3], 2) == 1,
+           first_occurrence([1,2,3,4,5], 6) == None,
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
+
+     
 *** TODO Compute the integer square root                                    :C1:
 
 *** TODO Find the k-th largest element                                      :C1:
@@ -2161,7 +2203,6 @@
 
      #+RESULTS:
      : True
-
      
 ** Parallel Computing
    

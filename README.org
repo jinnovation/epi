@@ -861,10 +861,10 @@
      : True
 
      
-*** LOOKED-UP Reconstruct a binary tree from traversal data                 :C2:
+*** DONE Reconstruct a binary tree from traversal data                      :C2:
     CLOSED: [2017-07-01 Sat 18:00]
 
-    Given an inorder traversal sequence and a preorder traversal sequence of a
+    Given an inorder traversal sequence and a postorder traversal sequence of a
     binary tree write a program to reconstruct the tree. Assume each node has a
     unique key.
 
@@ -872,54 +872,96 @@
 
 **** Solution
 
+     The key insight here is that, for any input in-order traversal =it= and any
+     input post-order traversal =pt=, we have the following invariants:
+
+     - =it= and =pt= are equal in length;
+     - The last element of =pt= corresponds to the "root" of the given tree.
+
+
+     Furthermore, we observe that =it= and =pt= are each laid out as follows:
+
+     #+BEGIN_VERBATIM
+     it [<----LHS----><ROOT><----RHS---->]
+     pt [<----LHS----><----RHS----><ROOT>]
+     #+END_VERBATIM
+
+     As such, we can use the tail value of =pt= during every iteration to
+     "bisect" the in-order traversal list, giving us the number of elements in
+     both the left branch and the right branch. Using these quantities, we can
+     extract the corresponding sub-lists out of the top-level post-order
+     traversal, giving us everything that we need for a recursive
+     implementation.
+
      #+BEGIN_SRC python :results silent :session
-       def teq(t1, t2):
-           return (t1 is None and t2 is None) or (
-               t1.v == t2.v
-               and teq(t1.l, t2.l)
-               and teq(t1.r, t2.r))
+       def teq(lhs, rhs):
+           return (lhs is None and rhs is None) \
+               or (lhs.value == rhs.value
+                   and teq(lhs.lhs, rhs.lhs)
+                   and teq(lhs.rhs, rhs.rhs))
+
 
        class Tree():
-           def __init__(self, v, l=None, r=None):
-               self.v = v
-               self.l = l
-               self.r = r
-           def __eq__(self, T):
-               return teq(self, T)
-     #+END_SRC
+           def __init__(self, value, lhs=None, rhs=None):
+               self.value = value
+               self.lhs = lhs
+               self.rhs = rhs
 
-     #+BEGIN_SRC python :results silent :session
-       def recon(s_in, s_pre):
-           t = Tree(v=s_pre[0])
-           s_in_l = s_in[:s_in.index(t.v)]
-           s_pre_l = s_pre[1:len(s_in_l)+1]
-           s_in_r = s_in[s_in.index(t.v)+1:]
-           s_pre_r = s_pre[len(s_in_l)+1:]
-           if len(s_in_l) != len(s_pre_l) or len(s_in_r) != len(s_pre_r):
-               raise Exception()
-           if len(s_in_l) != 0:
-               t.l = recon(s_in_l, s_pre_l)
-           if len(s_in_r) != 0:
-               t.r = recon(s_in_r, s_pre_r)
-           return t
+
+       def reconstruct(it, pt):
+           assert len(it) == len(pt)
+           if not it and not pt:
+               return None
+
+           if len(it) == 1 and len(pt) == 1:
+               assert it[0] == pt[0]
+               return Tree(it[0])
+
+           v_root = pt[-1]
+
+           it_root_index = it.index(v_root)
+
+           it_lhs = it[0:it_root_index]
+           pt_lhs = [] if it_root_index == 0 else pt[
+               0:len(it_lhs)
+           ]
+
+           it_rhs = it[it_root_index+1:]
+
+           pt_rhs_start = 0 if len(pt_lhs) == 0 else len(pt_lhs)
+           pt_rhs = [] if it_root_index == len(it)-1 else pt[
+               pt_rhs_start:pt.index(v_root)
+           ]
+
+           return Tree(
+               value=v_root,
+               lhs=reconstruct(it_lhs, pt_lhs),
+               rhs=reconstruct(it_rhs, pt_rhs),
+           )
      #+END_SRC
 
      #+BEGIN_SRC python :results value :session
-       t = recon("DBFEGACH", "ABDEFGCH")
-
-       t == Tree(
-           v="A",
-           l=Tree(
-               v="B",
-               l=Tree(v="D"),
-               r = Tree(v="E", l = Tree(v="F"), r = Tree(v="G")),
-           ),
-           r = Tree(v = "C", r = Tree(v="H")),
-       )
+       all([
+           teq(reconstruct("A", "A"), Tree("A")),
+           teq(reconstruct("213", "231"),
+               Tree("1", lhs=Tree("2"), rhs=Tree("3"))),
+           teq(reconstruct("acbd", "abcd"),
+               Tree("d", lhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
+           teq(reconstruct("dacb", "abcd"),
+               Tree("d", rhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
+       ])
      #+END_SRC
 
      #+RESULTS:
      : True
+
+     This implementation, given that it needs to perform an index-search on the
+     unordered lists effectively for every element of the list, is O(n^2) with
+     respect to the number of elements in the tree. 
+
+**** Corollary
+
+     What about in-order and pre-order?
 
 *** TODO Implement an inorder traversal with O(1) space                     :C3:
 

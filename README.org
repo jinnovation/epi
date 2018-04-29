@@ -538,7 +538,50 @@
      ll_rev(LL(4).append(LL(5).append(LL(6)))) == LL(6).append(LL(5).append(LL(4)))
      #+END_SRC
 
-*** TODO Test for cyclicity                                                 :C1:
+*** DONE Test for cyclicity                                                 :C1:
+    CLOSED: [2018-04-29 Sun 18:02]
+
+**** Solution
+
+     #+BEGIN_SRC python :results silent :session
+       class LL():
+           def __init__(self, value, nxt=None):
+               self.value = value
+               self.nxt = nxt
+     #+END_SRC
+
+     For convenience's sake, we assume that the linked-list has a uniqueness
+     constraint. This constraint allows us to uniquely reference each node in
+     the linked-list by its contained value.
+
+     This constraint can be removed by using, say, memory address as the unique
+     reference, but the algorithm remains the same.
+
+     #+BEGIN_SRC python :results silent :session
+       def is_cycle(ll):
+           c_back = ll
+           c_front = ll.nxt
+           if not c_front:
+               return False
+           while c_back.value != c_front.value:
+               c_back = c_back.nxt
+               for _ in xrange(2):
+                   c_front = c_front.nxt
+                   if not c_front:
+                       return False
+           return True
+     #+END_SRC
+
+     #+BEGIN_SRC python :results value :session
+       all([
+           not is_cycle(LL(1)),
+           not is_cycle(LL(1, LL(2, LL(3, LL(4, LL(5)))))),
+           is_cycle(LL(1, LL(2, LL(3, LL(2, LL(3, LL(2, LL(3)))))))),
+       ])
+     #+END_SRC
+
+     #+RESULTS:
+     : True
 
 *** DONE Test for overlapping lists -- lists are cycle-free                 :C2:
     CLOSED: [2017-07-01 Sat 18:19]

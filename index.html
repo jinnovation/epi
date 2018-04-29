@@ -1,0 +1,3565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-04-29 Sun 11:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Elements of Programming Interviews: Solutions</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Jonathan Jin" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42551205-2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-42551205-2');
+</script>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Elements of Programming Interviews: Solutions</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2038541">1. Foreward</a></li>
+<li><a href="#orgc9052c6">2. Data Structures and Algorithms</a>
+<ul>
+<li><a href="#org7ee403f">2.1. Primitive Types</a>
+<ul>
+<li><a href="#org77fc533">2.1.1. <span class="done DONE">DONE</span> Computing the parity of a word</a></li>
+<li><a href="#org8486e28">2.1.2. <span class="todo TODO">TODO</span> Compute x<sup>y</sup></a></li>
+</ul>
+</li>
+<li><a href="#orge5116d0">2.2. Arrays</a>
+<ul>
+<li><a href="#org1b65b97">2.2.1. <span class="todo TODO">TODO</span> The Dutch national flag problem</a></li>
+<li><a href="#orga3ce132">2.2.2. <span class="done DONE">DONE</span> Sample offline data</a></li>
+<li><a href="#org2d42446">2.2.3. <span class="done DONE">DONE</span> Sample online data</a></li>
+<li><a href="#orgb637685">2.2.4. <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</a></li>
+<li><a href="#org5359269">2.2.5. <span class="done DONE">DONE</span> Buy and sell a stock once</a></li>
+</ul>
+</li>
+<li><a href="#org1a7fae9">2.3. Strings</a>
+<ul>
+<li><a href="#org11357de">2.3.1. <span class="done DONE">DONE</span> Interconvert strings and integers</a></li>
+<li><a href="#orgf381ba1">2.3.2. <span class="todo TODO">TODO</span> Base conversion</a></li>
+<li><a href="#org02d9d80">2.3.3. <span class="todo TODO">TODO</span> Replace and remove</a></li>
+<li><a href="#org29a7c1c">2.3.4. <span class="done DONE">DONE</span> Test palindromicity</a></li>
+<li><a href="#org2cc0235">2.3.5. <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</a></li>
+</ul>
+</li>
+<li><a href="#orga188763">2.4. Linked Lists</a>
+<ul>
+<li><a href="#org67c5e1e">2.4.1. <span class="done DONE">DONE</span> Merge two sorted lists</a></li>
+<li><a href="#orgbce67e1">2.4.2. <span class="done DONE">DONE</span> Reverse a singly linked list</a></li>
+<li><a href="#orgfa0e098">2.4.3. <span class="todo TODO">TODO</span> Test for cyclicity</a></li>
+<li><a href="#orgbf36f80">2.4.4. <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</a></li>
+<li><a href="#orgc7bf9fa">2.4.5. <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</a></li>
+<li><a href="#orge5d850f">2.4.6. <span class="todo TODO">TODO</span> Implement even-odd merge</a></li>
+<li><a href="#orgac4c327">2.4.7. <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</a></li>
+</ul>
+</li>
+<li><a href="#org26be598">2.5. Stacks and Queues</a>
+<ul>
+<li><a href="#orgdf34fdf">2.5.1. <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</a></li>
+<li><a href="#org8d25f2b">2.5.2. <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</a></li>
+<li><a href="#org1c8df36">2.5.3. <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</a></li>
+</ul>
+</li>
+<li><a href="#org0ce16a3">2.6. Binary Trees</a>
+<ul>
+<li><a href="#org3a0020d">2.6.1. <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</a></li>
+<li><a href="#orgcf00ba5">2.6.2. <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</a></li>
+<li><a href="#org907af6b">2.6.3. <span class="done DONE">DONE</span> Test if a binary tree is symmetric</a></li>
+<li><a href="#org61741f0">2.6.4. <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</a></li>
+<li><a href="#org10052c3">2.6.5. <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</a></li>
+<li><a href="#org858926d">2.6.6. <span class="todo TODO">TODO</span> Reconstruct a binary tree from a preorder traversal with markers</a></li>
+<li><a href="#org997641d">2.6.7. <span class="todo TODO">TODO</span> Compute the right sibling tree</a></li>
+</ul>
+</li>
+<li><a href="#orgc0b5129">2.7. Heaps</a>
+<ul>
+<li><a href="#org788fefa">2.7.1. <span class="todo TODO">TODO</span> Merge sorted files</a></li>
+<li><a href="#orgf4eed31">2.7.2. <span class="todo TODO">TODO</span> Compute the k closest stars</a></li>
+</ul>
+</li>
+<li><a href="#org13d27e4">2.8. Searching</a>
+<ul>
+<li><a href="#org4569e89">2.8.1. <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></a></li>
+<li><a href="#orgc7e8460">2.8.2. <span class="todo TODO">TODO</span> Compute the integer square root</a></li>
+<li><a href="#orgb215158">2.8.3. <span class="todo TODO">TODO</span> Find the k-th largest element</a></li>
+</ul>
+</li>
+<li><a href="#org36ac4c1">2.9. Hash Tables</a>
+<ul>
+<li><a href="#org3337cae">2.9.1. <span class="done DONE">DONE</span> Partition into anagrams</a></li>
+<li><a href="#org66fdef9">2.9.2. <span class="done DONE">DONE</span> Test for palindromic permutations</a></li>
+<li><a href="#org3a7638a">2.9.3. <span class="done DONE">DONE</span> Is an anonymous letter constructible?</a></li>
+<li><a href="#orgb604448">2.9.4. <span class="todo TODO">TODO</span> Implement an ISBN cache</a></li>
+</ul>
+</li>
+<li><a href="#org196a3af">2.10. Sorting</a>
+<ul>
+<li><a href="#orge482dc4">2.10.1. <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</a></li>
+<li><a href="#org59ea471">2.10.2. <span class="todo TODO">TODO</span> Implement mergesort in-place</a></li>
+<li><a href="#orgd60ba41">2.10.3. <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</a></li>
+<li><a href="#org707435f">2.10.4. <span class="done DONE">DONE</span> Render a calendar</a></li>
+<li><a href="#org4e65eec">2.10.5. <span class="todo TODO">TODO</span> Compute the union of intervals</a></li>
+<li><a href="#org784d02b">2.10.6. <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</a></li>
+<li><a href="#org95c2f0e">2.10.7. <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</a></li>
+</ul>
+</li>
+<li><a href="#orgb2b2961">2.11. Binary Search Trees</a>
+<ul>
+<li><a href="#orgede0a48">2.11.1. <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</a></li>
+<li><a href="#org284bef4">2.11.2. <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</a></li>
+<li><a href="#orgffe7c86">2.11.3. <span class="done DONE">DONE</span> Find the k largest elements in a BST</a></li>
+<li><a href="#org6b99d88">2.11.4. <span class="done DONE">DONE</span> Compute the LCA in a BST</a></li>
+<li><a href="#org00e37a5">2.11.5. <span class="todo TODO">TODO</span> The most visited pages problem</a></li>
+<li><a href="#org3e83c58">2.11.6. <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</a></li>
+<li><a href="#org831b252">2.11.7. <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</a></li>
+<li><a href="#org1ee111f">2.11.8. <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</a></li>
+<li><a href="#org1431dfb">2.11.9. <span class="todo TODO">TODO</span> Insertion and deletion in a BST</a></li>
+</ul>
+</li>
+<li><a href="#orgd97f144">2.12. Recursion</a>
+<ul>
+<li><a href="#org11f321b">2.12.1. <span class="todo TODO">TODO</span> Tower of Hanoi</a></li>
+<li><a href="#org1085cdf">2.12.2. <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</a></li>
+</ul>
+</li>
+<li><a href="#org2dfd42b">2.13. Dynamic Programming</a>
+<ul>
+<li><a href="#org1bc8d33">2.13.1. <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</a></li>
+<li><a href="#orgc497403">2.13.2. <span class="todo TODO">TODO</span> Compute the Levenshtein distance</a></li>
+<li><a href="#orga3826b9">2.13.3. <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</a></li>
+<li><a href="#org31a57ed">2.13.4. <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</a></li>
+<li><a href="#org29ded63">2.13.5. <span class="done DONE">DONE</span> Search for a sequence in a 2D array</a></li>
+</ul>
+</li>
+<li><a href="#org12f3fc9">2.14. Greedy Algorithms and Invariants</a>
+<ul>
+<li><a href="#org0d3001f">2.14.1. <span class="done DONE">DONE</span> The 3-sum problem</a></li>
+<li><a href="#org082df1a">2.14.2. <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</a></li>
+<li><a href="#orgc6ac243">2.14.3. <span class="todo TODO">TODO</span> Find the majority element</a></li>
+<li><a href="#orgcaee7a8">2.14.4. <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</a></li>
+<li><a href="#org4895d96">2.14.5. <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</a></li>
+<li><a href="#org7ff9589">2.14.6. <span class="todo TODO">TODO</span> Implement Huffman coding</a></li>
+</ul>
+</li>
+<li><a href="#org4a82ca2">2.15. Graphs</a>
+<ul>
+<li><a href="#org9943280">2.15.1. <span class="done DONE">DONE</span> Search a maze</a></li>
+<li><a href="#org2a47faa">2.15.2. <span class="done WRITTEN">WRITTEN</span> Transform one string to another</a></li>
+<li><a href="#org6ba9901">2.15.3. <span class="done DONE">DONE</span> Paint a Boolean matrix</a></li>
+</ul>
+</li>
+<li><a href="#org7caaaaa">2.16. Parallel Computing</a></li>
+</ul>
+</li>
+<li><a href="#orgbd630bd">3. Domain Specific Problems</a>
+<ul>
+<li><a href="#org439e3fb">3.1. Design Problems</a></li>
+<li><a href="#org47777a6">3.2. Language Questions</a></li>
+<li><a href="#orgb06042c">3.3. Object-Oriented Design</a></li>
+<li><a href="#org89462dc">3.4. Common Tools</a></li>
+</ul>
+</li>
+<li><a href="#org6baef4e">4. Honors Class</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2038541" class="outline-2">
+<h2 id="org2038541"><span class="section-number-2">1</span> Foreward</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+All problems presented here are from <a href="http://elementsofprogramminginterviews.com/">Elements of Programming Interviews</a>, by
+Dr. Adnan Aziz, Tsung-Hsien Lee, and Amit Prakash. All credit goes to them.
+</p>
+
+<p>
+All solutions presented are my own. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9052c6" class="outline-2">
+<h2 id="orgc9052c6"><span class="section-number-2">2</span> Data Structures and Algorithms</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org7ee403f" class="outline-3">
+<h3 id="org7ee403f"><span class="section-number-3">2.1</span> Primitive Types</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org77fc533" class="outline-4">
+<h4 id="org77fc533"><span class="section-number-4">2.1.1</span> <span class="done DONE">DONE</span> Computing the parity of a word</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+The parity of a binary word is 1 if the number of 1s in the word is odd;
+otherwise, it is 0. For example, the parity of 1011 is 1, and the parity of
+10001000 is 0. Parity checks are used to detect single bit errors in data
+storage and communication. It is fairly straightforward to write code that
+computes the parity of a single 64-bit word
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org5f4ad9d"></a>Solution<br />
+<div class="outline-text-5" id="text-2-1-1-1">
+<p>
+We assume that the word is provided as a 64-bit unsigned integer.
+</p>
+
+<p>
+A naive implementation would be to iterate through every bit of the word,
+XOR-ing a counter for every 1-bit.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">parity</span>(word):
+    <span style="color: #D8DEE9;">p</span> = 0
+    <span style="color: #81A1C1;">for</span> shift <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0,64):
+        <span style="color: #D8DEE9;">p</span> ^= (word&gt;&gt;shift)&amp;1
+    <span style="color: #81A1C1;">return</span> p
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([parity(<span style="color: #81A1C1;">int</span>(w,2))==p <span style="color: #81A1C1;">for</span> w,p <span style="color: #81A1C1;">in</span> [
+    (<span style="color: #A3BE8C;">"1011"</span>, 1),
+    (<span style="color: #A3BE8C;">"0000"</span>, 0),
+]])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<p>
+This implementation is O(n), where n is the length of the input word.
+</p>
+
+<p>
+We can, however, optimize this function further by precomputing the
+parities of words and storing the parities in a lookup table. For
+illustration&rsquo;s purpose, we&rsquo;ll define a lookup table that stores the
+parities of all words of length 2:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #D8DEE9;">PARITIES_2</span> = {
+    <span style="color: #81A1C1;">int</span>(w,2): p <span style="color: #81A1C1;">for</span> w,p <span style="color: #81A1C1;">in</span> [
+        (<span style="color: #A3BE8C;">"00"</span>, 0),
+        (<span style="color: #A3BE8C;">"01"</span>, 1),
+        (<span style="color: #A3BE8C;">"10"</span>, 1),
+        (<span style="color: #A3BE8C;">"11"</span>, 0),
+    ]
+}
+</pre>
+</div>
+
+<p>
+Resulting in the following implementation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">memoized_parity</span>(word):
+    <span style="color: #D8DEE9;">p</span> = 0
+    <span style="color: #D8DEE9;">memo_word_length</span> = 2
+    <span style="color: #81A1C1;">for</span> s <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0,64/memo_word_length):
+        <span style="color: #D8DEE9;">mask</span> = 2^memo_word_length - 1
+        <span style="color: #D8DEE9;">shift</span> = s * memo_word_length
+        <span style="color: #D8DEE9;">p</span> ^= PARITIES_2[(word &gt;&gt; shift) &amp; mask]
+    <span style="color: #81A1C1;">return</span> p
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([memoized_parity(<span style="color: #81A1C1;">int</span>(w,2))==p <span style="color: #81A1C1;">for</span> w,p <span style="color: #81A1C1;">in</span> [
+    (<span style="color: #A3BE8C;">"1011"</span>, 1),
+    (<span style="color: #A3BE8C;">"0000"</span>, 0),
+]])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<p>
+This revised implementation is O(n/w) = O(n), where w is the word length of
+the lookup key.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org8486e28" class="outline-4">
+<h4 id="org8486e28"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> Compute x<sup>y</sup></h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Compute x<sup>y</sup> without using arithmetic operators, i.e. using only assignment,
+bitwise operators, and equality checks.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge5116d0" class="outline-3">
+<h3 id="orge5116d0"><span class="section-number-3">2.2</span> Arrays</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org1b65b97" class="outline-4">
+<h4 id="org1b65b97"><span class="section-number-4">2.2.1</span> <span class="todo TODO">TODO</span> The Dutch national flag problem</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Write a program that takes an array A and an index i into A, and rearranges
+the elements such that all elements less than A[i] (the &ldquo;pivot&rdquo;) appear
+first, followed by eleents equal to the pivot followed by elements greater
+than the pivot.
+</p>
+
+<p>
+<i>Hint</i>: Think about the partition step in quicksort.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org6f4313d"></a>Solution<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-orga3ce132" class="outline-4">
+<h4 id="orga3ce132"><span class="section-number-4">2.2.2</span> <span class="done DONE">DONE</span> Sample offline data</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Implement an algorithm that takes as input an array of distinct elements and
+a size, and returns a subset of the given size of the array elements. All
+subsets should be equally likely.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgc5a46e0"></a>Solution<br />
+<div class="outline-text-5" id="text-2-2-2-1">
+<p>
+We can use reservoir sampling to achieve a linear-time implementation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">sample</span>(N, l):
+    <span style="color: #81A1C1;">from</span> random <span style="color: #81A1C1;">import</span> randint
+    <span style="color: #D8DEE9;">reservoir</span> = [N[i] <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, l)]
+    <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(l, <span style="color: #81A1C1;">len</span>(N)):
+        <span style="color: #D8DEE9;">_i</span> = randint(0, i)
+        <span style="color: #81A1C1;">if</span> _i &lt; l:
+            <span style="color: #D8DEE9;">reservoir</span>[_i] = N[i]
+    <span style="color: #81A1C1;">return</span> reservoir
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org2d42446" class="outline-4">
+<h4 id="org2d42446"><span class="section-number-4">2.2.3</span> <span class="done DONE">DONE</span> Sample online data</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Design a program that takes as input a size k, and reads packets,
+continuously maintaining a uniform random subset of size k of the read
+packets.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd479f3a"></a>Solution<br />
+<div class="outline-text-5" id="text-2-2-3-1">
+<p>
+Analogous to solution outlined in &ldquo;Sample offline data.&rdquo;
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb637685" class="outline-4">
+<h4 id="orgb637685"><span class="section-number-4">2.2.4</span> <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</h4>
+</div>
+
+<div id="outline-container-org5359269" class="outline-4">
+<h4 id="org5359269"><span class="section-number-4">2.2.5</span> <span class="done DONE">DONE</span> Buy and sell a stock once</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+This problem is concerned with the problem of optimally buying and selling a
+stock once. As an example, consider the following sequence of stock prices:
+<code>&lt;310, 315, 275, 295, 260, 270, 290, 230, 255, 250&gt;</code>. The maximum profit
+that can be made with one buy and one sell is 30 &#x2013; buy at 260 and sell
+at 290. Note that 260 is not the lowest price, nor 290 the highest price.
+</p>
+
+<p>
+Write a program that takes an array denoting the daily stock price, and
+returns the maximum profit that could be made by buying and then selling one
+share of that stock.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org63e1239"></a>Solution<br />
+<div class="outline-text-5" id="text-2-2-5-1">
+<p>
+Note that this problem is a simplification of the knapsack problem. A naive
+solution would reduce this problem to its inspiration, giving us a O(n<sup>2</sup>)
+solution.  However, we note that the problem doesn&rsquo;t ask for exactly
+<b>which</b> stocks to buy and sell for maximum profit &#x2013; only the profit
+amount. This simplification means that we do not need the comprehensive
+bookkeeping that a DP-based solution to the knapsack problem provides us.
+</p>
+
+<p>
+We first note that a lower buying price always results in a higher profit
+with the same selling price.
+</p>
+
+<p>
+We can then implement a O(n) solution that compares the &ldquo;current profit&rdquo; &#x2013;
+defined as difference between the current sell-price under consideration
+and the as-yet-seen lowest buy price, with a rolling maximum of that
+value. Every time we see a value less than the as-yet-seen lowest buy
+price, we update accordingly. Once we reach the end of the list, we return
+the rolling max value.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">max_profit</span>(*args):
+    <span style="color: #D8DEE9;">min_so_far</span> = args[0]
+    <span style="color: #D8DEE9;">profit</span> = 0
+    <span style="color: #81A1C1;">for</span> p <span style="color: #81A1C1;">in</span> args:
+        <span style="color: #D8DEE9;">profit</span> = <span style="color: #81A1C1;">max</span>(profit, p - min_so_far)
+        <span style="color: #81A1C1;">if</span> p &lt; min_so_far:
+            <span style="color: #D8DEE9;">min_so_far</span> = p
+    <span style="color: #81A1C1;">return</span> profit
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">max_profit(310,315,275,295,260,270,290,230,255,250) == 30
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1a7fae9" class="outline-3">
+<h3 id="org1a7fae9"><span class="section-number-3">2.3</span> Strings</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org11357de" class="outline-4">
+<h4 id="org11357de"><span class="section-number-4">2.3.1</span> <span class="done DONE">DONE</span> Interconvert strings and integers</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Implement string/integer inter-conversion functions.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd22fc0a"></a>Solution<br />
+<div class="outline-text-5" id="text-2-3-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">stoi</span>(s):
+    <span style="color: #D8DEE9;">i</span> = 0
+    <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> s:
+        <span style="color: #D8DEE9;">i</span> = 10 * i + <span style="color: #81A1C1;">ord</span>(c) - <span style="color: #81A1C1;">ord</span>(<span style="color: #A3BE8C;">"0"</span>)
+    <span style="color: #81A1C1;">return</span> i
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    stoi(<span style="color: #A3BE8C;">"123"</span>) == 123,
+    stoi(<span style="color: #A3BE8C;">"0"</span>) == 0,
+    stoi(<span style="color: #A3BE8C;">"98765432198"</span>) == 98765432198,
+])      
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">itos</span>(i):
+    <span style="color: #81A1C1;">import</span> math
+    <span style="color: #D8DEE9;">s</span> = <span style="color: #A3BE8C;">""</span>
+    <span style="color: #81A1C1;">while</span> <span style="color: #81A1C1;">True</span>:
+        <span style="color: #D8DEE9;">s</span> += <span style="color: #81A1C1;">chr</span>(<span style="color: #81A1C1;">ord</span>(<span style="color: #A3BE8C;">"0"</span>) + i % 10)
+        <span style="color: #D8DEE9;">i</span> = <span style="color: #81A1C1;">int</span>(math.floor(i / 10))
+        <span style="color: #81A1C1;">if</span> i == 0:
+            <span style="color: #81A1C1;">break</span>
+    <span style="color: #81A1C1;">return</span> s[::-1]
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    itos(123) == <span style="color: #A3BE8C;">"123"</span>,
+    itos(0) == <span style="color: #A3BE8C;">"0"</span>,
+    itos(98765432198) == <span style="color: #A3BE8C;">"98765432198"</span>,
+])      
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgf381ba1" class="outline-4">
+<h4 id="orgf381ba1"><span class="section-number-4">2.3.2</span> <span class="todo TODO">TODO</span> Base conversion</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+In the decimal number system, the position of a digit is used to signify the
+power of 10 that digit is to be multiplied with. For example, &ldquo;314&rdquo; denotes
+the number 3 * 100 + 1 * 10 + 4 * 1. The base b number system generalizes
+the decimal number system: the string &ldquo;a<sub>k-1</sub>a<sub>k-2</sub>&#x2026;a<sub>1</sub>a<sub>1</sub>&rdquo;, where 0 &le; a<sub>i</sub> &le;
+b, denotes in base-b the integer a<sub>0</sub> &times; b<sup>0</sup> + a<sub>1</sub> &times; b<sup>1</sup> + a<sub>2</sub> &times;
+b<sup>2</sup> + &#x2026; + a<sub>k-1</sub> &times; b<sup>k-1</sup>.
+</p>
+
+<p>
+Write a program that performs base conversion. The input is a string, an
+integer b<sub>1</sub>, and another integer b<sub>2</sub>. The string represents an integer in base
+b<sub>1</sub>. The output should be the string representing the integer in base
+b<sub>2</sub>. Assume 2 &le; b<sub>1</sub>, b<sub>2</sub> &le; 16. Use &ldquo;A&rdquo; to represent 10, &ldquo;B&rdquo; for 11, &#x2026;, and
+&ldquo;F&rdquo; for 15. (For example, if the string is &ldquo;615&rdquo;, b<sub>1</sub> is 7 and b<sub>2</sub> is 13, then
+the result should be &ldquo;1A7&rdquo;, since 6 &times; 7<sup>2</sup> + 1 &times; 7 + 5 = 1 &times; 13<sup>2</sup> + 10 &times; 13 + 7).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org02d9d80" class="outline-4">
+<h4 id="org02d9d80"><span class="section-number-4">2.3.3</span> <span class="todo TODO">TODO</span> Replace and remove</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Consider the following two rules that are to be applied to an array of
+characters.
+</p>
+
+<ul class="org-ul">
+<li>Replace each &ldquo;a&rdquo; by two &ldquo;d&rdquo;s.</li>
+<li>Delete each entry containing a &ldquo;b&rdquo;.</li>
+</ul>
+
+
+<p>
+For example, applying these rules to the array <code>&lt;a,c,d,b,b,c,a&gt;</code> results in
+the array <code>&lt;d,d,c,d,c,d,d&gt;</code>.
+</p>
+
+<p>
+Write a program which takes as input an array of characters, and removes
+each &ldquo;b&rdquo; and replaces each &ldquo;a&rdquo; by two &ldquo;d&rdquo;s. Specifically, along with the
+array, you are provided an integer-valued size. Size denotes the number of
+entries of the array that the operation is to be applied to. You do not
+have to worry about preserving subsequent entries. For example, if the array
+is <code>&lt;a,b,a,c,_&gt;</code> and the size is 4, then you can return <code>&lt;d,d,d,d,c&gt;</code>. You
+can assume there is enough space in the array to hold the final result.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29a7c1c" class="outline-4">
+<h4 id="org29a7c1c"><span class="section-number-4">2.3.4</span> <span class="done DONE">DONE</span> Test palindromicity</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+For the purpose of this problem, define a palindromic string to be a string
+which when all the nonalphanumeric are removed it reads the same front to
+back ignoring case.
+</p>
+
+<p>
+Implement a function which takes as input a string s and returns true if s
+is a palindromic string.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgff30663"></a>Solution<br />
+<div class="outline-text-5" id="text-2-3-4-1">
+<p>
+Use two cursors; one that starts at start of string, and one at the end.
+</p>
+
+<p>
+Each step, perform equality comparison of the chars under each, returning
+early with False if equality does not hold. Continue until i<sub>s</sub> &gt; i<sub>e</sub>
+and return True if reach end of iteration. 
+</p>
+
+<p>
+Time O(n) and space O(1).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_pal</span>(S):
+    <span style="color: #D8DEE9;">i_s</span>, <span style="color: #D8DEE9;">i_e</span> = 0, <span style="color: #81A1C1;">len</span>(S) - 1
+    <span style="color: #81A1C1;">while</span> i_s &lt; i_e:
+        <span style="color: #81A1C1;">if</span> S[i_s].lower() != S[i_e].lower():
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+        <span style="color: #D8DEE9;">i_s</span> += 1
+        <span style="color: #D8DEE9;">i_e</span> -= 1
+        <span style="color: #81A1C1;">while</span> <span style="color: #81A1C1;">not</span> S[i_s].isalnum() <span style="color: #81A1C1;">and</span> i_s &lt; i_e:
+            <span style="color: #D8DEE9;">i_s</span> += 1
+        <span style="color: #81A1C1;">while</span> <span style="color: #81A1C1;">not</span> S[i_e].isalnum() <span style="color: #81A1C1;">and</span> i_s &lt; i_e:
+            <span style="color: #D8DEE9;">i_e</span> -= 1
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    is_pal(<span style="color: #A3BE8C;">"A man, a plan, a canal, Panama"</span>),
+    <span style="color: #81A1C1;">not</span> is_pal(<span style="color: #A3BE8C;">",,a,b,,"</span>),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org2cc0235" class="outline-4">
+<h4 id="org2cc0235"><span class="section-number-4">2.3.5</span> <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</h4>
+<div class="outline-text-4" id="text-2-3-5">
+<p>
+Write a program which takes as input a phone number, specified as a string
+of digits, and returns all possible character sequences that correspond to
+the phone nuber. The cell phone keypad is specified by a mapping that takes
+a digit and returns the corresponding set of characters. The character
+sequencs do not have to be legal words or phrases.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org3dae6b4"></a>Solution<br />
+<div class="outline-text-5" id="text-2-3-5-1">
+<p>
+We maintain a static mapping from digits to sets of characters and use
+recursion to generate the power set of each digits&rsquo; set.
+</p>
+
+<p>
+Complexity O(4<sup>n</sup>), since each recursion step &ldquo;fans out&rdquo; at most four times
+(due to keypad mapping).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">mnemonics</span>(S):
+    <span style="color: #D8DEE9;">MAP</span> = {
+        <span style="color: #A3BE8C;">"0"</span>: [<span style="color: #A3BE8C;">"0"</span>],
+        <span style="color: #A3BE8C;">"1"</span>: [<span style="color: #A3BE8C;">"1"</span>],
+        <span style="color: #A3BE8C;">"2"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"abc"</span>),
+        <span style="color: #A3BE8C;">"3"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"def"</span>),
+        <span style="color: #A3BE8C;">"4"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"ghi"</span>),
+        <span style="color: #A3BE8C;">"5"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"jkl"</span>),
+        <span style="color: #A3BE8C;">"6"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"mno"</span>),
+        <span style="color: #A3BE8C;">"7"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"pqrs"</span>),
+        <span style="color: #A3BE8C;">"8"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"tuv"</span>),
+        <span style="color: #A3BE8C;">"9"</span>: <span style="color: #81A1C1;">set</span>(<span style="color: #A3BE8C;">"wxyz"</span>),
+    }
+    <span style="color: #81A1C1;">if</span> S == <span style="color: #A3BE8C;">""</span>:
+        <span style="color: #81A1C1;">return</span> []
+    <span style="color: #81A1C1;">elif</span> S[0] <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> MAP:
+        <span style="color: #81A1C1;">raise</span> <span style="color: #8FBCBB;">Exception</span>
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">set</span>([c+t <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> MAP[S[0]] <span style="color: #81A1C1;">for</span> t <span style="color: #81A1C1;">in</span> mnemonics(S[1:])])
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    mnemonics(<span style="color: #A3BE8C;">"2276696"</span>) | { <span style="color: #A3BE8C;">"ACRONYM"</span>, <span style="color: #A3BE8C;">"ABPOMZN"</span> },
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga188763" class="outline-3">
+<h3 id="orga188763"><span class="section-number-3">2.4</span> Linked Lists</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org67c5e1e" class="outline-4">
+<h4 id="org67c5e1e"><span class="section-number-4">2.4.1</span> <span class="done DONE">DONE</span> Merge two sorted lists</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Write a program that takes two lists, assumed to be sorted, and returns
+their merge. The only field your program can change in a node is its <code>next</code>
+field.
+</p>
+
+<p>
+<i>Hint</i>: Two sorted arrays can be merged using two indices. For lists, take
+care when one iterator reaches the end.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org8ade96d"></a>Solution<br />
+<div class="outline-text-5" id="text-2-4-1-1">
+<p>
+We describe a solution that completes the task in linear time and constant
+space.
+</p>
+
+<p>
+Call input lists <code>A</code> and <code>B</code>.
+</p>
+
+<p>
+We decide on the head of the return list with respect to comparison. We
+save a reference <code>H</code> to this head for final return; in the meantime, we
+create an additional &ldquo;work-in-progress&rdquo; reference <code>l</code> that we will use to
+iteratively wire up the return value.
+</p>
+
+<p>
+While neither <code>A</code> nor <code>B</code> have reached their ends, we compare the head
+values of each; whichever is less than or equal to the other, becomes the
+new target for <code>l.next</code>. We then increment both the assignee and <code>l</code> to
+their next links.
+</p>
+
+<p>
+Once one of <code>A</code> or <code>B</code> have reached their end, we treat the other as the
+&ldquo;remainder&rdquo; list. Since the two input lists are given to be sorted, we have
+the invariant that every element in the remainder is greater than or equal
+to the current <code>l</code>. As such, we assign <code>l.next = remainder</code>.
+</p>
+
+<p>
+For this solution&rsquo;s purpose, we define a lightweight linked-list API as
+follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">LL</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">append</span>(<span style="color: #81A1C1;">self</span>, l):
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = l
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__eq__</span>(<span style="color: #81A1C1;">self</span>,l):
+        <span style="color: #D8DEE9;">me</span> = <span style="color: #81A1C1;">self</span>
+        <span style="color: #81A1C1;">while</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+            <span style="color: #81A1C1;">if</span> me.v != l.v:
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+            <span style="color: #D8DEE9;">me</span> = me.<span style="color: #81A1C1;">next</span>
+            <span style="color: #D8DEE9;">l</span> = l.<span style="color: #81A1C1;">next</span>
+        <span style="color: #81A1C1;">return</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> 
+</pre>
+</div>
+
+<p>
+Our solution is as follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">merge</span>(A,B):
+    <span style="color: #81A1C1;">if</span> A <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #81A1C1;">return</span> B
+    <span style="color: #81A1C1;">if</span> B <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #81A1C1;">return</span> A
+    <span style="color: #81A1C1;">if</span> A.v &lt; B.v:
+        <span style="color: #D8DEE9;">head</span> = A
+        <span style="color: #D8DEE9;">A</span> = A.<span style="color: #81A1C1;">next</span>
+    <span style="color: #81A1C1;">else</span>:
+        <span style="color: #D8DEE9;">head</span> = B
+        <span style="color: #D8DEE9;">B</span> = B.<span style="color: #81A1C1;">next</span>
+    <span style="color: #D8DEE9;">l</span> = head <span style="color: #4c566a;"># </span><span style="color: #4c566a;">wip tracker</span>
+    <span style="color: #D8DEE9;">cursors</span> = { <span style="color: #A3BE8C;">"A"</span>: A, <span style="color: #A3BE8C;">"B"</span>: B }
+    <span style="color: #81A1C1;">while</span> cursors[<span style="color: #A3BE8C;">"A"</span>] <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> cursors[<span style="color: #A3BE8C;">"B"</span>] <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #D8DEE9;">k_next</span> = <span style="color: #A3BE8C;">"A"</span> <span style="color: #81A1C1;">if</span> cursors[<span style="color: #A3BE8C;">"A"</span>].v &lt; cursors[<span style="color: #A3BE8C;">"B"</span>].v <span style="color: #81A1C1;">else</span> <span style="color: #A3BE8C;">"B"</span>
+        l.<span style="color: #81A1C1;">next</span> = cursors[k_next]
+        <span style="color: #D8DEE9;">l</span> = l.<span style="color: #81A1C1;">next</span>
+        <span style="color: #D8DEE9;">cursors</span>[k_next] = cursors[k_next].<span style="color: #81A1C1;">next</span>
+    l.<span style="color: #81A1C1;">next</span> = cursors[<span style="color: #A3BE8C;">"A"</span>] <span style="color: #81A1C1;">if</span> cursors[<span style="color: #A3BE8C;">"A"</span>] <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">else</span> cursors[<span style="color: #A3BE8C;">"B"</span>]
+    <span style="color: #81A1C1;">return</span> head
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">base cases</span>
+    merge(<span style="color: #81A1C1;">None</span>,<span style="color: #81A1C1;">None</span>) == <span style="color: #81A1C1;">None</span>,
+    merge(<span style="color: #81A1C1;">None</span>, LL(1).append(LL(2))) == LL(1).append(LL(2)),
+    merge(LL(1).append(LL(3)), <span style="color: #81A1C1;">None</span>) == LL(1).append(LL(3)),
+
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">"normal" case</span>
+    merge(
+        LL(1).append(LL(3).append(LL(5))),
+        LL(2).append(LL(4).append(LL(6))),
+    ) == LL(1).append(LL(2).append(LL(3).append(LL(4).append(LL(5).append(LL(6)))))),
+
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">remainder case</span>
+    merge(
+        LL(1).append(LL(5)),
+        LL(2).append(LL(6).append(LL(10))),
+    ) == LL(1).append(LL(2).append(LL(5).append(LL(6).append(LL(10))))),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgbce67e1" class="outline-4">
+<h4 id="orgbce67e1"><span class="section-number-4">2.4.2</span> <span class="done DONE">DONE</span> Reverse a singly linked list</h4>
+<div class="outline-text-4" id="text-2-4-2">
+</div>
+
+<ol class="org-ol">
+<li><a id="org31eea3b"></a>Solution<br />
+<div class="outline-text-5" id="text-2-4-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">LL</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">append</span>(<span style="color: #81A1C1;">self</span>, l):
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = l
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__eq__</span>(<span style="color: #81A1C1;">self</span>,l):
+        <span style="color: #D8DEE9;">me</span> = <span style="color: #81A1C1;">self</span>
+        <span style="color: #81A1C1;">while</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+            <span style="color: #81A1C1;">if</span> me.v != l.v:
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+            <span style="color: #D8DEE9;">me</span> = me.<span style="color: #81A1C1;">next</span>
+            <span style="color: #D8DEE9;">l</span> = l.<span style="color: #81A1C1;">next</span>
+        <span style="color: #81A1C1;">return</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> 
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">ll_rev</span>(L):
+    <span style="color: #D8DEE9;">tail</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #D8DEE9;">cursor</span> = L
+    <span style="color: #81A1C1;">while</span> cursor <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #D8DEE9;">nxt</span> = cursor.<span style="color: #81A1C1;">next</span>
+        cursor.<span style="color: #81A1C1;">next</span> = tail
+        <span style="color: #D8DEE9;">tail</span> = cursor
+        <span style="color: #D8DEE9;">cursor</span> = nxt
+    <span style="color: #81A1C1;">return</span> tail
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">ll_rev(LL(4).append(LL(5).append(LL(6)))) == LL(6).append(LL(5).append(LL(4)))
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgfa0e098" class="outline-4">
+<h4 id="orgfa0e098"><span class="section-number-4">2.4.3</span> <span class="todo TODO">TODO</span> Test for cyclicity</h4>
+</div>
+
+<div id="outline-container-orgbf36f80" class="outline-4">
+<h4 id="orgbf36f80"><span class="section-number-4">2.4.4</span> <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<p>
+Write a program that takes two cycle-free singly linked lists, and
+determines if there exists a node that is common to both lists.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org1bead0d"></a>Solution<br />
+<div class="outline-text-5" id="text-2-4-4-1">
+<p>
+We note that the case where lists L<sub>1</sub> and L<sub>2</sub> are of equal length is
+trivial. We therefore attempt to reduce cases where the input lists are of
+different length to that simple case. Measure the lengths of lists L<sub>1</sub>
+and L<sub>2</sub>; this can be done in O(n) time. Advance the longer of the two
+lists by the difference in lengths, at which point you&rsquo;ve arrived at the
+trivial case; advance through both in tandem until you either reach the end
+of both lists &#x2013; showing that there is no overlap &#x2013; or until you reach the
+overlap.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgc7bf9fa" class="outline-4">
+<h4 id="orgc7bf9fa"><span class="section-number-4">2.4.5</span> <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<p>
+Given a singly linked list and an integer k, write a program to remove the
+kth last element from the list. Your algorithm cannot use more than a few
+words of storage, regardless of the length of the list. In particular, you
+cannot assume that it is possible to record the length of the list.
+</p>
+
+<p>
+<i>Hint</i>: If you know the length of the list, can you find the kth last node
+using two iterators?
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgccb02f9"></a>Solution<br />
+<div class="outline-text-5" id="text-2-4-5-1">
+<p>
+We note that we do not need to know the specific length of the list L in
+order to find the kth-last element.
+</p>
+
+<p>
+We use two cursors, c<sub>1</sub> and c<sub>2</sub>, where c<sub>2</sub> is k steps ahead of c<sub>1</sub>
+in the list L. If L is not long enough to satisfy this invariant on
+initialization, we terminate with an error.
+</p>
+
+<p>
+We then iterate each cursor in tandem, keeping a separate pointer to the
+previous item under c<sub>1</sub> on each iteration &#x2013; call it c<sub>p</sub> &#x2013; until c<sub>2</sub>
+reaches the terminus of the list &#x2013; concretely, the null-pointer of the
+linked list. At this point, c<sub>1</sub> is referring to the k-th last element
+of L. We then delete the element the usual way.
+</p>
+
+<p>
+This implementation is O(n) in time and O(1) in space.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">LL</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">append</span>(<span style="color: #81A1C1;">self</span>, l):
+        <span style="color: #81A1C1;">self</span>.<span style="color: #81A1C1;">next</span> = l
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__eq__</span>(<span style="color: #81A1C1;">self</span>,l):
+        <span style="color: #D8DEE9;">me</span> = <span style="color: #81A1C1;">self</span>
+        <span style="color: #81A1C1;">while</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+            <span style="color: #81A1C1;">if</span> me.v != l.v:
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+            <span style="color: #D8DEE9;">me</span> = me.<span style="color: #81A1C1;">next</span>
+            <span style="color: #D8DEE9;">l</span> = l.<span style="color: #81A1C1;">next</span>
+        <span style="color: #81A1C1;">return</span> me <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> l <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> 
+
+<span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">cons</span>(v, n=<span style="color: #81A1C1;">None</span>):
+    <span style="color: #D8DEE9;">l</span> = LL(v)
+    l.<span style="color: #81A1C1;">next</span> = n
+    <span style="color: #81A1C1;">return</span> l
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">rm_kth_last</span>(L, k):
+    <span style="color: #D8DEE9;">out</span> = L
+    <span style="color: #D8DEE9;">c_p</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #D8DEE9;">c_1</span>, <span style="color: #D8DEE9;">c_2</span> = out, out
+    <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(k):
+        <span style="color: #81A1C1;">if</span> c_2.<span style="color: #81A1C1;">next</span> <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>:
+            <span style="color: #81A1C1;">raise</span> <span style="color: #8FBCBB;">Exception</span>
+        <span style="color: #D8DEE9;">c_2</span> = c_2.<span style="color: #81A1C1;">next</span>
+    <span style="color: #81A1C1;">while</span> c_2 <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #D8DEE9;">c_p</span> = c_1
+        <span style="color: #D8DEE9;">c_1</span> = c_1.<span style="color: #81A1C1;">next</span>
+        <span style="color: #D8DEE9;">c_2</span> = c_2.<span style="color: #81A1C1;">next</span>
+    c_p.<span style="color: #81A1C1;">next</span> = c_1.<span style="color: #81A1C1;">next</span>
+    <span style="color: #81A1C1;">return</span> out
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    rm_kth_last(cons(1,cons(2,cons(3))), 1) == cons(1,cons(2)),
+    rm_kth_last(cons(1,cons(2,cons(3,cons(4,cons(5))))), 3) == cons(1,cons(2,cons(4,cons(5)))),
+])
+
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orge5d850f" class="outline-4">
+<h4 id="orge5d850f"><span class="section-number-4">2.4.6</span> <span class="todo TODO">TODO</span> Implement even-odd merge</h4>
+</div>
+
+<div id="outline-container-orgac4c327" class="outline-4">
+<h4 id="orgac4c327"><span class="section-number-4">2.4.7</span> <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</h4>
+</div>
+</div>
+
+<div id="outline-container-org26be598" class="outline-3">
+<h3 id="org26be598"><span class="section-number-3">2.5</span> Stacks and Queues</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-orgdf34fdf" class="outline-4">
+<h4 id="orgdf34fdf"><span class="section-number-4">2.5.1</span> <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+Design a stack that includes a max operation, in addition to push and
+pop. The max method should return the maximum value stored in the stack.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org74ad673"></a>Solution<br />
+<div class="outline-text-5" id="text-2-5-1-1">
+<p>
+We can use an augmentation of a &ldquo;vanilla&rdquo; stack for this purpose. Each
+element of this augmented stack &#x2013; call it a &ldquo;max stack&rdquo; &#x2013; will maintain a
+record of the maximum value at or below its current level. This will allow
+us to preserve the following invariant for given max-stack <code>S</code>:
+</p>
+
+<div class="VERBATIM">
+<p>
+S.head.max = max(S)
+</p>
+
+</div>
+
+<p>
+We can implement the max-stack as follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">MaxStack</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, *args):
+        <span style="color: #81A1C1;">self</span>.record = []
+        <span style="color: #81A1C1;">for</span> v <span style="color: #81A1C1;">in</span> args:
+            <span style="color: #81A1C1;">self</span>.push(v)
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">push</span>(<span style="color: #81A1C1;">self</span>, v):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">self</span>.record:
+            <span style="color: #81A1C1;">self</span>.record.append((v,v))
+        <span style="color: #81A1C1;">else</span>:
+            <span style="color: #81A1C1;">self</span>.record.append((v,<span style="color: #81A1C1;">max</span>(v,<span style="color: #81A1C1;">self</span>.record[-1][1])))
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">pop</span>(<span style="color: #81A1C1;">self</span>):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">self</span>.record:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">None</span>
+        <span style="color: #D8DEE9;">out</span> = <span style="color: #81A1C1;">self</span>.record[-1][0]
+        <span style="color: #81A1C1;">self</span>.record = <span style="color: #81A1C1;">self</span>.record[0:-1]
+        <span style="color: #81A1C1;">return</span> out
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">drop silently pops </span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">drop</span>(<span style="color: #81A1C1;">self</span>):
+        <span style="color: #81A1C1;">self</span>.pop()
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">max</span>(<span style="color: #81A1C1;">self</span>):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">self</span>.record:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">None</span>
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">self</span>.record[-1][1]
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    MaxStack(1,4,3,2,5).<span style="color: #81A1C1;">max</span>() == 5,
+    MaxStack(1,4,3,2,5).drop().<span style="color: #81A1C1;">max</span>() == 4,
+    MaxStack(2,3,4,1).drop().drop().<span style="color: #81A1C1;">max</span>() == 3,
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<p>
+This implementation is:
+</p>
+
+<ul class="org-ul">
+<li>O(1) for push;</li>
+<li>O(1) for pop;</li>
+<li>O(1) for max lookup.</li>
+</ul>
+
+
+<p>
+Space complexity is O(2n) = O(n), where n is the stack size.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org8d25f2b" class="outline-4">
+<h4 id="org8d25f2b"><span class="section-number-4">2.5.2</span> <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</h4>
+<div class="outline-text-4" id="text-2-5-2">
+</div>
+
+<ol class="org-ol">
+<li><a id="orgfbe80ea"></a>Solution<br />
+<div class="outline-text-5" id="text-2-5-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_well_formed</span>(S):
+    <span style="color: #D8DEE9;">PAIRS</span> = {
+        <span style="color: #A3BE8C;">"{"</span>: <span style="color: #A3BE8C;">"}"</span>,
+        <span style="color: #A3BE8C;">"("</span>: <span style="color: #A3BE8C;">")"</span>,
+        <span style="color: #A3BE8C;">"["</span>: <span style="color: #A3BE8C;">"]"</span>,
+    }
+    <span style="color: #D8DEE9;">opens</span> = []
+    <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> S:
+        <span style="color: #81A1C1;">if</span> c <span style="color: #81A1C1;">in</span> PAIRS:
+            opens.append(c)
+        <span style="color: #81A1C1;">elif</span> opens <span style="color: #81A1C1;">and</span> c == PAIRS[opens[-1]]:
+            <span style="color: #D8DEE9;">opens</span> = opens[:-1]
+        <span style="color: #81A1C1;">else</span>:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">not</span> opens
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    is_well_formed(<span style="color: #A3BE8C;">""</span>),
+    is_well_formed(<span style="color: #A3BE8C;">"()"</span>),
+    is_well_formed(<span style="color: #A3BE8C;">"[]"</span>),
+    is_well_formed(<span style="color: #A3BE8C;">"{}"</span>),
+    is_well_formed(<span style="color: #A3BE8C;">"{[()]}"</span>),
+    <span style="color: #81A1C1;">not</span> is_well_formed(<span style="color: #A3BE8C;">"{[([)]}"</span>),
+    <span style="color: #81A1C1;">not</span> is_well_formed(<span style="color: #A3BE8C;">"}"</span>),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org1c8df36" class="outline-4">
+<h4 id="org1c8df36"><span class="section-number-4">2.5.3</span> <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</h4>
+<div class="outline-text-4" id="text-2-5-3">
+</div>
+
+<ol class="org-ol">
+<li><a id="orgf9238f7"></a>Solution<br />
+<div class="outline-text-5" id="text-2-5-3-1">
+<p>
+We use a queue as the basis of our solution. We start with the input tree T
+in the queue. For each node N in the queue, we enqueue its children, and
+then yield N. We continue until the queue is empty for a final time
+complexity of O(n) and likewise for space.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">serialize_inc_depth</span>(T):
+    <span style="color: #D8DEE9;">q</span> = [T]
+    <span style="color: #81A1C1;">while</span> q <span style="color: #81A1C1;">and</span> q[0] <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span>:
+        <span style="color: #D8DEE9;">curr</span> = q[0]
+        q.extend([c <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> [curr.l, curr.r] <span style="color: #81A1C1;">if</span> c])
+        <span style="color: #81A1C1;">yield</span> q.popleft()
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org0ce16a3" class="outline-3">
+<h3 id="org0ce16a3"><span class="section-number-3">2.6</span> Binary Trees</h3>
+<div class="outline-text-3" id="text-2-6">
+</div>
+<div id="outline-container-org3a0020d" class="outline-4">
+<h4 id="org3a0020d"><span class="section-number-4">2.6.1</span> <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+A binary tree is said to be balanced if for each node in the tree, the
+difference in the height of its left and right subtrees is at most one. A
+perfect binary tree is balanced, as is a complete binary tree. A balanced
+binary tree does not have to be perfect or complete.
+</p>
+
+<p>
+Write a program that takes as input the root of a binary tree and checks
+whether the tree is balanced.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org269aed6"></a>Solution<br />
+<div class="outline-text-5" id="text-2-6-1-1">
+<p>
+We can use a post-order traversal as the backbone for our implementation.
+</p>
+
+<p>
+For each subtree, we determine its height. When traversing parent nodes, if
+the difference in the height of its two subtrees is greater than 1, we
+return false immediately. Otherwise, we return one greater than the greater
+of the two children heights.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_height_balanced</span>(T):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">height</span>(n):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> n:
+            <span style="color: #81A1C1;">return</span> 0
+        <span style="color: #D8DEE9;">hl</span>, <span style="color: #D8DEE9;">hr</span> = height(n.left), height(n.right)
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">abs</span>(hl - hr) &gt; 1:
+            <span style="color: #81A1C1;">raise</span> <span style="color: #8FBCBB;">Exception</span>
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">max</span>(hl, hr) + 1
+    <span style="color: #81A1C1;">try</span>:
+        height(T)
+    <span style="color: #81A1C1;">except</span> <span style="color: #8FBCBB;">Exception</span>:
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+</pre>
+</div>
+
+<p>
+This implementation is O(n), where n is the number of nodes in the tree. It
+is O(1) in space. 
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgcf00ba5" class="outline-4">
+<h4 id="orgcf00ba5"><span class="section-number-4">2.6.2</span> <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</h4>
+<div class="outline-text-4" id="text-2-6-2">
+</div>
+
+<ol class="org-ol">
+<li><a id="orgbaad9bb"></a>Solution<br />
+<div class="outline-text-5" id="text-2-6-2-1">
+<p>
+We note that the solution is trivial if the nodes are at the same depth:
+iterate in tandem until you reach the common ancestor node. This operation
+is O(log n).
+</p>
+
+<p>
+Otherwise, if the nodes are at different depths, we can iterate the deeper
+node until both cursors are at the same depth, at which point the problem
+reduces to the same-depth case.
+</p>
+
+<p>
+Both of these cases require us to determine the depths of the two
+nodes. This can be done by tracing the respective parent pointers to the
+root and storing the traversal length.
+</p>
+
+<p>
+We note that both depth-determination and final traversal are O(log n); the
+combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org907af6b" class="outline-4">
+<h4 id="org907af6b"><span class="section-number-4">2.6.3</span> <span class="done DONE">DONE</span> Test if a binary tree is symmetric</h4>
+<div class="outline-text-4" id="text-2-6-3">
+<p>
+A binary tree is symmetric if you can draw a vertical line through the root
+and then the left subtree is the mirror image of the right subtree.
+</p>
+
+<p>
+Write a program that checks whether a binary tree is symmetric.
+</p>
+
+<p>
+<i>Hint</i>: The definition of symmetry is recursive.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orga9860c7"></a>Solution<br />
+<div class="outline-text-5" id="text-2-6-3-1">
+<p>
+We note that trees  T<sub>1</sub> and T<sub>2</sub> are symmetric if their root values are equal
+and T<sub>1</sub>&rsquo;s left child equals T<sub>2</sub>&rsquo;s right child and vice-versa.
+</p>
+
+<p>
+We recursively check the input tree. The input root level is a special case
+where we simply check children equality. We then begin recursive
+&ldquo;mirroring&rdquo; comparison on the two child trees. &ldquo;Mirroring&rdquo; comparison
+consists of first checking that the left-right and right-left child value
+equalities are satisfied and then performing recursive mirroring comparison
+on the left-right and right-left pairs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v, l=none, r=none):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.l = l
+        <span style="color: #81A1C1;">self</span>.r = r
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_sym</span>(T):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_mirror</span>(T1, T2):
+        <span style="color: #81A1C1;">return</span> ((T1 <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> T2 <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>)
+                <span style="color: #81A1C1;">or</span> (T1.v == T2.v
+                    <span style="color: #81A1C1;">and</span> is_mirror(T1.l, T2.r)
+                    <span style="color: #81A1C1;">and</span> is_mirror(T1.r, T2.l)))
+    <span style="color: #81A1C1;">return</span> T <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">or</span> is_mirror(T.l, T.r)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    is_sym(<span style="color: #81A1C1;">None</span>),
+    is_sym(Tree(v=1, l=Tree(v=2), r=Tree(v=2))),
+    is_sym(Tree(
+        v=1,
+        l=Tree(v=2, l=Tree(v=3, l=Tree(v=10)), r=Tree(v=4)),
+        r=Tree(v=2, l=Tree(v=4), r=Tree(v=3, r=Tree(v=10))),
+    )),
+    <span style="color: #81A1C1;">not</span> is_sym(Tree(v=1, l=Tree(v=2), r=Tree(v=3))),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-org61741f0" class="outline-4">
+<h4 id="org61741f0"><span class="section-number-4">2.6.4</span> <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</h4>
+<div class="outline-text-4" id="text-2-6-4">
+<p>
+Given an inorder traversal sequence and a postorder traversal sequence of a
+binary tree write a program to reconstruct the tree. Assume each node has a
+unique key.
+</p>
+
+<p>
+<i>Hint</i>: Focus on the root.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org4265572"></a>Solution<br />
+<div class="outline-text-5" id="text-2-6-4-1">
+<p>
+The key insight here is that, for any input in-order traversal <code>it</code> and any
+input post-order traversal <code>pt</code>, we have the following invariants:
+</p>
+
+<ul class="org-ul">
+<li><code>it</code> and <code>pt</code> are equal in length;</li>
+<li>The last element of <code>pt</code> corresponds to the &ldquo;root&rdquo; of the given tree.</li>
+</ul>
+
+
+<p>
+Furthermore, we observe that <code>it</code> and <code>pt</code> are each laid out as follows:
+</p>
+
+<div class="VERBATIM">
+<p>
+it [&lt;-&#x2014;LHS-&#x2014;&gt;&lt;ROOT&gt;&lt;-&#x2014;RHS-&#x2014;&gt;]
+pt [&lt;-&#x2014;LHS-&#x2014;&gt;&lt;-&#x2014;RHS-&#x2014;&gt;&lt;ROOT&gt;]
+</p>
+
+</div>
+
+<p>
+As such, we can use the tail value of <code>pt</code> during every iteration to
+&ldquo;bisect&rdquo; the in-order traversal list, giving us the number of elements in
+both the left branch and the right branch. Using these quantities, we can
+extract the corresponding sub-lists out of the top-level post-order
+traversal, giving us everything that we need for a recursive
+implementation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">teq</span>(lhs, rhs):
+    <span style="color: #81A1C1;">return</span> (lhs <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> rhs <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>) \
+        <span style="color: #81A1C1;">or</span> (lhs.value == rhs.value
+            <span style="color: #81A1C1;">and</span> teq(lhs.lhs, rhs.lhs)
+            <span style="color: #81A1C1;">and</span> teq(lhs.rhs, rhs.rhs))
+
+
+<span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, value, lhs=<span style="color: #81A1C1;">None</span>, rhs=<span style="color: #81A1C1;">None</span>):
+        <span style="color: #81A1C1;">self</span>.value = value
+        <span style="color: #81A1C1;">self</span>.lhs = lhs
+        <span style="color: #81A1C1;">self</span>.rhs = rhs
+
+
+<span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">reconstruct</span>(it, pt):
+    <span style="color: #81A1C1;">assert</span> <span style="color: #81A1C1;">len</span>(it) == <span style="color: #81A1C1;">len</span>(pt)
+    <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> it <span style="color: #81A1C1;">and</span> <span style="color: #81A1C1;">not</span> pt:
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">None</span>
+
+    <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(it) == 1 <span style="color: #81A1C1;">and</span> <span style="color: #81A1C1;">len</span>(pt) == 1:
+        <span style="color: #81A1C1;">assert</span> it[0] == pt[0]
+        <span style="color: #81A1C1;">return</span> Tree(it[0])
+
+    <span style="color: #D8DEE9;">v_root</span> = pt[-1]
+
+    <span style="color: #D8DEE9;">it_root_index</span> = it.index(v_root)
+
+    <span style="color: #D8DEE9;">it_lhs</span> = it[0:it_root_index]
+    <span style="color: #D8DEE9;">pt_lhs</span> = [] <span style="color: #81A1C1;">if</span> it_root_index == 0 <span style="color: #81A1C1;">else</span> pt[
+        0:<span style="color: #81A1C1;">len</span>(it_lhs)
+    ]
+
+    <span style="color: #D8DEE9;">it_rhs</span> = it[it_root_index+1:]
+
+    <span style="color: #D8DEE9;">pt_rhs_start</span> = 0 <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(pt_lhs) == 0 <span style="color: #81A1C1;">else</span> <span style="color: #81A1C1;">len</span>(pt_lhs)
+    <span style="color: #D8DEE9;">pt_rhs</span> = [] <span style="color: #81A1C1;">if</span> it_root_index == <span style="color: #81A1C1;">len</span>(it)-1 <span style="color: #81A1C1;">else</span> pt[
+        pt_rhs_start:pt.index(v_root)
+    ]
+
+    <span style="color: #81A1C1;">return</span> Tree(
+        value=v_root,
+        lhs=reconstruct(it_lhs, pt_lhs),
+        rhs=reconstruct(it_rhs, pt_rhs),
+    )
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    teq(reconstruct(<span style="color: #A3BE8C;">"A"</span>, <span style="color: #A3BE8C;">"A"</span>), Tree(<span style="color: #A3BE8C;">"A"</span>)),
+    teq(reconstruct(<span style="color: #A3BE8C;">"213"</span>, <span style="color: #A3BE8C;">"231"</span>),
+        Tree(<span style="color: #A3BE8C;">"1"</span>, lhs=Tree(<span style="color: #A3BE8C;">"2"</span>), rhs=Tree(<span style="color: #A3BE8C;">"3"</span>))),
+    teq(reconstruct(<span style="color: #A3BE8C;">"acbd"</span>, <span style="color: #A3BE8C;">"abcd"</span>),
+        Tree(<span style="color: #A3BE8C;">"d"</span>, lhs=Tree(<span style="color: #A3BE8C;">"c"</span>, lhs=Tree(<span style="color: #A3BE8C;">"a"</span>), rhs=Tree(<span style="color: #A3BE8C;">"b"</span>)))),
+    teq(reconstruct(<span style="color: #A3BE8C;">"dacb"</span>, <span style="color: #A3BE8C;">"abcd"</span>),
+        Tree(<span style="color: #A3BE8C;">"d"</span>, rhs=Tree(<span style="color: #A3BE8C;">"c"</span>, lhs=Tree(<span style="color: #A3BE8C;">"a"</span>), rhs=Tree(<span style="color: #A3BE8C;">"b"</span>)))),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<p>
+This implementation, given that it needs to perform an index-search on the
+unordered lists effectively for every element of the list, is O(n<sup>2</sup>) with
+respect to the number of elements in the tree. 
+</p>
+</div>
+</li>
+
+<li><a id="orgb00582d"></a>Corollary<br />
+<div class="outline-text-5" id="text-2-6-4-2">
+<p>
+What about in-order and pre-order?
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org10052c3" class="outline-4">
+<h4 id="org10052c3"><span class="section-number-4">2.6.5</span> <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</h4>
+<div class="outline-text-4" id="text-2-6-5">
+<p>
+The direct implementation of an inorder traversal using recursion has O(h)
+space complexity, where h is the height of the tree. Recursion can be
+removed with an explicit stack, but the space complexity remains O(n).
+</p>
+
+<p>
+Write a nonrecursive program for computing the inorder traversal sequence
+for a binary tree. Assume nodes have parent fields.
+</p>
+
+<p>
+<i>Hint</i>: How can you tell whether a node is a left child or right child of
+its parent?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org858926d" class="outline-4">
+<h4 id="org858926d"><span class="section-number-4">2.6.6</span> <span class="todo TODO">TODO</span> Reconstruct a binary tree from a preorder traversal with markers</h4>
+<div class="outline-text-4" id="text-2-6-6">
+<p>
+Design an algorithm for reconstructing a binary tree from a preorder
+traversal visit sequence that uses <code>null</code> to mark empty children.
+</p>
+
+<p>
+<i>Hint</i>: It&rsquo;s difficult to solve this problem by examining the preorder
+traversal visit sequence from left-to-right.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org997641d" class="outline-4">
+<h4 id="org997641d"><span class="section-number-4">2.6.7</span> <span class="todo TODO">TODO</span> Compute the right sibling tree</h4>
+<div class="outline-text-4" id="text-2-6-7">
+<p>
+Assume each binary tree node has an extra field, call it level-next, that
+holds a binary tree node (this field is distinct from the fields for the
+left and right children). The level-next field will be used to compute a map
+from nodes to their right siblings. The input is assumed to be perfect
+binary tree.
+</p>
+
+<p>
+Write a program that takes a perfect binary tree, and sets each node&rsquo;s
+level-next field to the node on its right, if one exists.
+</p>
+
+<p>
+<i>Hint</i>: Think of an appropriate traversal order.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0b5129" class="outline-3">
+<h3 id="orgc0b5129"><span class="section-number-3">2.7</span> Heaps</h3>
+<div class="outline-text-3" id="text-2-7">
+</div>
+<div id="outline-container-org788fefa" class="outline-4">
+<h4 id="org788fefa"><span class="section-number-4">2.7.1</span> <span class="todo TODO">TODO</span> Merge sorted files</h4>
+</div>
+
+<div id="outline-container-orgf4eed31" class="outline-4">
+<h4 id="orgf4eed31"><span class="section-number-4">2.7.2</span> <span class="todo TODO">TODO</span> Compute the k closest stars</h4>
+</div>
+</div>
+<div id="outline-container-org13d27e4" class="outline-3">
+<h3 id="org13d27e4"><span class="section-number-3">2.8</span> Searching</h3>
+<div class="outline-text-3" id="text-2-8">
+</div>
+<div id="outline-container-org4569e89" class="outline-4">
+<h4 id="org4569e89"><span class="section-number-4">2.8.1</span> <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></h4>
+<div class="outline-text-4" id="text-2-8-1">
+<p>
+Binary search commonly asks for the index of <i>any</i> element of a sorted array
+that is equal to a specified element. The following problem has a slight
+twist on this.
+</p>
+
+<p>
+Write a method that takes a sorted array and a key and returns the index of
+the <i>first</i> occurrence of the key in the array.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org23987d2"></a>Solution<br />
+<div class="outline-text-5" id="text-2-8-1-1">
+<p>
+A brute-force solution would be to iterate through the array A in its
+entirety, from start to end, until key k is found. This solution would be
+O(n), which isn&rsquo;t terrible but would fail to take advantage of the fact
+that A is sorted.
+</p>
+
+<p>
+To improve, we employ binary search, returning the identity of the first
+occurrence of k if k &isin; A and null otherwise. To account for relative
+indices in recursion, we pass in an &ldquo;offset&rdquo; that the returned index is
+then modulated by.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">first_occurrence</span>(A, k):
+    <span style="color: #81A1C1;">import</span> math
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">fo</span>(A, k, offset):
+        <span style="color: #81A1C1;">if</span> A == []:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">None</span>
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(A) == 1:
+            <span style="color: #81A1C1;">return</span> offset <span style="color: #81A1C1;">if</span> A[0]==k <span style="color: #81A1C1;">else</span> <span style="color: #81A1C1;">None</span>
+        <span style="color: #D8DEE9;">i_mid</span> = <span style="color: #81A1C1;">int</span>(math.floor(<span style="color: #81A1C1;">len</span>(A) / 2))
+        <span style="color: #81A1C1;">if</span> A[i_mid] &gt;= k:
+            <span style="color: #D8DEE9;">i</span> = fo(A[:i_mid], k, offset=0)
+            <span style="color: #81A1C1;">return</span> offset+i_mid <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> i <span style="color: #81A1C1;">else</span> i
+        <span style="color: #81A1C1;">else</span>:
+            <span style="color: #81A1C1;">return</span> fo(A[i_mid+1:], k, offset=i_mid+1)
+    <span style="color: #81A1C1;">return</span> fo(A,k,0)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    first_occurrence([1,2,3], 3) == 2,
+    first_occurrence([1,2,2,2,3], 2) == 1,
+    first_occurrence([1,2,3,4,5], 6) == <span style="color: #81A1C1;">None</span>,
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orgc7e8460" class="outline-4">
+<h4 id="orgc7e8460"><span class="section-number-4">2.8.2</span> <span class="todo TODO">TODO</span> Compute the integer square root</h4>
+</div>
+
+<div id="outline-container-orgb215158" class="outline-4">
+<h4 id="orgb215158"><span class="section-number-4">2.8.3</span> <span class="todo TODO">TODO</span> Find the k-th largest element</h4>
+</div>
+</div>
+
+<div id="outline-container-org36ac4c1" class="outline-3">
+<h3 id="org36ac4c1"><span class="section-number-3">2.9</span> Hash Tables</h3>
+<div class="outline-text-3" id="text-2-9">
+</div>
+<div id="outline-container-org3337cae" class="outline-4">
+<h4 id="org3337cae"><span class="section-number-4">2.9.1</span> <span class="done DONE">DONE</span> Partition into anagrams</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<p>
+Write a program that takes as input a set of words and returns groups of
+anagrams for those words. Each group must contain at least two words.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org599c020"></a>Solution<br />
+<div class="outline-text-5" id="text-2-9-1-1">
+<p>
+We can implement solution that avoids the need to compare all pairs of
+strings by hashing each string to its sorted version. Strings whose sorted
+forms are equal are anagrams. This implementation uses n calls to sort for
+O(n m log m), where n is the number of strings and m is the length of the
+max string.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">get_anagram_clusters</span>(S):
+    <span style="color: #D8DEE9;">cs</span> = {}
+    <span style="color: #81A1C1;">for</span> s <span style="color: #81A1C1;">in</span> S:
+        <span style="color: #D8DEE9;">k</span> = <span style="color: #A3BE8C;">''</span>.join(<span style="color: #81A1C1;">sorted</span>(s))
+        <span style="color: #81A1C1;">if</span> k <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> cs:
+            <span style="color: #D8DEE9;">cs</span>[k] = <span style="color: #81A1C1;">set</span>()
+        cs[k].add(s)
+    <span style="color: #81A1C1;">return</span> [v <span style="color: #81A1C1;">for</span> _,v <span style="color: #81A1C1;">in</span> cs.iteritems()]
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    s <span style="color: #81A1C1;">in</span> get_anagram_clusters([
+        <span style="color: #A3BE8C;">"debitcard"</span>,
+        <span style="color: #A3BE8C;">"elvis"</span>,
+        <span style="color: #A3BE8C;">"silent"</span>,
+        <span style="color: #A3BE8C;">"badcredit"</span>,
+        <span style="color: #A3BE8C;">"lives"</span>,
+        <span style="color: #A3BE8C;">"freedom"</span>,
+        <span style="color: #A3BE8C;">"listen"</span>,
+        <span style="color: #A3BE8C;">"levis"</span>,
+        <span style="color: #A3BE8C;">"money"</span>,
+    ]) <span style="color: #81A1C1;">for</span> s <span style="color: #81A1C1;">in</span> [
+        <span style="color: #81A1C1;">set</span>([<span style="color: #A3BE8C;">"debitcard"</span>, <span style="color: #A3BE8C;">"badcredit"</span>]),
+        <span style="color: #81A1C1;">set</span>([<span style="color: #A3BE8C;">"elvis"</span>, <span style="color: #A3BE8C;">"lives"</span>, <span style="color: #A3BE8C;">"levis"</span>]),
+        <span style="color: #81A1C1;">set</span>([<span style="color: #A3BE8C;">"silent"</span>, <span style="color: #A3BE8C;">"listen"</span>]),
+    ]
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org66fdef9" class="outline-4">
+<h4 id="org66fdef9"><span class="section-number-4">2.9.2</span> <span class="done DONE">DONE</span> Test for palindromic permutations</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<p>
+Write a program to test whether the letters forming a string can be permuted
+to form a palindrome. For instance, &ldquo;edified&rdquo; can be permuted to form
+&ldquo;deified&rdquo;.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org5c14463"></a>Solution<br />
+<div class="outline-text-5" id="text-2-9-2-1">
+<p>
+We assume that there is no requirement that the resulting palindrome be a
+word in the English language.
+</p>
+
+<p>
+We note that, in the case of even-length strings, we require the count of
+each letter to be evenly divisible by two. We additionally note that, in
+the case of odd-length strings, there is one and only one letter with count
+of one.
+</p>
+
+<p>
+This implementation is O(n) in time and space.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">can_palindrome</span>(s):
+    <span style="color: #D8DEE9;">lcs</span> = {}
+    <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> s:
+        <span style="color: #81A1C1;">if</span> c <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> lcs:
+            <span style="color: #D8DEE9;">lcs</span>[c] = 0
+        <span style="color: #D8DEE9;">lcs</span>[c] += 1
+    <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">len</span>(s) % 2 == 0:
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">all</span>(v % 2 == 0 <span style="color: #81A1C1;">for</span> k,v <span style="color: #81A1C1;">in</span> lcs.iteritems())
+    <span style="color: #81A1C1;">else</span>:
+        <span style="color: #D8DEE9;">is_pivot_found</span> = <span style="color: #81A1C1;">False</span>
+        <span style="color: #81A1C1;">for</span> k,v <span style="color: #81A1C1;">in</span> lcs.iteritems():
+            <span style="color: #81A1C1;">if</span> v == 1:
+                <span style="color: #81A1C1;">if</span> is_pivot_found:
+                    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+                <span style="color: #81A1C1;">else</span>:
+                    <span style="color: #D8DEE9;">is_pivot_found</span> = <span style="color: #81A1C1;">True</span>
+                    <span style="color: #81A1C1;">continue</span>
+            <span style="color: #81A1C1;">elif</span> v % 2 != 0:
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+        <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    can_palindrome(<span style="color: #A3BE8C;">"racecar"</span>),
+    can_palindrome(<span style="color: #A3BE8C;">"rraacce"</span>),
+    <span style="color: #81A1C1;">not</span> can_palindrome(<span style="color: #A3BE8C;">"foobar"</span>),
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org3a7638a" class="outline-4">
+<h4 id="org3a7638a"><span class="section-number-4">2.9.3</span> <span class="done DONE">DONE</span> Is an anonymous letter constructible?</h4>
+<div class="outline-text-4" id="text-2-9-3">
+<p>
+Write a program which takes text for an anonymous letter and text for a
+magazine and determines if it is possible to write the anonymous letter
+using the magazine. The letter can be written using the magazine if for each
+character in the letter, the number of times it appears in the anonymous
+letter is no more than the number of times it appears in the magazine.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orge87137a"></a>Solution<br />
+<div class="outline-text-5" id="text-2-9-3-1">
+<p>
+We implement a solution that reduces the letter and the magazine into
+dictionaries. We then check that the magazine dictionary contains all of
+the letter dictionary&rsquo;s keys and, for each of those keys, that it maps to a
+count greater than or equal to that contained in the letter dictionary.
+</p>
+
+<p>
+This solution is in time O(n) with respect to the cumulative length of the
+letter and magazine. Space is, similarly, O(n).
+</p>
+
+<p>
+For the sake of simplicity, we assume that inputs do not contain
+spaces. Accounting for spaces is trivial and would simply involve splitting
+each input on whitespace characters and iterating across sub-lists.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_possible</span>(l, m):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">to_dict</span>(s):
+        <span style="color: #D8DEE9;">out</span> = {}
+        <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> s:
+            <span style="color: #81A1C1;">if</span> c <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> out:
+                <span style="color: #D8DEE9;">out</span>[c] = 0
+            <span style="color: #D8DEE9;">out</span>[c] += 1
+        <span style="color: #81A1C1;">return</span> out
+
+    <span style="color: #D8DEE9;">dl</span> = to_dict(l)
+    <span style="color: #D8DEE9;">dm</span> = to_dict(m)
+
+    <span style="color: #81A1C1;">for</span> k,v <span style="color: #81A1C1;">in</span> dl.iteritems():
+        <span style="color: #81A1C1;">if</span> k <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> dm <span style="color: #81A1C1;">or</span> dm[k] &lt; v:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb604448" class="outline-4">
+<h4 id="orgb604448"><span class="section-number-4">2.9.4</span> <span class="todo TODO">TODO</span> Implement an ISBN cache</h4>
+</div>
+</div>
+
+<div id="outline-container-org196a3af" class="outline-3">
+<h3 id="org196a3af"><span class="section-number-3">2.10</span> Sorting</h3>
+<div class="outline-text-3" id="text-2-10">
+</div>
+<div id="outline-container-orge482dc4" class="outline-4">
+<h4 id="orge482dc4"><span class="section-number-4">2.10.1</span> <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</h4>
+<div class="outline-text-4" id="text-2-10-1">
+<p>
+Write a program which takes as input two sorted arrays, and returns a new
+array containing elements that are present in both of the input arrays. The
+input arrays may have duplicate entries, but the returned array should be
+free of duplicates. For example, if the input is <code>&lt;2,3,3,5,5,6,7,7,8,12&gt;</code>
+and <code>&lt;5,5,6,8,8,9,10,10&gt;</code>, your output should be <code>&lt;5,6,8&gt;</code>.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org3f9b862"></a>Solution<br />
+<div class="outline-text-5" id="text-2-10-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">intersection</span>(A,B):
+    <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> A <span style="color: #81A1C1;">or</span> <span style="color: #81A1C1;">not</span> B:
+        <span style="color: #81A1C1;">return</span> []
+    <span style="color: #D8DEE9;">out</span> = []
+    <span style="color: #D8DEE9;">lower</span>,<span style="color: #D8DEE9;">upper</span> = A, B
+    <span style="color: #81A1C1;">while</span> lower <span style="color: #81A1C1;">and</span> upper:
+        <span style="color: #D8DEE9;">lower</span> = lower <span style="color: #81A1C1;">if</span> lower[0] &lt; upper[0] <span style="color: #81A1C1;">else</span> upper
+        <span style="color: #D8DEE9;">upper</span> = upper <span style="color: #81A1C1;">if</span> lower[0] &lt; upper[0] <span style="color: #81A1C1;">else</span> lower
+        <span style="color: #81A1C1;">while</span> lower <span style="color: #81A1C1;">and</span> lower[0] != upper[0]:
+            <span style="color: #D8DEE9;">lower</span> = lower[1:]
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> lower <span style="color: #81A1C1;">or</span> <span style="color: #81A1C1;">not</span> upper:
+            <span style="color: #81A1C1;">break</span>
+        <span style="color: #D8DEE9;">item</span> = lower[0]
+        out.append(item)
+        <span style="color: #81A1C1;">while</span> lower <span style="color: #81A1C1;">and</span> lower[0] == item:
+            <span style="color: #D8DEE9;">lower</span> = lower[1:]
+        <span style="color: #81A1C1;">while</span> upper <span style="color: #81A1C1;">and</span> upper[0] == item:
+            <span style="color: #D8DEE9;">upper</span> = upper[1:]
+    <span style="color: #81A1C1;">return</span> out
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    intersection([],[]) == [],
+    intersection([],[1,2,3]) == [],
+    intersection([1,2,3],[]) == [],
+    intersection(
+        [1,2,3,4,5],
+        [4,4,5,6,7],
+    ) == [4,5,6,7],
+    intersection(
+        [1,2,3],
+        [4,5,6],
+    ) == [],
+])  
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<p>
+This implementation is linear on its inputs.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org59ea471" class="outline-4">
+<h4 id="org59ea471"><span class="section-number-4">2.10.2</span> <span class="todo TODO">TODO</span> Implement mergesort in-place</h4>
+<div class="outline-text-4" id="text-2-10-2">
+<p>
+Write a program which takes as input two sorted arrays of integers, and
+updates the first to the combined entries of the two arrays in sorted
+order. Assume the first array has enough empty entries at its end to hold
+the result.
+</p>
+
+<p>
+<i>Hint</i>: Avoid repeatedly moving entries.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd60ba41" class="outline-4">
+<h4 id="orgd60ba41"><span class="section-number-4">2.10.3</span> <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</h4>
+<div class="outline-text-4" id="text-2-10-3">
+<p>
+Given a string, print in alphabetical order each character that appears in
+the string, and the number of times that it appears. For example, if the
+string is &ldquo;bcdacebe&rdquo;, output <code>(a,1), (b,2), (c,2), (d,1), (e,2)</code>.
+</p>
+
+<p>
+<i>Hint</i>: Exploit the fact that the keys are drawn from a small set.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org5365837"></a>Solution<br />
+<div class="outline-text-5" id="text-2-10-3-1">
+<p>
+We assume that the input string consists solely of lowercase alphabetic
+characters. However, the solution is generalizeable.
+</p>
+
+<p>
+We point out that the character domain is finite &#x2013; specifically, of
+size 26. As such, we use an array of size 26, with index representing
+character, with &ldquo;0&rdquo; corresponding to &ldquo;a&rdquo; etc., to record the number of
+times the corresponding letter appears in the input string. It is then
+trivial to output the array values in alphabetical order.
+</p>
+
+<p>
+Both the record-keeping operation and the output operation are linear. The
+overall solution is linear in time and constant in space.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">freqs</span>(S):
+    <span style="color: #D8DEE9;">counts</span> = [0] * 26
+    <span style="color: #81A1C1;">for</span> c <span style="color: #81A1C1;">in</span> S:
+        <span style="color: #D8DEE9;">counts</span>[<span style="color: #81A1C1;">ord</span>(c) - <span style="color: #81A1C1;">ord</span>(<span style="color: #A3BE8C;">"a"</span>)] += 1
+    <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(<span style="color: #81A1C1;">len</span>(counts)):
+        <span style="color: #81A1C1;">if</span> counts[i] &gt; 0:
+            <span style="color: #81A1C1;">yield</span> (<span style="color: #81A1C1;">chr</span>(<span style="color: #81A1C1;">ord</span>(<span style="color: #A3BE8C;">"a"</span>)+i), counts[i])
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">list</span>(freqs(<span style="color: #A3BE8C;">"bcdacebe"</span>)) == [(<span style="color: #A3BE8C;">"a"</span>,1),(<span style="color: #A3BE8C;">"b"</span>,2),(<span style="color: #A3BE8C;">"c"</span>,2),(<span style="color: #A3BE8C;">"d"</span>,1), (<span style="color: #A3BE8C;">"e"</span>,2)]
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org707435f" class="outline-4">
+<h4 id="org707435f"><span class="section-number-4">2.10.4</span> <span class="done DONE">DONE</span> Render a calendar</h4>
+<div class="outline-text-4" id="text-2-10-4">
+<p>
+Write a program that takes a set of events, and determines the maximum
+number of events that can take place concurrently.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org380e004"></a>Solution<br />
+<div class="outline-text-5" id="text-2-10-4-1">
+<p>
+We assume that the domain is unbounded &#x2013; that is, that any event can occur
+at any given time t.
+</p>
+
+<p>
+We assume that an event E is represented as a tuple (t<sub>s</sub>, t<sub>e</sub>), where t<sub>s</sub> is
+the start time and t<sub>e</sub> the end time.
+</p>
+
+<p>
+Instead of considering discrete time values, we consider unit
+intervals. For instance, the event (t, t+2) falls into two interval
+&ldquo;buckets&rdquo; &#x2013; the first representing the interval [t, t+1], and the second
+the interval [t+1, t+2].
+</p>
+
+<p>
+We maintain a counter dictionary, keyed on the start times of these
+intervals, that keeps track of how many events overlap with the key
+interval. For each event E, we split E into its constituent unit intervals
+and populate the counter accordingly. We choose dictionary for the
+following reasons:
+</p>
+
+<ul class="org-ul">
+<li>We assume no bound on the domain of time T, so we choose a data structure
+that doesn&rsquo;t require an explicit initial size for convenience;</li>
+<li>We make no assumptions about the proximity of the respective events&rsquo;
+intervals; we can very easily have events (0, 10) and (10000,
+10010). Using an alternative storage construct, such as an array, would
+require us to allocate upwards of 10000 buckets to store information for
+these events, only for all but twenty of those buckets to be meaningless,
+i.e. with value zero. A dictionary, on the other hand, allows us to only
+allocate 20 buckets, for considerably greater space efficiency.</li>
+</ul>
+
+
+<p>
+The resulting solution is O(nl) in time and space, where n is the number of
+events and l is the max length of the event intervals.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">atomize_interval</span>(start, end):
+    <span style="color: #81A1C1;">for</span> s <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(start, end):
+        <span style="color: #81A1C1;">yield</span> (s, s+1)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">list</span>(atomize_interval(0,5)) == [(0,1), (1,2), (2,3), (3,4), (4,5)]
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">max_sim</span>(*E):
+    <span style="color: #D8DEE9;">time_to_sim</span> = {}
+    <span style="color: #81A1C1;">for</span> e <span style="color: #81A1C1;">in</span> E:
+        <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> atomize_interval(*e):
+            <span style="color: #81A1C1;">if</span> i[0] <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">in</span> time_to_sim:
+                time_to_sim[i[0]] = 0
+            time_to_sim[i[0]] += 1
+    <span style="color: #81A1C1;">return</span> time_to_sim[<span style="color: #81A1C1;">max</span>(time_to_sim, key=(<span style="color: #81A1C1;">lambda</span> k: time_to_sim[k]))]
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    max_sim((0,10)) == 1,
+    max_sim((0,10),(2,11),(3,12)) == 3,
+
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">non-contiguous events</span>
+    max_sim((0,10), (2,11), (100, 110), (101,111), (102,112), (103,113)) == 4,
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org4e65eec" class="outline-4">
+<h4 id="org4e65eec"><span class="section-number-4">2.10.5</span> <span class="todo TODO">TODO</span> Compute the union of intervals</h4>
+</div>
+
+<div id="outline-container-org784d02b" class="outline-4">
+<h4 id="org784d02b"><span class="section-number-4">2.10.6</span> <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</h4>
+</div>
+
+<div id="outline-container-org95c2f0e" class="outline-4">
+<h4 id="org95c2f0e"><span class="section-number-4">2.10.7</span> <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</h4>
+</div>
+</div>
+<div id="outline-container-orgb2b2961" class="outline-3">
+<h3 id="orgb2b2961"><span class="section-number-3">2.11</span> Binary Search Trees</h3>
+<div class="outline-text-3" id="text-2-11">
+</div>
+<div id="outline-container-orgede0a48" class="outline-4">
+<h4 id="orgede0a48"><span class="section-number-4">2.11.1</span> <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</h4>
+<div class="outline-text-4" id="text-2-11-1">
+<p>
+Write a program that takes as input a binary tree and checks if the tree
+satisfies the BST property.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org307beac"></a>Solution<br />
+<div class="outline-text-5" id="text-2-11-1-1">
+<p>
+Iterate through each subtree, keeping track of a local maximum and
+minimum. In addition to asserting that the two leaves relate to the node as
+necessary, similarly assert that the two leaves fall within the maximum and
+minimum. When recursing into leaves, update either the maximum or the
+minimum with the current node value depending on which leave is being
+recursed into.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org284bef4" class="outline-4">
+<h4 id="org284bef4"><span class="section-number-4">2.11.2</span> <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</h4>
+<div class="outline-text-4" id="text-2-11-2">
+<p>
+Write a program that takes as input a BST and a value, and returns the first
+key that would appear in an inorder traversal which is greater than the
+input value.
+</p>
+
+<p>
+<i>Hint</i>: Perform binary search, keeping some additional state.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd112c03"></a>Solution<br />
+<div class="outline-text-5" id="text-2-11-2-1">
+<p>
+Given BST T and value v, perform binary search, keeping track of the
+current &ldquo;minimum greater-than&rdquo; value v<sub>gt</sub>, which we can initialize to +&infin;. On
+finding v within T, if v<sub>gt</sub> = +&infin;, return the right-hand sub-value of v;
+otherwise, return v<sub>gt</sub>.
+</p>
+
+<p>
+This implementation is O(1) in space (for v<sub>gt</sub>) and O(h) in time.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v, l=<span style="color: #81A1C1;">None</span>, r=<span style="color: #81A1C1;">None</span>):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.l = l
+        <span style="color: #81A1C1;">self</span>.r = r
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">first_gt</span>(T, v):
+    <span style="color: #D8DEE9;">v_gt</span> = <span style="color: #81A1C1;">None</span>
+    <span style="color: #D8DEE9;">cursor</span> = T
+    <span style="color: #81A1C1;">while</span> cursor.v != v:
+        <span style="color: #81A1C1;">if</span> cursor.v &lt; v:
+            <span style="color: #D8DEE9;">cursor</span> = cursor.r
+        <span style="color: #81A1C1;">elif</span> cursor.v &gt; v:
+            <span style="color: #D8DEE9;">v_gt</span> = cursor.v <span style="color: #81A1C1;">if</span> v_gt <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">else</span> <span style="color: #81A1C1;">min</span>(v_gt, cursor.v)
+            <span style="color: #D8DEE9;">cursor</span> = cursor.l
+    <span style="color: #81A1C1;">return</span> v_gt <span style="color: #81A1C1;">if</span> v_gt != <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">else</span> cursor.r.v <span style="color: #81A1C1;">if</span> cursor.r <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">else</span> cursor.r
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #D8DEE9;">_t</span> = Tree(
+    v=5,
+    l=Tree(v=2, l=Tree(v=1), r=Tree(v=4, l=Tree(v=3))),
+    r=Tree(
+        v=8,
+        l=Tree(v=7, l=Tree(v=6)),
+        r=Tree(v=10, l=Tree(v=9), r=Tree(v=11))))
+<span style="color: #81A1C1;">all</span>([
+    first_gt(_t, 6) == 7,
+    first_gt(_t, 10) == 11,
+    first_gt(_t, 11) == <span style="color: #81A1C1;">None</span>,
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orgffe7c86" class="outline-4">
+<h4 id="orgffe7c86"><span class="section-number-4">2.11.3</span> <span class="done DONE">DONE</span> Find the k largest elements in a BST</h4>
+<div class="outline-text-4" id="text-2-11-3">
+</div>
+</div>
+
+<div id="outline-container-org6b99d88" class="outline-4">
+<h4 id="org6b99d88"><span class="section-number-4">2.11.4</span> <span class="done DONE">DONE</span> Compute the LCA in a BST</h4>
+<div class="outline-text-4" id="text-2-11-4">
+<p>
+Design an algorithm that takes as input a BST and two nodes, and returns the
+LCA of the two nodes. Assume all keys are distinct. Nodes do not have
+references to their parents.
+</p>
+
+<p>
+<i>Hint</i>: Take advantage of the BST property.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgc2956b2"></a>Solution<br />
+<div class="outline-text-5" id="text-2-11-4-1">
+<p>
+We note that the BST property gives us that the LCA is between the max of
+the two nodes values and the min.
+</p>
+
+<p>
+We use a cursor C that starts at the head of input tree T. We iterate C
+according to the BST principle depending on if its current value is greater
+than or less than the max or the min of the two node values,
+respectively. Once we arrive at a node that&rsquo;s in between the max and the
+min, we are done.
+</p>
+
+<p>
+This implementation is O(h) in time.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v, l=<span style="color: #81A1C1;">None</span>, r=<span style="color: #81A1C1;">None</span>):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.l = l
+        <span style="color: #81A1C1;">self</span>.r = r
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">lca</span>(T, v1, v2):
+    <span style="color: #81A1C1;">while</span> <span style="color: #81A1C1;">not</span>(T.v &gt; <span style="color: #81A1C1;">min</span>(v1,v2) <span style="color: #81A1C1;">and</span> T.v &lt; <span style="color: #81A1C1;">max</span>(v1,v2)):
+        <span style="color: #81A1C1;">if</span> T <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>:
+            <span style="color: #81A1C1;">raise</span> <span style="color: #8FBCBB;">Exception</span>
+        <span style="color: #81A1C1;">if</span> T.v &gt; <span style="color: #81A1C1;">max</span>(v1,v2):
+            <span style="color: #D8DEE9;">T</span> = T.l
+        <span style="color: #81A1C1;">elif</span> T.v &lt; <span style="color: #81A1C1;">min</span>(v1,v2):
+            <span style="color: #D8DEE9;">T</span> = T.r
+    <span style="color: #81A1C1;">return</span> T.v
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #D8DEE9;">_t</span> = Tree(
+    v=19,
+    l = Tree(
+        v=7,
+        l=Tree(v=3, l=Tree(v=2), r=Tree(v=5)),
+        r=Tree(v=11, r=Tree(v=17, l=Tree(v=13))),
+    ),
+    r=Tree(
+        v=43,
+        l=Tree(v=23, r=Tree(v=37, l=Tree(v=29, r=Tree(v=31)), r=Tree(v=41))),
+        r=Tree(v=47, r=Tree(v=53)),
+    )
+)
+
+<span style="color: #81A1C1;">all</span>([
+    lca(_t, 5, 17) == 7,
+    lca(_t, 13, 53) == 19,
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org00e37a5" class="outline-4">
+<h4 id="org00e37a5"><span class="section-number-4">2.11.5</span> <span class="todo TODO">TODO</span> The most visited pages problem</h4>
+<div class="outline-text-4" id="text-2-11-5">
+<p>
+You are given a server log file containing billions of lines. Each line
+contains a number of fields. For this problem the relevant field is an id
+denoting the page that was accessed.
+</p>
+
+<p>
+Write a function to read a log file line, and a function to find the k most
+visited pages, where k is an input to the function. Optimize performance for
+the situation where calls to the two functions are interleaved. You can
+assume the set of distinct pages is small enough to fit in RAM.
+</p>
+
+<p>
+As a concrete example, suppose the log file ids appear in the following
+order: <code>g,a,t,t,a,a,a,g,t,c,t,a,t</code>, i.e., there are four pages with ids
+<code>a,c,g,t</code>. After the first 10 lines have been read, the most common page is
+a with a count of 4, and the next most common page is t with a count of 3.
+</p>
+
+<p>
+<i>Hint</i>: For each page, count the number of times it has been visited.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3e83c58" class="outline-4">
+<h4 id="org3e83c58"><span class="section-number-4">2.11.6</span> <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</h4>
+</div>
+
+<div id="outline-container-org831b252" class="outline-4">
+<h4 id="org831b252"><span class="section-number-4">2.11.7</span> <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</h4>
+</div>
+
+<div id="outline-container-org1ee111f" class="outline-4">
+<h4 id="org1ee111f"><span class="section-number-4">2.11.8</span> <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</h4>
+</div>
+
+<div id="outline-container-org1431dfb" class="outline-4">
+<h4 id="org1431dfb"><span class="section-number-4">2.11.9</span> <span class="todo TODO">TODO</span> Insertion and deletion in a BST</h4>
+<div class="outline-text-4" id="text-2-11-9">
+</div>
+<ol class="org-ol">
+<li><a id="org34c6ec6"></a>Solution<br />
+<div class="outline-text-5" id="text-2-11-9-1">
+<p>
+We can use reverse in-order traversal, yielding values until the count has
+been satisfied, for an implementation that is O(n) in time and O(log n) in
+space, where n is the number of entries in the BST.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v, l=<span style="color: #81A1C1;">None</span>, r=<span style="color: #81A1C1;">None</span>):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.l = l
+        <span style="color: #81A1C1;">self</span>.r = r
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">get_k_largest</span>(T, k):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">_get_k_largest</span>(T,k):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> T:
+            <span style="color: #81A1C1;">return</span> [], k
+        <span style="color: #D8DEE9;">vs</span>, <span style="color: #D8DEE9;">k_rem</span> = _get_k_largest(T.r,k)
+        <span style="color: #81A1C1;">if</span> k_rem == 0:
+            <span style="color: #81A1C1;">return</span> vs, 0
+        vs.append(T.v)
+        <span style="color: #D8DEE9;">k_rem</span> -= 1
+        <span style="color: #81A1C1;">if</span> k_rem == 0:
+            <span style="color: #81A1C1;">return</span> vs, 0
+        <span style="color: #D8DEE9;">lhs</span>, <span style="color: #D8DEE9;">k_rem</span> = _get_k_largest(T.l, k_rem)
+        vs.extend(lhs)
+        <span style="color: #81A1C1;">if</span> k_rem == 0:
+            <span style="color: #81A1C1;">return</span> vs, 0
+        <span style="color: #81A1C1;">return</span> vs, k_rem 
+    <span style="color: #D8DEE9;">vs</span>, <span style="color: #D8DEE9;">_</span> = _get_k_largest(T,k)
+    <span style="color: #81A1C1;">return</span> vs
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    get_k_largest(Tree(
+        v = <span style="color: #A3BE8C;">"A"</span>,
+        l = Tree(v = <span style="color: #A3BE8C;">"B"</span>, l = Tree(v = <span style="color: #A3BE8C;">"D"</span>), r = Tree(v = <span style="color: #A3BE8C;">"E"</span>)),
+        r = Tree(
+            v = <span style="color: #A3BE8C;">"C"</span>,
+            l = Tree(v = <span style="color: #A3BE8C;">"F"</span>),
+            r = Tree(
+                v = <span style="color: #A3BE8C;">"G"</span>,
+                l = Tree(v = <span style="color: #A3BE8C;">"H"</span>, r = Tree(v = <span style="color: #A3BE8C;">"J"</span>)),
+                r = Tree(v = <span style="color: #A3BE8C;">"I"</span>),
+            ),
+        ),
+    ), 9) == [<span style="color: #A3BE8C;">"I"</span>, <span style="color: #A3BE8C;">"G"</span>, <span style="color: #A3BE8C;">"J"</span>, <span style="color: #A3BE8C;">"H"</span>, <span style="color: #A3BE8C;">"C"</span>, <span style="color: #A3BE8C;">"F"</span>, <span style="color: #A3BE8C;">"A"</span>, <span style="color: #A3BE8C;">"E"</span>, <span style="color: #A3BE8C;">"B"</span>],
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd97f144" class="outline-3">
+<h3 id="orgd97f144"><span class="section-number-3">2.12</span> Recursion</h3>
+<div class="outline-text-3" id="text-2-12">
+</div>
+<div id="outline-container-org11f321b" class="outline-4">
+<h4 id="org11f321b"><span class="section-number-4">2.12.1</span> <span class="todo TODO">TODO</span> Tower of Hanoi</h4>
+</div>
+
+<div id="outline-container-org1085cdf" class="outline-4">
+<h4 id="org1085cdf"><span class="section-number-4">2.12.2</span> <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</h4>
+</div>
+</div>
+
+<div id="outline-container-org2dfd42b" class="outline-3">
+<h3 id="org2dfd42b"><span class="section-number-3">2.13</span> Dynamic Programming</h3>
+<div class="outline-text-3" id="text-2-13">
+</div>
+<div id="outline-container-org1bc8d33" class="outline-4">
+<h4 id="org1bc8d33"><span class="section-number-4">2.13.1</span> <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</h4>
+<div class="outline-text-4" id="text-2-13-1">
+<p>
+In an American football game, a play can lead to 2 points (safety), 3 points
+(field goal), or 7 points (touchdown, assuming the extra point). Many
+different combinations of 2, 3, and 7 point plays can make up a final
+score. For example, four combinations of plays yield a score of 12:
+</p>
+
+<ul class="org-ul">
+<li>6 safeties;</li>
+<li>3 safeties, 2 field goals;</li>
+<li>1 safety, 1 field goal, and 1 touchdown;</li>
+<li>4 field goals.</li>
+</ul>
+
+
+<p>
+Write a program that takes a final score and scores for individual plays,
+and returns the number of combinations of plays that result in the final
+score.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgc794bca"></a>Solution<br />
+<div class="outline-text-5" id="text-2-13-1-1">
+<p>
+We can memoize the number of combinations that lead to certain scores,
+iterating through the memo to arrive at the desired final score and, as a
+result, the final combination count.
+</p>
+
+<p>
+Say we have possible play scores 2 and 3, and we&rsquo;d like the number of
+possible plays that could lead to a score of 9. We can represent our memo
+as a two-dimensional array, where one axis is the score and the other
+represents the set of plays that can comprise the score, the first index
+representing, in this case, the set <code>{2}</code> and the second, the set <code>{2,3}</code>.
+</p>
+
+<p>
+We note that, for a given score <code>S</code> and a given set of plays <code>P = {P', p}</code>,
+number of combinations leading to score <code>S</code> <code>N(S, P)</code> equals (informally):
+</p>
+
+<p>
+<code>N(S-p, P') + N(S-2p, P') + ... + N(0, P')</code>
+</p>
+
+<p>
+We say that <code>N(x, y) = 0</code> for <code>x&lt;0</code> and any <code>y</code>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right"><b>0</b></td>
+<td class="org-right"><b>1</b></td>
+<td class="org-right"><b>2</b></td>
+<td class="org-right"><b>3</b></td>
+<td class="org-right"><b>4</b></td>
+<td class="org-right"><b>5</b></td>
+<td class="org-right"><b>6</b></td>
+<td class="org-right"><b>7</b></td>
+<td class="org-right"><b>8</b></td>
+<td class="org-right"><b>9</b></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>{2}</code></td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>{2,3}</code></td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A solution that uses this memoization strategy will be <code>O(S \times |P|)</code>, where
+<code>S</code> is the score and <code>P</code> is the set of play scores. Likewise for space.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgc497403" class="outline-4">
+<h4 id="orgc497403"><span class="section-number-4">2.13.2</span> <span class="todo TODO">TODO</span> Compute the Levenshtein distance</h4>
+</div>
+
+<div id="outline-container-orga3826b9" class="outline-4">
+<h4 id="orga3826b9"><span class="section-number-4">2.13.3</span> <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</h4>
+<div class="outline-text-4" id="text-2-13-3">
+</div>
+
+<ol class="org-ol">
+<li><a id="org368fd41"></a>Solution<br />
+<div class="outline-text-5" id="text-2-13-3-1">
+<p>
+Our memoization strategy is as follows. We use a matrix T of the same
+shape as the input matrix M to track the number of ways to traverse to
+that point in the input. Matrix T is populated according to function
+T(i,j), which we define as follows:
+</p>
+
+<ul class="org-ul">
+<li>T(i,j) = T(i-1,j) + T(i, j-1)</li>
+<li>T(i, j) = 0 &forall; j &isin; &real;, i &lt; 0</li>
+<li>T(i, j) = 0 &forall; j &lt; 0, i &isin; &real;</li>
+</ul>
+
+
+<p>
+Our solution then becomes as follows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">num_traversals</span>(M):
+    <span style="color: #D8DEE9;">t</span> = [[0 <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> M[0]] <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> M]
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">T</span>(t, i,j):
+        <span style="color: #81A1C1;">if</span> i == -1 <span style="color: #81A1C1;">or</span> j == -1:
+            <span style="color: #81A1C1;">return</span> 0
+        <span style="color: #81A1C1;">if</span> i == 0 <span style="color: #81A1C1;">and</span> j == 0:
+            <span style="color: #81A1C1;">return</span> 1
+        <span style="color: #81A1C1;">return</span> t[i-1][j] + t[i][j-1]
+    <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, <span style="color: #81A1C1;">len</span>(M)):
+        <span style="color: #81A1C1;">for</span> j <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, <span style="color: #81A1C1;">len</span>(M[i])):
+            t[i][j] = T(t, i, j)
+    <span style="color: #81A1C1;">return</span> t[<span style="color: #81A1C1;">len</span>(M)-1][<span style="color: #81A1C1;">len</span>(M[0])-1]
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    num_traversals([[0,0,0,0,0] <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">xrange</span>(5)]) == 70,
+])
+</pre>
+</div>
+
+<p>
+This implementation is linear for both time and space with respect to the
+number of elements in the input matrix.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org31a57ed" class="outline-4">
+<h4 id="org31a57ed"><span class="section-number-4">2.13.4</span> <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</h4>
+<div class="outline-text-4" id="text-2-13-4">
+</div>
+
+<ol class="org-ol">
+<li><a id="org1fd646d"></a>Solution<br />
+<div class="outline-text-5" id="text-2-13-4-1">
+<p>
+For illustration&rsquo;s purpose, we outline a C matrix, where C[n][k] = C(n+1,k+1)
+&forall; n,k &isin; &real;:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+We note that this gives us the following recursive definition of the
+binominal coefficient: C(n, k) = C(n-1, k-1) + C(n-1, k). A naive
+implementation would directly translate this recursive definition into a
+recursive implementation, resulting in re-computation of the same values
+for exponential time complexity w.r.t nk. Instead, we memoize intermediate
+results in a manner identical to the example matrix above:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">bico</span>(n,k):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">C</span>(_C, n, k):
+        <span style="color: #81A1C1;">if</span> n == k:
+            <span style="color: #81A1C1;">return</span> 1
+        <span style="color: #81A1C1;">elif</span> k == 0:
+            <span style="color: #81A1C1;">return</span> n + 1
+        <span style="color: #81A1C1;">elif</span> k &gt; n:
+            <span style="color: #81A1C1;">return</span> 0
+        <span style="color: #81A1C1;">else</span>:
+            <span style="color: #81A1C1;">return</span> _C[k-1][n-1] + _C[k][n-1]
+    <span style="color: #D8DEE9;">_C</span> = [[0 <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">xrange</span>(n)] <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">xrange</span>(k)]
+    <span style="color: #81A1C1;">for</span> _k <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, k):
+        <span style="color: #81A1C1;">for</span> _n <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, n):
+            _C[_k][_n] = C(_C, _n, _k)
+    <span style="color: #81A1C1;">return</span> _C[k-1][n-1]
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    bico(29, 3) == 3654,
+    bico(3, 2) == 3,
+])
+</pre>
+</div>
+
+<p>
+This solution is O(nk) for both time and space.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org29ded63" class="outline-4">
+<h4 id="org29ded63"><span class="section-number-4">2.13.5</span> <span class="done DONE">DONE</span> Search for a sequence in a 2D array</h4>
+<div class="outline-text-4" id="text-2-13-5">
+<p>
+Write a program that takes as arguments a 2D array and a 1D array, and
+checks whether the 1D array appears in the 2D array.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org7b40576"></a>Solution<br />
+<div class="outline-text-5" id="text-2-13-5-1">
+<p>
+We can use iteration through each element of the 2D array as the backbone
+of our solution&rsquo;s logic; during iteration, if we encounter an element
+that&rsquo;s equal to the first element of the sequence, we break into tracing
+logic. This tracing logic considers all of the element&rsquo;s &ldquo;neighbors&rdquo; to see
+if they equal the next value in the sequence. We &ldquo;trace&rdquo; the sequence in
+this way; if we reach the end of the sequence in this way, we return true
+and are done. If, however, tracing leads to only a partial match, we mark
+the latest element in the trace as &ldquo;invalid&rdquo; and propagate that mark
+backwards through the trace. This is to prevent re-tracing of paths that
+are already known to be &ldquo;lost causes&rdquo; &#x2013; an implementation that would lead
+to time complexity of O(nml), where n and m are the matrix&rsquo;s dimensions and
+l is the length of the sequence. The result, where we preemptively avoid
+tracing paths that have already been deemed to not match the argument
+sequence, is an implementation that is in time O(nm) (traversal of the
+input sequence is amortized).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">contains_sequence</span>(M, S):
+    <span style="color: #4c566a;"># </span><span style="color: #4c566a;">eligibility matrix</span>
+    <span style="color: #D8DEE9;">m_e</span> = [[<span style="color: #81A1C1;">True</span> <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">xrange</span>(<span style="color: #81A1C1;">len</span>(M[0]))] <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">xrange</span>(<span style="color: #81A1C1;">len</span>(M))]
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">neighbor_coords</span>(i, j):
+        <span style="color: #81A1C1;">if</span> i &lt; <span style="color: #81A1C1;">len</span>(M)-1:
+            <span style="color: #81A1C1;">yield</span> (i+1, j)
+        <span style="color: #81A1C1;">if</span> i &gt; 0:
+            <span style="color: #81A1C1;">yield</span> (i-1, j)
+        <span style="color: #81A1C1;">if</span> j &lt; <span style="color: #81A1C1;">len</span>(M[0])-1:
+            <span style="color: #81A1C1;">yield</span> (i, j+1)
+        <span style="color: #81A1C1;">if</span> j &gt; 0:
+            <span style="color: #81A1C1;">yield</span> (i, j-1)
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">trace</span>(i, j, seq):
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> seq:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> m_e[i][j]:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+        <span style="color: #81A1C1;">if</span> M[i][j] != seq[0] <span style="color: #81A1C1;">or</span> <span style="color: #81A1C1;">not</span> <span style="color: #81A1C1;">any</span>([
+                trace(nc[0], nc[1], seq[1:]) <span style="color: #81A1C1;">for</span> nc <span style="color: #81A1C1;">in</span> neighbor_coords(i, j)
+        ]):
+            m_e[i][j] = <span style="color: #81A1C1;">False</span>
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+        <span style="color: #81A1C1;">else</span>:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+    <span style="color: #81A1C1;">for</span> i <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, <span style="color: #81A1C1;">len</span>(M)):
+        <span style="color: #81A1C1;">for</span> j <span style="color: #81A1C1;">in</span> <span style="color: #81A1C1;">range</span>(0, <span style="color: #81A1C1;">len</span>(M[0])):
+            <span style="color: #81A1C1;">if</span> trace(i, j, S):
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    contains_sequence(M, S) == r <span style="color: #81A1C1;">for</span> M,S,r <span style="color: #81A1C1;">in</span> [
+        (
+            [[1,2,5],
+             [3,4,3],
+             [5,6,7]],
+            [3,4,7],
+            <span style="color: #81A1C1;">False</span>,
+        ),
+        (
+            [[1,2,5],
+             [3,4,3],
+             [5,6,7]],
+            [3,4,6,7],
+            <span style="color: #81A1C1;">True</span>,
+        ),
+        (
+            [[1,2,3],
+             [3,4,5],
+             [5,6,7]],
+            [1,3,4,6],
+            <span style="color: #81A1C1;">True</span>,
+        ),
+        (
+            [[1,2,3],
+             [3,4,5],
+             [5,6,7]],
+            [1,2,3,4],
+            <span style="color: #81A1C1;">False</span>,
+        ),
+    ]
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org12f3fc9" class="outline-3">
+<h3 id="org12f3fc9"><span class="section-number-3">2.14</span> Greedy Algorithms and Invariants</h3>
+<div class="outline-text-3" id="text-2-14">
+</div>
+<div id="outline-container-org0d3001f" class="outline-4">
+<h4 id="org0d3001f"><span class="section-number-4">2.14.1</span> <span class="done DONE">DONE</span> The 3-sum problem</h4>
+<div class="outline-text-4" id="text-2-14-1">
+<p>
+Design an algorithm that takes as input an array and a number, and
+determines if there are three entries in the array (not necessarily
+distinct) which add up to the specified number. For example, if the array is
+<code>&lt;11,2,5,7,3&gt;</code> then there are three entries in the array which add up to 21
+(3, 7, 11, and 5, 5, 11) (note that we can use 5 twice, since the problem
+statement said we c an use the same entry more than once). However, no three
+entries add up to 22.
+</p>
+
+<p>
+<i>Hint</i>: How would you check if a given array entry can be added to two more
+entries to get the specified number?
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd3628d6"></a>Solution<br />
+<div class="outline-text-5" id="text-2-14-1-1">
+<p>
+Note that we do not need to return the specific set of three entries &#x2013;
+only determine that it exists.
+</p>
+
+<p>
+First we sort the array A in O(n log n). Then, for each index i, we iterate
+through indices j and k in opposite directions to determine if any satisfy
+A[j] + A[k] = v - A[i]. This brings our final time complexity to O(n<sup>2</sup>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">has_three_sum</span>(A, v):
+    <span style="color: #81A1C1;">for</span> a <span style="color: #81A1C1;">in</span> A:
+        <span style="color: #D8DEE9;">j</span> = 0
+        <span style="color: #D8DEE9;">k</span> = <span style="color: #81A1C1;">len</span>(A) - 1
+        <span style="color: #81A1C1;">while</span> j &lt; k:
+            <span style="color: #D8DEE9;">_v</span> = a + A[j] + A[k]
+            <span style="color: #81A1C1;">if</span> _v &lt; v:
+                <span style="color: #D8DEE9;">j</span> += 1
+            <span style="color: #81A1C1;">elif</span> _v &gt; v:
+                <span style="color: #D8DEE9;">k</span> -= 1
+            <span style="color: #81A1C1;">else</span>:
+                <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">True</span>
+    <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">False</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    has_three_sum([11,2,5,7,3], 21),
+    <span style="color: #81A1C1;">not</span> has_three_sum([11,2,5,7,3], 100),
+    <span style="color: #81A1C1;">not</span> has_three_sum([11,2,5,7,3], 0),
+])
+
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org082df1a" class="outline-4">
+<h4 id="org082df1a"><span class="section-number-4">2.14.2</span> <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</h4>
+<div class="outline-text-4" id="text-2-14-2">
+<p>
+A number of cities are arranged on a circular road. You need to visit all
+the cities and come back to the starting city. A certain amount of gas is
+available at each city. The amount of gas summed up over all cities is equal
+to the amount of gas required to go around the road once. Your gas tank has
+unlimited capacity. Call a city <i>ample</i> if you can begin at that city with
+an empty tank, refill at it, then travel through all the remaining cities,
+refilling at each, and return to the ample city, without running out of gas
+at any point.
+</p>
+
+<p>
+Given an instance of the gasup problem, how would you efficiently compute an
+ample city, if one exists?
+</p>
+
+<p>
+<i>Hint</i>: Think about starting with more than enough gas to complete the
+circuit without gassing up. Track the amount of gas as you perform the
+circuit, gassing up at each city.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org9085ece"></a>Solution<br />
+<div class="outline-text-5" id="text-2-14-2-1">
+<p>
+Find the city/cities for which gas level is at minimum on arrival (ignoring
+impossibility of negative gas levels). Call one of these cities c. Since we
+have that total amount of gas at each city is enough to complete the full
+circle, and that, due to being at a minimum on arrival, we will never have
+less gas than we would have on entry to c, we know that we can complete the
+full circle from c. Finding the exact value of c is a simple matter of
+finding the minimum entry gas level of each city, which can be done in
+linear time.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgc6ac243" class="outline-4">
+<h4 id="orgc6ac243"><span class="section-number-4">2.14.3</span> <span class="todo TODO">TODO</span> Find the majority element</h4>
+<div class="outline-text-4" id="text-2-14-3">
+<p>
+You are reading a sequence of strings. You know a priori that more than half
+of the strings are repetitions of a single string but the positions where
+the majority element occurs are unknown. Write a program that makes a single
+pass over the sequence and identifies the majority element. For example, if
+the input is <code>&lt;b,a,c,a,a,b,a,a,c,a&gt;</code>, then a is the majority element (it
+appears in 6 out of the 10 places).
+</p>
+
+<p>
+<i>Hint</i>: Take advantage of the existence of a majority element to perform
+elimination.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcaee7a8" class="outline-4">
+<h4 id="orgcaee7a8"><span class="section-number-4">2.14.4</span> <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</h4>
+</div>
+
+<div id="outline-container-org4895d96" class="outline-4">
+<h4 id="org4895d96"><span class="section-number-4">2.14.5</span> <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</h4>
+</div>
+
+<div id="outline-container-org7ff9589" class="outline-4">
+<h4 id="org7ff9589"><span class="section-number-4">2.14.6</span> <span class="todo TODO">TODO</span> Implement Huffman coding</h4>
+</div>
+</div>
+
+<div id="outline-container-org4a82ca2" class="outline-3">
+<h3 id="org4a82ca2"><span class="section-number-3">2.15</span> Graphs</h3>
+<div class="outline-text-3" id="text-2-15">
+</div>
+<div id="outline-container-org9943280" class="outline-4">
+<h4 id="org9943280"><span class="section-number-4">2.15.1</span> <span class="done DONE">DONE</span> Search a maze</h4>
+<div class="outline-text-4" id="text-2-15-1">
+<p>
+Given a 2D array of black and white entries representing a maze with
+designated entrance and exit points, find a path from the entrance to the
+exit, if one exists.
+</p>
+
+<p>
+<i>Hint</i>: Model the maze as a graph.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org00220c9"></a>Solution<br />
+<div class="outline-text-5" id="text-2-15-1-1">
+<p>
+We assume the input is a matrix of integers, where any non-zero integer
+represents a wall and, similarly, 0 represents a walkable segment.
+</p>
+
+<p>
+We treat the 2D array as a graph and implement DFS, with two
+optimizations.
+</p>
+
+<p>
+First, our recursion keeps a record of the path taken, such that, if our
+given recursion finds a cycle, it disqualifies itself as a possible path to
+the exit. This will prevent our implementation from failing to return if
+the maze contains a cycle, as in the following example input:
+</p>
+
+<div class="VERBATIM">
+<p>
+-&gt; 1 1 1 0
+   1 0 1 0
+   1 1 1 0
+   0 0 0 0 -&gt;
+</p>
+
+</div>
+
+<p>
+Secondly &#x2013; and building off of the first optimization &#x2013; we maintain a
+&ldquo;disqualification&rdquo; memo matrix which tracks whether a given point (x,y) is
+an exit candidate, i.e. has not been proven to not lead to the exit. if all
+paths from a particular point (x,y) in the maze result in dead ends &#x2013;
+defined as either &ldquo;no more paths to take, and still not at the exit&rdquo; or
+&ldquo;entered a cycle&rdquo; &#x2013; then that point (x,y) is also disqualified. This will
+prevent us from computing subpaths repeatedly, as a naive implementation
+would on the following input:
+</p>
+
+<div class="VERBATIM">
+<p>
+-&gt; 1 1 1 0
+   1 0 1 0
+   1 1 1 1
+   0 0 0 0 -&gt;
+</p>
+
+</div>
+
+<p>
+First, we implement a function to return all &ldquo;edges&rdquo; of a given &ldquo;vertex&rdquo; in
+our matrix-graph:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">get_edges</span>(M, V):
+    <span style="color: #81A1C1;">for</span> f, e <span style="color: #81A1C1;">in</span> [
+        (<span style="color: #81A1C1;">lambda</span> V: V[0] &gt; 0, (V[0] - 1, V[1])),
+        (<span style="color: #81A1C1;">lambda</span> V: V[1] &gt; 0, (V[0], V[1] - 1)),
+        (<span style="color: #81A1C1;">lambda</span> V: V[0] &lt; <span style="color: #81A1C1;">len</span>(M) - 1, (V[0] + 1, V[1])),
+        (<span style="color: #81A1C1;">lambda</span> V: V[1] &lt; <span style="color: #81A1C1;">len</span>(M[0]) - 1, (V[0], V[1] + 1))
+    ]:
+        <span style="color: #81A1C1;">if</span> f(V) <span style="color: #81A1C1;">and</span> M[e[0]][e[1]] != 0:
+            <span style="color: #81A1C1;">yield</span> e
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    <span style="color: #81A1C1;">set</span>(get_edges([
+        [1, 1, 0],
+        [1, 0, 0],
+        [0, 0, 0],
+    ], (0,0))) == <span style="color: #81A1C1;">set</span>([(1,0), (0,1)]),
+
+    <span style="color: #81A1C1;">set</span>(get_edges([
+        [1, 1, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+    ], (0,0))) == <span style="color: #81A1C1;">set</span>([(0,1)]),
+])
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">get_exit_path</span>(M, xy_in, xy_out):
+    <span style="color: #D8DEE9;">is_qualified</span> = [[<span style="color: #81A1C1;">True</span> <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> M[0]] <span style="color: #81A1C1;">for</span> _ <span style="color: #81A1C1;">in</span> M]
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">_get_exit_path</span>(cursor, set_visited):
+        <span style="color: #81A1C1;">if</span> cursor == xy_out:
+            <span style="color: #81A1C1;">return</span> [cursor]
+        <span style="color: #81A1C1;">if</span> cursor <span style="color: #81A1C1;">in</span> set_visited <span style="color: #81A1C1;">or</span> <span style="color: #81A1C1;">not</span> is_qualified[cursor[0]][cursor[1]]:
+            is_qualified[cursor[0]][cursor[1]] = <span style="color: #81A1C1;">False</span>
+            <span style="color: #81A1C1;">return</span> []
+        <span style="color: #81A1C1;">for</span> e <span style="color: #81A1C1;">in</span> get_edges(M, cursor):
+            <span style="color: #D8DEE9;">rest</span> = _get_exit_path(e, set_visited | {cursor})
+            <span style="color: #81A1C1;">if</span> rest != []:
+                <span style="color: #81A1C1;">return</span> [cursor] + rest
+        <span style="color: #81A1C1;">return</span> []
+    <span style="color: #81A1C1;">return</span> _get_exit_path(xy_in, <span style="color: #81A1C1;">set</span>())
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    get_exit_path([
+        [1, 1, 0],
+        [1, 0, 0],
+        [1, 1, 1],
+    ], (0,1), (2,2)) == [(0,1), (0,0), (1,0), (2,0), (2,1), (2,2)],
+    get_exit_path([
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 1, 1],
+    ], (0,1), (2,2)) == [],
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org2a47faa" class="outline-4">
+<h4 id="org2a47faa"><span class="section-number-4">2.15.2</span> <span class="done WRITTEN">WRITTEN</span> Transform one string to another</h4>
+<div class="outline-text-4" id="text-2-15-2">
+<p>
+Let s and t be strings and D a dictionary, i.e. a set of strings. Define s
+to produce t if there exists a sequence of strings from the dictionary P =
+&lt;s<sub>0</sub>, s<sub>1</sub>, &#x2026;, s<sub>n-1</sub>&gt; such that the first string is s, the last string is t,
+and adjacent strings have the same length and differ in exactly one
+character. The sequence P is called a <i>production sequence</i>. For example, if
+the dictionary is <code>{bat, cot, dog, dag, dot, cat}</code>, then <code>&lt;cat, cot, dot,
+    dog&gt;</code> is a production sequence.
+</p>
+
+<p>
+Given a dictionary D and two strings s and t, write a program to determine
+if s produces t. Assume that all characters are lowercase alphabets. If s
+does produce t, output the length of the shortest production sequence;
+otherwise, output -1.
+</p>
+
+<p>
+<i>Hint</i>: Treat strings as vertices in an undirected graph, with an edge
+between u and v if and only if the corresponding strings differ in one
+character.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgd30e4cb"></a>Solution<br />
+<div class="outline-text-5" id="text-2-15-2-1">
+<p>
+Create a graph according to the hint in time complexity O(n<sup>2</sup>). Traverse the
+graph using BFS in time O(|V| + |E|) = O(n + n<sup>2</sup>) = O(n<sup>2</sup>).
+</p>
+
+<p>
+Note that we don&rsquo;t need to necessarily &ldquo;create&rdquo; a graph per se; edges can
+be &ldquo;discovered&rdquo; ad-hoc by finding words in the dictionary that are one
+character off from the current vertex.
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org6ba9901" class="outline-4">
+<h4 id="org6ba9901"><span class="section-number-4">2.15.3</span> <span class="done DONE">DONE</span> Paint a Boolean matrix</h4>
+<div class="outline-text-4" id="text-2-15-3">
+<p>
+Implement a routine that takes an n x m Boolean array A together with an
+entry (x,y) and flips the color of the region associated with (x,y).
+</p>
+
+<p>
+<i>Hint</i>: Solve this conceptually, then think about implementation
+optimizations.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgb8f2efd"></a>Solution<br />
+<div class="outline-text-5" id="text-2-15-3-1">
+<p>
+Record the target value of (x,y); if (x,y) is True, target is False, and
+vice-versa. From (x,y), fan out &#x2013; recursively or with a queue &#x2013; to all
+neighbor entries. If neighbor n is already set to the target, do nothing;
+otherwise, set n to the target, and add n&rsquo;s neighbors to the visitation
+queue. Continue in this way until the visitation queue is empty.
+</p>
+
+<p>
+Time O(n) and space O(n) for the size of the array.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">flip_region</span>(Ab, i, j):
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">neighbors</span>(Ab, i, j):
+        <span style="color: #81A1C1;">if</span> i &gt; 0:
+            <span style="color: #81A1C1;">yield</span> (i-1,j)
+        <span style="color: #81A1C1;">if</span> i &lt; <span style="color: #81A1C1;">len</span>(Ab) - 1:
+            <span style="color: #81A1C1;">yield</span> (i+1, j)
+        <span style="color: #81A1C1;">if</span> j &gt; 0:
+            <span style="color: #81A1C1;">yield</span> (i, j-1)
+        <span style="color: #81A1C1;">if</span> j &lt; <span style="color: #81A1C1;">len</span>(Ab[0]) - 1:
+            <span style="color: #81A1C1;">yield</span> (i, j+1)
+    <span style="color: #D8DEE9;">_Ab</span> = Ab
+    <span style="color: #D8DEE9;">target</span> = <span style="color: #81A1C1;">not</span> _Ab[i][j]
+    <span style="color: #D8DEE9;">visit_queue</span> = [(i,j)]
+    <span style="color: #81A1C1;">while</span> visit_queue:
+        <span style="color: #D8DEE9;">_i</span>, <span style="color: #D8DEE9;">_j</span> = visit_queue.pop(0)
+        <span style="color: #D8DEE9;">curr</span> = _Ab[_i][_j]
+        <span style="color: #81A1C1;">if</span> curr == target:
+            <span style="color: #81A1C1;">continue</span>
+        <span style="color: #81A1C1;">for</span> n <span style="color: #81A1C1;">in</span> neighbors(_Ab, _i, _j):
+            _Ab[_i][_j] = target
+            visit_queue.append(n)
+    <span style="color: #81A1C1;">return</span> _Ab
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">all</span>([
+    flip_region([
+        [1,0,1],
+        [0,1,1],
+        [1,1,1],
+    ], 0, 2) == [
+        [1,0,0],
+        [0,0,0],
+        [0,0,0],
+    ],
+])
+</pre>
+</div>
+
+<pre class="example">
+True
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7caaaaa" class="outline-3">
+<h3 id="org7caaaaa"><span class="section-number-3">2.16</span> Parallel Computing</h3>
+</div>
+</div>
+
+<div id="outline-container-orgbd630bd" class="outline-2">
+<h2 id="orgbd630bd"><span class="section-number-2">3</span> Domain Specific Problems</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org439e3fb" class="outline-3">
+<h3 id="org439e3fb"><span class="section-number-3">3.1</span> Design Problems</h3>
+</div>
+
+<div id="outline-container-org47777a6" class="outline-3">
+<h3 id="org47777a6"><span class="section-number-3">3.2</span> Language Questions</h3>
+</div>
+
+<div id="outline-container-orgb06042c" class="outline-3">
+<h3 id="orgb06042c"><span class="section-number-3">3.3</span> Object-Oriented Design</h3>
+</div>
+
+<div id="outline-container-org89462dc" class="outline-3">
+<h3 id="org89462dc"><span class="section-number-3">3.4</span> Common Tools</h3>
+</div>
+</div>
+
+<div id="outline-container-org6baef4e" class="outline-2">
+<h2 id="org6baef4e"><span class="section-number-2">4</span> Honors Class</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Jonathan Jin</p>
+<p class="date">Created: 2018-04-29 Sun 11:41</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

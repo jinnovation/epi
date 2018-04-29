@@ -1,7 +1,31 @@
+# -*- org-export-use-babel: nil; after-save-hook: org-html-export-to-html; -*-
+
 #+TITLE: Elements of Programming Interviews: Solutions
 #+AUTHOR: Jonathan Jin
 #+STARTUP: logdone showall
 #+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d) LOOKED-UP(l)
+
+#+OPTIONS: tags:nil
+
+#+HTML_HEAD:    <!-- Global site tag (gtag.js) - Google Analytics -->
+#+HTML_HEAD:    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42551205-2"></script>
+#+HTML_HEAD:    <script>
+#+HTML_HEAD:    window.dataLayer = window.dataLayer || [];
+#+HTML_HEAD:    function gtag(){dataLayer.push(arguments);}
+#+HTML_HEAD:    gtag('js', new Date());
+#+HTML_HEAD:    gtag('config', 'UA-42551205-2');
+#+HTML_HEAD:    </script>
+
+#+EXPORT_FILE_NAME: index
+
+#+SETUPFILE: theme.setup
+
+* Foreward
+
+  All problems presented here are from [[http://elementsofprogramminginterviews.com/][Elements of Programming Interviews]], by
+  Dr. Adnan Aziz, Tsung-Hsien Lee, and Amit Prakash. All credit goes to them.
+
+  All solutions presented are my own. 
 
 * Data Structures and Algorithms
 
@@ -2179,32 +2203,3 @@
 ** Common Tools
    
 * Honors Class
-  
-* (Un)license
-  
-  #+BEGIN_SRC text :eval never
-    This is free and unencumbered software released into the public domain.
-
-    Anyone is free to copy, modify, publish, use, compile, sell, or
-    distribute this software, either in source code form or as a compiled
-    binary, for any purpose, commercial or non-commercial, and by any
-    means.
-
-    In jurisdictions that recognize copyright laws, the author or authors
-    of this software dedicate any and all copyright interest in the
-    software to the public domain. We make this dedication for the benefit
-    of the public at large and to the detriment of our heirs and
-    successors. We intend this dedication to be an overt act of
-    relinquishment in perpetuity of all present and future rights to this
-    software under copyright law.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-    OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-    OTHER DEALINGS IN THE SOFTWARE.
-
-    For more information, please refer to <http://unlicense.org>
-  #+END_SRC

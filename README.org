@@ -5,7 +5,7 @@
 #+STARTUP: logdone showall
 #+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d) LOOKED-UP(l)
 
-#+OPTIONS: tags:nil
+#+OPTIONS: tags:nil H:4
 
 #+HTML_HEAD:    <!-- Global site tag (gtag.js) - Google Analytics -->
 #+HTML_HEAD:    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42551205-2"></script>

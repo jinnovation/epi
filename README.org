@@ -34,85 +34,87 @@
 *** DONE Computing the parity of a word                                     :C0:
     CLOSED: [2017-06-21 Wed 00:44]
     
+    #+BEGIN_QUOTE
     The parity of a binary word is 1 if the number of 1s in the word is odd;
     otherwise, it is 0. For example, the parity of 1011 is 1, and the parity of
     10001000 is 0. Parity checks are used to detect single bit errors in data
     storage and communication. It is fairly straightforward to write code that
     computes the parity of a single 64-bit word
-    
-**** Solution
+    #+END_QUOTE
 
-     We assume that the word is provided as a 64-bit unsigned integer.
+    We assume that the word is provided as a 64-bit unsigned integer.
 
-     A naive implementation would be to iterate through every bit of the word,
-     XOR-ing a counter for every 1-bit.
+    A naive implementation would be to iterate through every bit of the word,
+    XOR-ing a counter for every 1-bit.
 
-     #+BEGIN_SRC python :results silent :session
-       def parity(word):
-           p = 0
-           for shift in range(0,64):
-               p ^= (word>>shift)&1
-           return p
-     #+END_SRC
+    #+BEGIN_SRC python :results silent :session
+      def parity(word):
+          p = 0
+          for shift in range(0,64):
+              p ^= (word>>shift)&1
+          return p
+    #+END_SRC
 
-     #+BEGIN_SRC python :results value :session
-       all([parity(int(w,2))==p for w,p in [
-           ("1011", 1),
-           ("0000", 0),
-       ]])
-     #+END_SRC
+    #+BEGIN_SRC python :results value :session
+      all([parity(int(w,2))==p for w,p in [
+          ("1011", 1),
+          ("0000", 0),
+      ]])
+    #+END_SRC
 
-     #+RESULTS:
-     : True
+    #+RESULTS:
+    : True
 
-     This implementation is O(n), where n is the length of the input word.
+    This implementation is O(n), where n is the length of the input word.
 
-     We can, however, optimize this function further by precomputing the
-     parities of words and storing the parities in a lookup table. For
-     illustration's purpose, we'll define a lookup table that stores the
-     parities of all words of length 2:
+    We can, however, optimize this function further by precomputing the
+    parities of words and storing the parities in a lookup table. For
+    illustration's purpose, we'll define a lookup table that stores the
+    parities of all words of length 2:
 
-     #+BEGIN_SRC python :results none :session
-       PARITIES_2 = {
-           int(w,2): p for w,p in [
-               ("00", 0),
-               ("01", 1),
-               ("10", 1),
-               ("11", 0),
-           ]
-       }
-     #+END_SRC
+    #+BEGIN_SRC python :results none :session
+      PARITIES_2 = {
+          int(w,2): p for w,p in [
+              ("00", 0),
+              ("01", 1),
+              ("10", 1),
+              ("11", 0),
+          ]
+      }
+    #+END_SRC
 
-     Resulting in the following implementation:
+    Resulting in the following implementation:
 
-     #+BEGIN_SRC python :results none :session
-       def memoized_parity(word):
-           p = 0
-           memo_word_length = 2
-           for s in range(0,64/memo_word_length):
-               mask = 2^memo_word_length - 1
-               shift = s * memo_word_length
-               p ^= PARITIES_2[(word >> shift) & mask]
-           return p
-     #+END_SRC
+    #+BEGIN_SRC python :results none :session
+      def memoized_parity(word):
+          p = 0
+          memo_word_length = 2
+          for s in range(0,64/memo_word_length):
+              mask = 2^memo_word_length - 1
+              shift = s * memo_word_length
+              p ^= PARITIES_2[(word >> shift) & mask]
+          return p
+    #+END_SRC
 
-     #+BEGIN_SRC python :results value :session
-       all([memoized_parity(int(w,2))==p for w,p in [
-           ("1011", 1),
-           ("0000", 0),
-       ]])
-     #+END_SRC
+    #+BEGIN_SRC python :results value :session
+      all([memoized_parity(int(w,2))==p for w,p in [
+          ("1011", 1),
+          ("0000", 0),
+      ]])
+    #+END_SRC
 
-     #+RESULTS:
-     : True
+    #+RESULTS:
+    : True
 
-     This revised implementation is O(n/w) = O(n), where w is the word length of
-     the lookup key.
+    This revised implementation is O(n/w) = O(n), where w is the word length of
+    the lookup key.
 
 *** TODO Compute x^{y}                                                      :C1:
 
+    #+BEGIN_QUOTE
     Compute x^{y} without using arithmetic operators, i.e. using only assignment,
     bitwise operators, and equality checks.
+    #+END_QUOTE
 
 ** Arrays
    
@@ -931,100 +933,100 @@
 *** DONE Reconstruct a binary tree from traversal data                      :C2:
     CLOSED: [2017-07-01 Sat 18:00]
 
+    #+BEGIN_QUOTE
     Given an inorder traversal sequence and a postorder traversal sequence of a
     binary tree write a program to reconstruct the tree. Assume each node has a
     unique key.
 
     /Hint/: Focus on the root.
+    #+END_QUOTE
 
-**** Solution
+    The key insight here is that, for any input in-order traversal =it= and any
+    input post-order traversal =pt=, we have the following invariants:
 
-     The key insight here is that, for any input in-order traversal =it= and any
-     input post-order traversal =pt=, we have the following invariants:
-
-     - =it= and =pt= are equal in length;
-     - The last element of =pt= corresponds to the "root" of the given tree.
-
-
-     Furthermore, we observe that =it= and =pt= are each laid out as follows:
-
-     #+BEGIN_VERBATIM
-     it [<----LHS----><ROOT><----RHS---->]
-     pt [<----LHS----><----RHS----><ROOT>]
-     #+END_VERBATIM
-
-     As such, we can use the tail value of =pt= during every iteration to
-     "bisect" the in-order traversal list, giving us the number of elements in
-     both the left branch and the right branch. Using these quantities, we can
-     extract the corresponding sub-lists out of the top-level post-order
-     traversal, giving us everything that we need for a recursive
-     implementation.
-
-     #+BEGIN_SRC python :results silent :session
-       def teq(lhs, rhs):
-           return (lhs is None and rhs is None) \
-               or (lhs.value == rhs.value
-                   and teq(lhs.lhs, rhs.lhs)
-                   and teq(lhs.rhs, rhs.rhs))
+    - =it= and =pt= are equal in length;
+    - The last element of =pt= corresponds to the "root" of the given tree.
 
 
-       class Tree():
-           def __init__(self, value, lhs=None, rhs=None):
-               self.value = value
-               self.lhs = lhs
-               self.rhs = rhs
+    Furthermore, we observe that =it= and =pt= are each laid out as follows:
+
+    #+BEGIN_VERBATIM
+    it [<----LHS----><ROOT><----RHS---->]
+    pt [<----LHS----><----RHS----><ROOT>]
+    #+END_VERBATIM
+
+    As such, we can use the tail value of =pt= during every iteration to
+    "bisect" the in-order traversal list, giving us the number of elements in
+    both the left branch and the right branch. Using these quantities, we can
+    extract the corresponding sub-lists out of the top-level post-order
+    traversal, giving us everything that we need for a recursive
+    implementation.
+
+    #+BEGIN_SRC python :results silent :session
+      def teq(lhs, rhs):
+          return (lhs is None and rhs is None) \
+              or (lhs.value == rhs.value
+                  and teq(lhs.lhs, rhs.lhs)
+                  and teq(lhs.rhs, rhs.rhs))
 
 
-       def reconstruct(it, pt):
-           assert len(it) == len(pt)
-           if not it and not pt:
-               return None
+      class Tree():
+          def __init__(self, value, lhs=None, rhs=None):
+              self.value = value
+              self.lhs = lhs
+              self.rhs = rhs
 
-           if len(it) == 1 and len(pt) == 1:
-               assert it[0] == pt[0]
-               return Tree(it[0])
 
-           v_root = pt[-1]
+      def reconstruct(it, pt):
+          assert len(it) == len(pt)
+          if not it and not pt:
+              return None
 
-           it_root_index = it.index(v_root)
+          if len(it) == 1 and len(pt) == 1:
+              assert it[0] == pt[0]
+              return Tree(it[0])
 
-           it_lhs = it[0:it_root_index]
-           pt_lhs = [] if it_root_index == 0 else pt[
-               0:len(it_lhs)
-           ]
+          v_root = pt[-1]
 
-           it_rhs = it[it_root_index+1:]
+          it_root_index = it.index(v_root)
 
-           pt_rhs_start = 0 if len(pt_lhs) == 0 else len(pt_lhs)
-           pt_rhs = [] if it_root_index == len(it)-1 else pt[
-               pt_rhs_start:pt.index(v_root)
-           ]
+          it_lhs = it[0:it_root_index]
+          pt_lhs = [] if it_root_index == 0 else pt[
+              0:len(it_lhs)
+          ]
 
-           return Tree(
-               value=v_root,
-               lhs=reconstruct(it_lhs, pt_lhs),
-               rhs=reconstruct(it_rhs, pt_rhs),
-           )
-     #+END_SRC
+          it_rhs = it[it_root_index+1:]
 
-     #+BEGIN_SRC python :results value :session
-       all([
-           teq(reconstruct("A", "A"), Tree("A")),
-           teq(reconstruct("213", "231"),
-               Tree("1", lhs=Tree("2"), rhs=Tree("3"))),
-           teq(reconstruct("acbd", "abcd"),
-               Tree("d", lhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
-           teq(reconstruct("dacb", "abcd"),
-               Tree("d", rhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
-       ])
-     #+END_SRC
+          pt_rhs_start = 0 if len(pt_lhs) == 0 else len(pt_lhs)
+          pt_rhs = [] if it_root_index == len(it)-1 else pt[
+              pt_rhs_start:pt.index(v_root)
+          ]
 
-     #+RESULTS:
-     : True
+          return Tree(
+              value=v_root,
+              lhs=reconstruct(it_lhs, pt_lhs),
+              rhs=reconstruct(it_rhs, pt_rhs),
+          )
+    #+END_SRC
 
-     This implementation, given that it needs to perform an index-search on the
-     unordered lists effectively for every element of the list, is O(n^2) with
-     respect to the number of elements in the tree. 
+    #+BEGIN_SRC python :results value :session
+      all([
+          teq(reconstruct("A", "A"), Tree("A")),
+          teq(reconstruct("213", "231"),
+              Tree("1", lhs=Tree("2"), rhs=Tree("3"))),
+          teq(reconstruct("acbd", "abcd"),
+              Tree("d", lhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
+          teq(reconstruct("dacb", "abcd"),
+              Tree("d", rhs=Tree("c", lhs=Tree("a"), rhs=Tree("b")))),
+      ])
+    #+END_SRC
+
+    #+RESULTS:
+    : True
+
+    This implementation, given that it needs to perform an index-search on the
+    unordered lists effectively for every element of the list, is O(n^2) with
+    respect to the number of elements in the tree. 
 
 **** Corollary
 

@@ -2,7 +2,7 @@
 
 #+TITLE: Elements of Programming Interviews: Solutions
 #+AUTHOR: Jonathan Jin
-#+STARTUP: logdone showall
+#+STARTUP: logdone 
 #+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d) LOOKED-UP(l)
 
 #+OPTIONS: tags:nil H:4
@@ -1044,13 +1044,52 @@
     /Hint/: How can you tell whether a node is a left child or right child of
     its parent?
 
-*** TODO Reconstruct a binary tree from a preorder traversal with markers   :C4:
+*** LOOKED-UP Reconstruct a binary tree from a preorder traversal with markers :C4:
+    CLOSED: [2018-04-30 Mon 18:51]
 
+    #+BEGIN_QUOTE
     Design an algorithm for reconstructing a binary tree from a preorder
     traversal visit sequence that uses =null= to mark empty children.
 
     /Hint/: It's difficult to solve this problem by examining the preorder
     traversal visit sequence from left-to-right.
+    #+END_QUOTE
+    
+    #+BEGIN_SRC python 
+      def teq(lhs, rhs):
+          return (lhs is None and rhs is None) \
+              or (lhs.v == rhs.v
+                  and teq(lhs.l, rhs.l)
+                  and teq(lhs.r, rhs.r))
+
+
+      class Tree():
+          def __init__(self, v, l=None, r=None):
+              self.v = v
+              self.l = l
+              self.r = r
+
+
+      def from_pre(pre):
+          idx = {'idx': 0}
+
+          def _from_pre(pre):
+              v = pre[idx['idx']]
+              if not v:
+                  return None
+              idx['idx'] += 1
+              l = _from_pre(pre)
+              idx['idx'] += 1
+              r = _from_pre(pre)
+              return Tree(v, l=l, r=r)
+
+          return _from_pre(pre)
+
+
+      def test():
+          assert teq(from_pre([1, 2, None, None, 3, None, None]),
+                     Tree(1, l=Tree(2), r=Tree(3)))
+    #+END_SRC
 
 *** TODO Compute the right sibling tree                                     :C4:
 
@@ -1693,7 +1732,39 @@
 
 ** Recursion
 
-*** TODO Tower of Hanoi                                                     :C0:
+*** DONE Tower of Hanoi                                                     :C0:
+    CLOSED: [2018-04-30 Mon 18:51]
+
+    We note that the base condition -- a tower of height 1 -- is trivial.
+
+    For each operation, each of the three pillars is assigned one of three
+    "purposes", as follows:
+
+    - One is the "source" pillar, from which we'd like to move a tile;
+    - One is the "destination" pillar, to which we'd like to move said tile; and
+    - One is the "buffer" pillar, where we move all tiles that are blocking our
+      tile in question from being moved to its destination.
+
+
+    For explanation's sake, let's say that all tiles start on Pillar 1, and that
+    we'd like to move them all to Pillar 3 according to the rules of the game.
+
+    #+BEGIN_SRC python
+      def hanoi(p1, p2=[], p3=[]):
+          _source = p1
+          _buff = p2
+          _dest = p3
+
+          def move(source=_source, dest=_dest, buff=_buff, n=len(_source)):
+              if n == 0:
+                  return
+              move(source=source, dest=buff, buff=dest, n=n-1)
+              dest.append(source.pop())
+              move(source=buff, dest=dest, buff=source, n=n-1)
+
+          move()
+          return _source, _buff, _dest
+    #+END_SRC
 
 *** TODO Generate all nonattacking placements of n-Queens                   :C1:
 

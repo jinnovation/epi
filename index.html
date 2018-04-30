@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-04-29 Sun 18:06 -->
+<!-- 2018-04-30 Mon 18:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elements of Programming Interviews: Solutions</title>
@@ -248,313 +248,313 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5cc9765">1. Foreward</a></li>
-<li><a href="#org5617fce">2. Data Structures and Algorithms</a>
+<li><a href="#orgbf3afd6">1. Foreward</a></li>
+<li><a href="#org2a9eb1f">2. Data Structures and Algorithms</a>
 <ul>
-<li><a href="#org4b970f4">2.1. Primitive Types</a>
+<li><a href="#org4ea353d">2.1. Primitive Types</a>
 <ul>
-<li><a href="#orgee83650">2.1.1. <span class="done DONE">DONE</span> Computing the parity of a word</a></li>
-<li><a href="#org27557db">2.1.2. <span class="todo TODO">TODO</span> Compute x<sup>y</sup></a></li>
+<li><a href="#org192b578">2.1.1. <span class="done DONE">DONE</span> Computing the parity of a word</a></li>
+<li><a href="#org296c55a">2.1.2. <span class="todo TODO">TODO</span> Compute x<sup>y</sup></a></li>
 </ul>
 </li>
-<li><a href="#org91405d3">2.2. Arrays</a>
+<li><a href="#orge20348e">2.2. Arrays</a>
 <ul>
-<li><a href="#org912f60e">2.2.1. <span class="todo TODO">TODO</span> The Dutch national flag problem</a>
+<li><a href="#org7bb0c0f">2.2.1. <span class="todo TODO">TODO</span> The Dutch national flag problem</a>
 <ul>
-<li><a href="#org0c69e8b">2.2.1.1. Solution</a></li>
+<li><a href="#orgba2e19c">2.2.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org81ccdfc">2.2.2. <span class="done DONE">DONE</span> Sample offline data</a>
+<li><a href="#orgde56f09">2.2.2. <span class="done DONE">DONE</span> Sample offline data</a>
 <ul>
-<li><a href="#org4b8a142">2.2.2.1. Solution</a></li>
+<li><a href="#org7948413">2.2.2.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orge06973e">2.2.3. <span class="done DONE">DONE</span> Sample online data</a>
+<li><a href="#orgf48a422">2.2.3. <span class="done DONE">DONE</span> Sample online data</a>
 <ul>
-<li><a href="#org8a155d9">2.2.3.1. Solution</a></li>
+<li><a href="#org402b726">2.2.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org13c2df0">2.2.4. <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</a></li>
-<li><a href="#org2714cfc">2.2.5. <span class="done DONE">DONE</span> Buy and sell a stock once</a>
+<li><a href="#orgb657af4">2.2.4. <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</a></li>
+<li><a href="#orgf300536">2.2.5. <span class="done DONE">DONE</span> Buy and sell a stock once</a>
 <ul>
-<li><a href="#orgd1d09a3">2.2.5.1. Solution</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org9a5a4b1">2.3. Strings</a>
-<ul>
-<li><a href="#org5ced079">2.3.1. <span class="done DONE">DONE</span> Interconvert strings and integers</a>
-<ul>
-<li><a href="#org095bae8">2.3.1.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#org83b3ac5">2.3.2. <span class="todo TODO">TODO</span> Base conversion</a></li>
-<li><a href="#org16e103d">2.3.3. <span class="todo TODO">TODO</span> Replace and remove</a></li>
-<li><a href="#orgefbdfdf">2.3.4. <span class="done DONE">DONE</span> Test palindromicity</a>
-<ul>
-<li><a href="#org2cf290f">2.3.4.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#org8a41a1d">2.3.5. <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</a>
-<ul>
-<li><a href="#org7fb0561">2.3.5.1. Solution</a></li>
+<li><a href="#org922f2aa">2.2.5.1. Solution</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb40badc">2.4. Linked Lists</a>
+<li><a href="#org72051c7">2.3. Strings</a>
 <ul>
-<li><a href="#org7ce8a67">2.4.1. <span class="done DONE">DONE</span> Merge two sorted lists</a>
+<li><a href="#orge54680d">2.3.1. <span class="done DONE">DONE</span> Interconvert strings and integers</a>
 <ul>
-<li><a href="#org7297c2b">2.4.1.1. Solution</a></li>
+<li><a href="#org2ff1b70">2.3.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org75e30ba">2.4.2. <span class="done DONE">DONE</span> Reverse a singly linked list</a>
+<li><a href="#org7db8a45">2.3.2. <span class="todo TODO">TODO</span> Base conversion</a></li>
+<li><a href="#org5782176">2.3.3. <span class="todo TODO">TODO</span> Replace and remove</a></li>
+<li><a href="#orgdfa6e39">2.3.4. <span class="done DONE">DONE</span> Test palindromicity</a>
 <ul>
-<li><a href="#org1e55fed">2.4.2.1. Solution</a></li>
+<li><a href="#org68f4867">2.3.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgdb6c5f7">2.4.3. <span class="done DONE">DONE</span> Test for cyclicity</a>
+<li><a href="#org645d3f8">2.3.5. <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</a>
 <ul>
-<li><a href="#org962402a">2.4.3.1. Solution</a></li>
+<li><a href="#org941a9ee">2.3.5.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org92f165d">2.4.4. <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</a>
+</ul>
+</li>
+<li><a href="#orgb430912">2.4. Linked Lists</a>
 <ul>
-<li><a href="#orga040384">2.4.4.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#orgcb3d2ce">2.4.5. <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</a>
+<li><a href="#org600b134">2.4.1. <span class="done DONE">DONE</span> Merge two sorted lists</a>
 <ul>
-<li><a href="#org17ae78e">2.4.5.1. Solution</a></li>
+<li><a href="#orga16eee7">2.4.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgb2273a3">2.4.6. <span class="todo TODO">TODO</span> Implement even-odd merge</a></li>
-<li><a href="#orgf2291a2">2.4.7. <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</a></li>
-</ul>
-</li>
-<li><a href="#orge1d4b89">2.5. Stacks and Queues</a>
+<li><a href="#org594e9b1">2.4.2. <span class="done DONE">DONE</span> Reverse a singly linked list</a>
 <ul>
-<li><a href="#orgaed4d60">2.5.1. <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</a>
+<li><a href="#org86b0016">2.4.2.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#org739f954">2.4.3. <span class="done DONE">DONE</span> Test for cyclicity</a>
 <ul>
-<li><a href="#org844a018">2.5.1.1. Solution</a></li>
+<li><a href="#org0881a5f">2.4.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org2607df7">2.5.2. <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</a>
+<li><a href="#org7b3c357">2.4.4. <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</a>
 <ul>
-<li><a href="#org38ce61a">2.5.2.1. Solution</a></li>
+<li><a href="#org92bd518">2.4.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org474c010">2.5.3. <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</a>
+<li><a href="#orgb17dabb">2.4.5. <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</a>
 <ul>
-<li><a href="#org3ecc259">2.5.3.1. Solution</a></li>
+<li><a href="#org22491ca">2.4.5.1. Solution</a></li>
 </ul>
 </li>
+<li><a href="#org46d1836">2.4.6. <span class="todo TODO">TODO</span> Implement even-odd merge</a></li>
+<li><a href="#orgf9f0505">2.4.7. <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</a></li>
 </ul>
 </li>
-<li><a href="#org5dbf228">2.6. Binary Trees</a>
+<li><a href="#org36f9e1a">2.5. Stacks and Queues</a>
 <ul>
-<li><a href="#orgd6fcc3e">2.6.1. <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</a>
+<li><a href="#orga8d6ce3">2.5.1. <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</a>
 <ul>
-<li><a href="#org6191bce">2.6.1.1. Solution</a></li>
+<li><a href="#orge52c81c">2.5.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org67d5d1a">2.6.2. <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</a>
+<li><a href="#org89001b6">2.5.2. <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</a>
 <ul>
-<li><a href="#org74afb53">2.6.2.1. Solution</a></li>
+<li><a href="#org5eb00a9">2.5.2.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgc139abe">2.6.3. <span class="done DONE">DONE</span> Test if a binary tree is symmetric</a>
+<li><a href="#org1890db5">2.5.3. <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</a>
 <ul>
-<li><a href="#org34c6642">2.6.3.1. Solution</a></li>
+<li><a href="#org1db0e05">2.5.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org1cd7cd6">2.6.4. <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</a>
+</ul>
+</li>
+<li><a href="#orgefee940">2.6. Binary Trees</a>
 <ul>
-<li><a href="#orgcbbc9f3">2.6.4.1. Corollary</a></li>
-</ul>
-</li>
-<li><a href="#org444c8c2">2.6.5. <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</a></li>
-<li><a href="#orgbeba650">2.6.6. <span class="todo TODO">TODO</span> Reconstruct a binary tree from a preorder traversal with markers</a></li>
-<li><a href="#orgee198db">2.6.7. <span class="todo TODO">TODO</span> Compute the right sibling tree</a></li>
-</ul>
-</li>
-<li><a href="#org9596b20">2.7. Heaps</a>
+<li><a href="#orgaabda5d">2.6.1. <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</a>
 <ul>
-<li><a href="#orgb0aefa0">2.7.1. <span class="todo TODO">TODO</span> Merge sorted files</a></li>
-<li><a href="#org1cde0e2">2.7.2. <span class="todo TODO">TODO</span> Compute the k closest stars</a></li>
+<li><a href="#org1407c94">2.6.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org0b62b20">2.8. Searching</a>
+<li><a href="#orgb6b66e7">2.6.2. <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</a>
 <ul>
-<li><a href="#orge1bb801">2.8.1. <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></a>
+<li><a href="#org6fbf4c1">2.6.2.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#org5f6129c">2.6.3. <span class="done DONE">DONE</span> Test if a binary tree is symmetric</a>
 <ul>
-<li><a href="#orge13a5ff">2.8.1.1. Solution</a></li>
+<li><a href="#org2004a74">2.6.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org121b00b">2.8.2. <span class="todo TODO">TODO</span> Compute the integer square root</a></li>
-<li><a href="#org8da21c6">2.8.3. <span class="todo TODO">TODO</span> Find the k-th largest element</a></li>
-</ul>
-</li>
-<li><a href="#org09df7cc">2.9. Hash Tables</a>
+<li><a href="#orgd1ce031">2.6.4. <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</a>
 <ul>
-<li><a href="#org36f6eef">2.9.1. <span class="done DONE">DONE</span> Partition into anagrams</a>
+<li><a href="#org14cd715">2.6.4.1. Corollary</a></li>
+</ul>
+</li>
+<li><a href="#orgff2ed60">2.6.5. <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</a></li>
+<li><a href="#orgd8bde39">2.6.6. <span class="done LOOKED_UP">LOOKED-UP</span> Reconstruct a binary tree from a preorder traversal with markers</a></li>
+<li><a href="#org5fae37c">2.6.7. <span class="todo TODO">TODO</span> Compute the right sibling tree</a></li>
+</ul>
+</li>
+<li><a href="#orga48049a">2.7. Heaps</a>
 <ul>
-<li><a href="#orga6a5850">2.9.1.1. Solution</a></li>
+<li><a href="#orgfcd46e5">2.7.1. <span class="todo TODO">TODO</span> Merge sorted files</a></li>
+<li><a href="#org730a006">2.7.2. <span class="todo TODO">TODO</span> Compute the k closest stars</a></li>
 </ul>
 </li>
-<li><a href="#orge524f46">2.9.2. <span class="done DONE">DONE</span> Test for palindromic permutations</a>
+<li><a href="#org71278b2">2.8. Searching</a>
 <ul>
-<li><a href="#org79d3739">2.9.2.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#org55f8bdc">2.9.3. <span class="done DONE">DONE</span> Is an anonymous letter constructible?</a>
+<li><a href="#org8607f39">2.8.1. <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></a>
 <ul>
-<li><a href="#org92827f0">2.9.3.1. Solution</a></li>
+<li><a href="#org672ef0e">2.8.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org21cb0be">2.9.4. <span class="todo TODO">TODO</span> Implement an ISBN cache</a></li>
+<li><a href="#org0a1d09a">2.8.2. <span class="todo TODO">TODO</span> Compute the integer square root</a></li>
+<li><a href="#org410d7c6">2.8.3. <span class="todo TODO">TODO</span> Find the k-th largest element</a></li>
 </ul>
 </li>
-<li><a href="#orgbcbb901">2.10. Sorting</a>
+<li><a href="#orgd0c81fc">2.9. Hash Tables</a>
 <ul>
-<li><a href="#org8e60936">2.10.1. <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</a>
+<li><a href="#orgcde4e80">2.9.1. <span class="done DONE">DONE</span> Partition into anagrams</a>
 <ul>
-<li><a href="#org576f7c5">2.10.1.1. Solution</a></li>
+<li><a href="#org8debd14">2.9.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgb13592e">2.10.2. <span class="todo TODO">TODO</span> Implement mergesort in-place</a></li>
-<li><a href="#orgf2e8e72">2.10.3. <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</a>
+<li><a href="#orgc100003">2.9.2. <span class="done DONE">DONE</span> Test for palindromic permutations</a>
 <ul>
-<li><a href="#org3574d49">2.10.3.1. Solution</a></li>
+<li><a href="#orgb9718df">2.9.2.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orga4e505d">2.10.4. <span class="done DONE">DONE</span> Render a calendar</a>
+<li><a href="#orgeaf0529">2.9.3. <span class="done DONE">DONE</span> Is an anonymous letter constructible?</a>
 <ul>
-<li><a href="#org45ff028">2.10.4.1. Solution</a></li>
+<li><a href="#org441433f">2.9.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgb451bb0">2.10.5. <span class="todo TODO">TODO</span> Compute the union of intervals</a></li>
-<li><a href="#org0f2b84c">2.10.6. <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</a></li>
-<li><a href="#org6814f08">2.10.7. <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</a></li>
+<li><a href="#org98fed7b">2.9.4. <span class="todo TODO">TODO</span> Implement an ISBN cache</a></li>
 </ul>
 </li>
-<li><a href="#org59f6ec3">2.11. Binary Search Trees</a>
+<li><a href="#org4d0ea6a">2.10. Sorting</a>
 <ul>
-<li><a href="#org185d4ae">2.11.1. <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</a>
+<li><a href="#org2e42272">2.10.1. <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</a>
 <ul>
-<li><a href="#orgd37dea3">2.11.1.1. Solution</a></li>
+<li><a href="#org829709d">2.10.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org31265e2">2.11.2. <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</a>
+<li><a href="#orge41354a">2.10.2. <span class="todo TODO">TODO</span> Implement mergesort in-place</a></li>
+<li><a href="#org55e2bbf">2.10.3. <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</a>
 <ul>
-<li><a href="#org63bca0c">2.11.2.1. Solution</a></li>
+<li><a href="#org4c90cff">2.10.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgb9e599b">2.11.3. <span class="done DONE">DONE</span> Find the k largest elements in a BST</a></li>
-<li><a href="#org030e183">2.11.4. <span class="done DONE">DONE</span> Compute the LCA in a BST</a>
+<li><a href="#org2e105b9">2.10.4. <span class="done DONE">DONE</span> Render a calendar</a>
 <ul>
-<li><a href="#org0cdcf75">2.11.4.1. Solution</a></li>
+<li><a href="#org8abaa32">2.10.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org71d96a4">2.11.5. <span class="todo TODO">TODO</span> The most visited pages problem</a></li>
-<li><a href="#orgddba169">2.11.6. <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</a></li>
-<li><a href="#orgd89cd08">2.11.7. <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</a></li>
-<li><a href="#orge5091c2">2.11.8. <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</a></li>
-<li><a href="#orgb7dd3e6">2.11.9. <span class="todo TODO">TODO</span> Insertion and deletion in a BST</a>
+<li><a href="#org9309734">2.10.5. <span class="todo TODO">TODO</span> Compute the union of intervals</a></li>
+<li><a href="#org3737833">2.10.6. <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</a></li>
+<li><a href="#org7e703e4">2.10.7. <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</a></li>
+</ul>
+</li>
+<li><a href="#org6bff7e5">2.11. Binary Search Trees</a>
 <ul>
-<li><a href="#org5d0e8c9">2.11.9.1. Solution</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgb25cabd">2.12. Recursion</a>
+<li><a href="#orgd1f70c2">2.11.1. <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</a>
 <ul>
-<li><a href="#orgbe1a6a9">2.12.1. <span class="todo TODO">TODO</span> Tower of Hanoi</a></li>
-<li><a href="#org81b2694">2.12.2. <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</a></li>
+<li><a href="#org3be0eed">2.11.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org5abeacf">2.13. Dynamic Programming</a>
+<li><a href="#org261d01b">2.11.2. <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</a>
 <ul>
-<li><a href="#orgf231cb6">2.13.1. <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</a>
+<li><a href="#org95d1710">2.11.2.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#org731bcd1">2.11.3. <span class="done DONE">DONE</span> Find the k largest elements in a BST</a></li>
+<li><a href="#orgbcb7c4b">2.11.4. <span class="done DONE">DONE</span> Compute the LCA in a BST</a>
 <ul>
-<li><a href="#org40dd4d0">2.13.1.1. Solution</a></li>
+<li><a href="#orgafeb5b6">2.11.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgb6c64c7">2.13.2. <span class="todo TODO">TODO</span> Compute the Levenshtein distance</a></li>
-<li><a href="#org699acba">2.13.3. <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</a>
+<li><a href="#orgab84772">2.11.5. <span class="todo TODO">TODO</span> The most visited pages problem</a></li>
+<li><a href="#orgf6ca158">2.11.6. <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</a></li>
+<li><a href="#org0320ccf">2.11.7. <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</a></li>
+<li><a href="#org414c7d5">2.11.8. <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</a></li>
+<li><a href="#orgc16a108">2.11.9. <span class="todo TODO">TODO</span> Insertion and deletion in a BST</a>
 <ul>
-<li><a href="#org35f24d1">2.13.3.1. Solution</a></li>
+<li><a href="#org5b874af">2.11.9.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org429b494">2.13.4. <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</a>
+</ul>
+</li>
+<li><a href="#org8089db0">2.12. Recursion</a>
 <ul>
-<li><a href="#orgb251253">2.13.4.1. Solution</a></li>
+<li><a href="#orgd581cc9">2.12.1. <span class="done DONE">DONE</span> Tower of Hanoi</a></li>
+<li><a href="#orgd6caa50">2.12.2. <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</a></li>
 </ul>
 </li>
-<li><a href="#orgbd2e449">2.13.5. <span class="done DONE">DONE</span> Search for a sequence in a 2D array</a>
+<li><a href="#org032d4dc">2.13. Dynamic Programming</a>
 <ul>
-<li><a href="#org9a60b43">2.13.5.1. Solution</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgf307ce2">2.14. Greedy Algorithms and Invariants</a>
+<li><a href="#orgca027f9">2.13.1. <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</a>
 <ul>
-<li><a href="#org0807d62">2.14.1. <span class="done DONE">DONE</span> The 3-sum problem</a>
+<li><a href="#org5c76438">2.13.1.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#orgc8372cc">2.13.2. <span class="todo TODO">TODO</span> Compute the Levenshtein distance</a></li>
+<li><a href="#org8277fb4">2.13.3. <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</a>
 <ul>
-<li><a href="#orge44ca52">2.14.1.1. Solution</a></li>
+<li><a href="#org12a542b">2.13.3.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org7a5adcc">2.14.2. <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</a>
+<li><a href="#org2ace0b8">2.13.4. <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</a>
 <ul>
-<li><a href="#org2d58d0b">2.14.2.1. Solution</a></li>
+<li><a href="#orgebf40d7">2.13.4.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org598eb92">2.14.3. <span class="todo TODO">TODO</span> Find the majority element</a></li>
-<li><a href="#org2a19c4f">2.14.4. <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</a></li>
-<li><a href="#org726f1b6">2.14.5. <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</a></li>
-<li><a href="#orga9e133f">2.14.6. <span class="todo TODO">TODO</span> Implement Huffman coding</a></li>
-</ul>
-</li>
-<li><a href="#org71dd43e">2.15. Graphs</a>
+<li><a href="#org0287cdb">2.13.5. <span class="done DONE">DONE</span> Search for a sequence in a 2D array</a>
 <ul>
-<li><a href="#org958ae5f">2.15.1. <span class="done DONE">DONE</span> Search a maze</a>
+<li><a href="#org7a1c44c">2.13.5.1. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org73a6c8a">2.14. Greedy Algorithms and Invariants</a>
 <ul>
-<li><a href="#org6010380">2.15.1.1. Solution</a></li>
-</ul>
-</li>
-<li><a href="#org012dccf">2.15.2. <span class="done WRITTEN">WRITTEN</span> Transform one string to another</a>
+<li><a href="#org82eec0a">2.14.1. <span class="done DONE">DONE</span> The 3-sum problem</a>
 <ul>
-<li><a href="#org51206ad">2.15.2.1. Solution</a></li>
+<li><a href="#org0af5281">2.14.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgf8bf7b7">2.15.3. <span class="done DONE">DONE</span> Paint a Boolean matrix</a>
+<li><a href="#org10a32e2">2.14.2. <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</a>
 <ul>
-<li><a href="#org6bf4c44">2.15.3.1. Solution</a></li>
+<li><a href="#orga489978">2.14.2.1. Solution</a></li>
 </ul>
 </li>
+<li><a href="#org69ddaec">2.14.3. <span class="todo TODO">TODO</span> Find the majority element</a></li>
+<li><a href="#org7093da9">2.14.4. <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</a></li>
+<li><a href="#orgfd0f791">2.14.5. <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</a></li>
+<li><a href="#orgc8f4192">2.14.6. <span class="todo TODO">TODO</span> Implement Huffman coding</a></li>
 </ul>
 </li>
-<li><a href="#orgfc150cb">2.16. Parallel Computing</a></li>
-</ul>
-</li>
-<li><a href="#org7ab14c8">3. Domain Specific Problems</a>
+<li><a href="#org79285a6">2.15. Graphs</a>
 <ul>
-<li><a href="#orgd6a94c8">3.1. Design Problems</a></li>
-<li><a href="#org94d08b1">3.2. Language Questions</a></li>
-<li><a href="#org50ea4e9">3.3. Object-Oriented Design</a></li>
-<li><a href="#orgc6a97e4">3.4. Common Tools</a></li>
+<li><a href="#org38e6e3f">2.15.1. <span class="done DONE">DONE</span> Search a maze</a>
+<ul>
+<li><a href="#org48d43d3">2.15.1.1. Solution</a></li>
 </ul>
 </li>
-<li><a href="#org18b2640">4. Honors Class</a></li>
+<li><a href="#org83fa0b2">2.15.2. <span class="done WRITTEN">WRITTEN</span> Transform one string to another</a>
+<ul>
+<li><a href="#org360477c">2.15.2.1. Solution</a></li>
+</ul>
+</li>
+<li><a href="#org0361761">2.15.3. <span class="done DONE">DONE</span> Paint a Boolean matrix</a>
+<ul>
+<li><a href="#orgcc35af5">2.15.3.1. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9b714e5">2.16. Parallel Computing</a></li>
+</ul>
+</li>
+<li><a href="#orgfd8b6f6">3. Domain Specific Problems</a>
+<ul>
+<li><a href="#orga9b1264">3.1. Design Problems</a></li>
+<li><a href="#orgbe67b63">3.2. Language Questions</a></li>
+<li><a href="#orgd9db00b">3.3. Object-Oriented Design</a></li>
+<li><a href="#org268cf3c">3.4. Common Tools</a></li>
+</ul>
+</li>
+<li><a href="#org4e422e6">4. Honors Class</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5cc9765" class="outline-2">
-<h2 id="org5cc9765"><span class="section-number-2">1</span> Foreward</h2>
+<div id="outline-container-orgbf3afd6" class="outline-2">
+<h2 id="orgbf3afd6"><span class="section-number-2">1</span> Foreward</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 All problems presented here are from <a href="http://elementsofprogramminginterviews.com/">Elements of Programming Interviews</a>, by
@@ -567,16 +567,16 @@ All solutions presented are my own.
 </div>
 </div>
 
-<div id="outline-container-org5617fce" class="outline-2">
-<h2 id="org5617fce"><span class="section-number-2">2</span> Data Structures and Algorithms</h2>
+<div id="outline-container-org2a9eb1f" class="outline-2">
+<h2 id="org2a9eb1f"><span class="section-number-2">2</span> Data Structures and Algorithms</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4b970f4" class="outline-3">
-<h3 id="org4b970f4"><span class="section-number-3">2.1</span> Primitive Types</h3>
+<div id="outline-container-org4ea353d" class="outline-3">
+<h3 id="org4ea353d"><span class="section-number-3">2.1</span> Primitive Types</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgee83650" class="outline-4">
-<h4 id="orgee83650"><span class="section-number-4">2.1.1</span> <span class="done DONE">DONE</span> Computing the parity of a word</h4>
+<div id="outline-container-org192b578" class="outline-4">
+<h4 id="org192b578"><span class="section-number-4">2.1.1</span> <span class="done DONE">DONE</span> Computing the parity of a word</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <blockquote>
 <p>
@@ -678,8 +678,8 @@ the lookup key.
 </div>
 </div>
 
-<div id="outline-container-org27557db" class="outline-4">
-<h4 id="org27557db"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> Compute x<sup>y</sup></h4>
+<div id="outline-container-org296c55a" class="outline-4">
+<h4 id="org296c55a"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> Compute x<sup>y</sup></h4>
 <div class="outline-text-4" id="text-2-1-2">
 <blockquote>
 <p>
@@ -691,12 +691,12 @@ bitwise operators, and equality checks.
 </div>
 </div>
 
-<div id="outline-container-org91405d3" class="outline-3">
-<h3 id="org91405d3"><span class="section-number-3">2.2</span> Arrays</h3>
+<div id="outline-container-orge20348e" class="outline-3">
+<h3 id="orge20348e"><span class="section-number-3">2.2</span> Arrays</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org912f60e" class="outline-4">
-<h4 id="org912f60e"><span class="section-number-4">2.2.1</span> <span class="todo TODO">TODO</span> The Dutch national flag problem</h4>
+<div id="outline-container-org7bb0c0f" class="outline-4">
+<h4 id="org7bb0c0f"><span class="section-number-4">2.2.1</span> <span class="todo TODO">TODO</span> The Dutch national flag problem</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Write a program that takes an array A and an index i into A, and rearranges
@@ -710,13 +710,13 @@ than the pivot.
 </p>
 </div>
 
-<div id="outline-container-org0c69e8b" class="outline-5">
-<h5 id="org0c69e8b"><span class="section-number-5">2.2.1.1</span> Solution</h5>
+<div id="outline-container-orgba2e19c" class="outline-5">
+<h5 id="orgba2e19c"><span class="section-number-5">2.2.1.1</span> Solution</h5>
 </div>
 </div>
 
-<div id="outline-container-org81ccdfc" class="outline-4">
-<h4 id="org81ccdfc"><span class="section-number-4">2.2.2</span> <span class="done DONE">DONE</span> Sample offline data</h4>
+<div id="outline-container-orgde56f09" class="outline-4">
+<h4 id="orgde56f09"><span class="section-number-4">2.2.2</span> <span class="done DONE">DONE</span> Sample offline data</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Implement an algorithm that takes as input an array of distinct elements and
@@ -725,8 +725,8 @@ subsets should be equally likely.
 </p>
 </div>
 
-<div id="outline-container-org4b8a142" class="outline-5">
-<h5 id="org4b8a142"><span class="section-number-5">2.2.2.1</span> Solution</h5>
+<div id="outline-container-org7948413" class="outline-5">
+<h5 id="org7948413"><span class="section-number-5">2.2.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-2-2-1">
 <p>
 We can use reservoir sampling to achieve a linear-time implementation.
@@ -747,8 +747,8 @@ We can use reservoir sampling to achieve a linear-time implementation.
 </div>
 </div>
 
-<div id="outline-container-orge06973e" class="outline-4">
-<h4 id="orge06973e"><span class="section-number-4">2.2.3</span> <span class="done DONE">DONE</span> Sample online data</h4>
+<div id="outline-container-orgf48a422" class="outline-4">
+<h4 id="orgf48a422"><span class="section-number-4">2.2.3</span> <span class="done DONE">DONE</span> Sample online data</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 Design a program that takes as input a size k, and reads packets,
@@ -757,8 +757,8 @@ packets.
 </p>
 </div>
 
-<div id="outline-container-org8a155d9" class="outline-5">
-<h5 id="org8a155d9"><span class="section-number-5">2.2.3.1</span> Solution</h5>
+<div id="outline-container-org402b726" class="outline-5">
+<h5 id="org402b726"><span class="section-number-5">2.2.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-2-3-1">
 <p>
 Analogous to solution outlined in &ldquo;Sample offline data.&rdquo;
@@ -767,12 +767,12 @@ Analogous to solution outlined in &ldquo;Sample offline data.&rdquo;
 </div>
 </div>
 
-<div id="outline-container-org13c2df0" class="outline-4">
-<h4 id="org13c2df0"><span class="section-number-4">2.2.4</span> <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</h4>
+<div id="outline-container-orgb657af4" class="outline-4">
+<h4 id="orgb657af4"><span class="section-number-4">2.2.4</span> <span class="todo TODO">TODO</span> Compute the spiral ordering of a 2D array</h4>
 </div>
 
-<div id="outline-container-org2714cfc" class="outline-4">
-<h4 id="org2714cfc"><span class="section-number-4">2.2.5</span> <span class="done DONE">DONE</span> Buy and sell a stock once</h4>
+<div id="outline-container-orgf300536" class="outline-4">
+<h4 id="orgf300536"><span class="section-number-4">2.2.5</span> <span class="done DONE">DONE</span> Buy and sell a stock once</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <p>
 This problem is concerned with the problem of optimally buying and selling a
@@ -789,8 +789,8 @@ share of that stock.
 </p>
 </div>
 
-<div id="outline-container-orgd1d09a3" class="outline-5">
-<h5 id="orgd1d09a3"><span class="section-number-5">2.2.5.1</span> Solution</h5>
+<div id="outline-container-org922f2aa" class="outline-5">
+<h5 id="org922f2aa"><span class="section-number-5">2.2.5.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-2-5-1">
 <p>
 Note that this problem is a simplification of the knapsack problem. A naive
@@ -841,20 +841,20 @@ True
 </div>
 </div>
 
-<div id="outline-container-org9a5a4b1" class="outline-3">
-<h3 id="org9a5a4b1"><span class="section-number-3">2.3</span> Strings</h3>
+<div id="outline-container-org72051c7" class="outline-3">
+<h3 id="org72051c7"><span class="section-number-3">2.3</span> Strings</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org5ced079" class="outline-4">
-<h4 id="org5ced079"><span class="section-number-4">2.3.1</span> <span class="done DONE">DONE</span> Interconvert strings and integers</h4>
+<div id="outline-container-orge54680d" class="outline-4">
+<h4 id="orge54680d"><span class="section-number-4">2.3.1</span> <span class="done DONE">DONE</span> Interconvert strings and integers</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Implement string/integer inter-conversion functions.
 </p>
 </div>
 
-<div id="outline-container-org095bae8" class="outline-5">
-<h5 id="org095bae8"><span class="section-number-5">2.3.1.1</span> Solution</h5>
+<div id="outline-container-org2ff1b70" class="outline-5">
+<h5 id="org2ff1b70"><span class="section-number-5">2.3.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">stoi</span>(s):
@@ -909,8 +909,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org83b3ac5" class="outline-4">
-<h4 id="org83b3ac5"><span class="section-number-4">2.3.2</span> <span class="todo TODO">TODO</span> Base conversion</h4>
+<div id="outline-container-org7db8a45" class="outline-4">
+<h4 id="org7db8a45"><span class="section-number-4">2.3.2</span> <span class="todo TODO">TODO</span> Base conversion</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 In the decimal number system, the position of a digit is used to signify the
@@ -932,8 +932,8 @@ the result should be &ldquo;1A7&rdquo;, since 6 &times; 7<sup>2</sup> + 1 &times
 </div>
 </div>
 
-<div id="outline-container-org16e103d" class="outline-4">
-<h4 id="org16e103d"><span class="section-number-4">2.3.3</span> <span class="todo TODO">TODO</span> Replace and remove</h4>
+<div id="outline-container-org5782176" class="outline-4">
+<h4 id="org5782176"><span class="section-number-4">2.3.3</span> <span class="todo TODO">TODO</span> Replace and remove</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 Consider the following two rules that are to be applied to an array of
@@ -963,8 +963,8 @@ can assume there is enough space in the array to hold the final result.
 </div>
 </div>
 
-<div id="outline-container-orgefbdfdf" class="outline-4">
-<h4 id="orgefbdfdf"><span class="section-number-4">2.3.4</span> <span class="done DONE">DONE</span> Test palindromicity</h4>
+<div id="outline-container-orgdfa6e39" class="outline-4">
+<h4 id="orgdfa6e39"><span class="section-number-4">2.3.4</span> <span class="done DONE">DONE</span> Test palindromicity</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <p>
 For the purpose of this problem, define a palindromic string to be a string
@@ -978,8 +978,8 @@ is a palindromic string.
 </p>
 </div>
 
-<div id="outline-container-org2cf290f" class="outline-5">
-<h5 id="org2cf290f"><span class="section-number-5">2.3.4.1</span> Solution</h5>
+<div id="outline-container-org68f4867" class="outline-5">
+<h5 id="org68f4867"><span class="section-number-5">2.3.4.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-4-1">
 <p>
 Use two cursors; one that starts at start of string, and one at the end.
@@ -1027,8 +1027,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org8a41a1d" class="outline-4">
-<h4 id="org8a41a1d"><span class="section-number-4">2.3.5</span> <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</h4>
+<div id="outline-container-org645d3f8" class="outline-4">
+<h4 id="org645d3f8"><span class="section-number-4">2.3.5</span> <span class="done DONE">DONE</span> Compute all mnemonics for a phone number</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <p>
 Write a program which takes as input a phone number, specified as a string
@@ -1039,8 +1039,8 @@ sequencs do not have to be legal words or phrases.
 </p>
 </div>
 
-<div id="outline-container-org7fb0561" class="outline-5">
-<h5 id="org7fb0561"><span class="section-number-5">2.3.5.1</span> Solution</h5>
+<div id="outline-container-org941a9ee" class="outline-5">
+<h5 id="org941a9ee"><span class="section-number-5">2.3.5.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-3-5-1">
 <p>
 We maintain a static mapping from digits to sets of characters and use
@@ -1090,12 +1090,12 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgb40badc" class="outline-3">
-<h3 id="orgb40badc"><span class="section-number-3">2.4</span> Linked Lists</h3>
+<div id="outline-container-orgb430912" class="outline-3">
+<h3 id="orgb430912"><span class="section-number-3">2.4</span> Linked Lists</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-org7ce8a67" class="outline-4">
-<h4 id="org7ce8a67"><span class="section-number-4">2.4.1</span> <span class="done DONE">DONE</span> Merge two sorted lists</h4>
+<div id="outline-container-org600b134" class="outline-4">
+<h4 id="org600b134"><span class="section-number-4">2.4.1</span> <span class="done DONE">DONE</span> Merge two sorted lists</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Write a program that takes two lists, assumed to be sorted, and returns
@@ -1109,8 +1109,8 @@ care when one iterator reaches the end.
 </p>
 </div>
 
-<div id="outline-container-org7297c2b" class="outline-5">
-<h5 id="org7297c2b"><span class="section-number-5">2.4.1.1</span> Solution</h5>
+<div id="outline-container-orga16eee7" class="outline-5">
+<h5 id="orga16eee7"><span class="section-number-5">2.4.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-4-1-1">
 <p>
 We describe a solution that completes the task in linear time and constant
@@ -1224,13 +1224,13 @@ True
 </div>
 </div>
 
-<div id="outline-container-org75e30ba" class="outline-4">
-<h4 id="org75e30ba"><span class="section-number-4">2.4.2</span> <span class="done DONE">DONE</span> Reverse a singly linked list</h4>
+<div id="outline-container-org594e9b1" class="outline-4">
+<h4 id="org594e9b1"><span class="section-number-4">2.4.2</span> <span class="done DONE">DONE</span> Reverse a singly linked list</h4>
 <div class="outline-text-4" id="text-2-4-2">
 </div>
 
-<div id="outline-container-org1e55fed" class="outline-5">
-<h5 id="org1e55fed"><span class="section-number-5">2.4.2.1</span> Solution</h5>
+<div id="outline-container-org86b0016" class="outline-5">
+<h5 id="org86b0016"><span class="section-number-5">2.4.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-4-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">LL</span>():
@@ -1272,13 +1272,13 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgdb6c5f7" class="outline-4">
-<h4 id="orgdb6c5f7"><span class="section-number-4">2.4.3</span> <span class="done DONE">DONE</span> Test for cyclicity</h4>
+<div id="outline-container-org739f954" class="outline-4">
+<h4 id="org739f954"><span class="section-number-4">2.4.3</span> <span class="done DONE">DONE</span> Test for cyclicity</h4>
 <div class="outline-text-4" id="text-2-4-3">
 </div>
 
-<div id="outline-container-org962402a" class="outline-5">
-<h5 id="org962402a"><span class="section-number-5">2.4.3.1</span> Solution</h5>
+<div id="outline-container-org0881a5f" class="outline-5">
+<h5 id="org0881a5f"><span class="section-number-5">2.4.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-4-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">LL</span>():
@@ -1332,8 +1332,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org92f165d" class="outline-4">
-<h4 id="org92f165d"><span class="section-number-4">2.4.4</span> <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</h4>
+<div id="outline-container-org7b3c357" class="outline-4">
+<h4 id="org7b3c357"><span class="section-number-4">2.4.4</span> <span class="done DONE">DONE</span> Test for overlapping lists &#x2013; lists are cycle-free</h4>
 <div class="outline-text-4" id="text-2-4-4">
 <p>
 Write a program that takes two cycle-free singly linked lists, and
@@ -1341,8 +1341,8 @@ determines if there exists a node that is common to both lists.
 </p>
 </div>
 
-<div id="outline-container-orga040384" class="outline-5">
-<h5 id="orga040384"><span class="section-number-5">2.4.4.1</span> Solution</h5>
+<div id="outline-container-org92bd518" class="outline-5">
+<h5 id="org92bd518"><span class="section-number-5">2.4.4.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-4-4-1">
 <p>
 We note that the case where lists L<sub>1</sub> and L<sub>2</sub> are of equal length is
@@ -1358,8 +1358,8 @@ overlap.
 </div>
 </div>
 
-<div id="outline-container-orgcb3d2ce" class="outline-4">
-<h4 id="orgcb3d2ce"><span class="section-number-4">2.4.5</span> <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</h4>
+<div id="outline-container-orgb17dabb" class="outline-4">
+<h4 id="orgb17dabb"><span class="section-number-4">2.4.5</span> <span class="done DONE">DONE</span> Remove the k<sup>th</sup> last element from a list</h4>
 <div class="outline-text-4" id="text-2-4-5">
 <p>
 Given a singly linked list and an integer k, write a program to remove the
@@ -1374,8 +1374,8 @@ using two iterators?
 </p>
 </div>
 
-<div id="outline-container-org17ae78e" class="outline-5">
-<h5 id="org17ae78e"><span class="section-number-5">2.4.5.1</span> Solution</h5>
+<div id="outline-container-org22491ca" class="outline-5">
+<h5 id="org22491ca"><span class="section-number-5">2.4.5.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-4-5-1">
 <p>
 We note that we do not need to know the specific length of the list L in
@@ -1460,21 +1460,21 @@ True
 </div>
 
 
-<div id="outline-container-orgb2273a3" class="outline-4">
-<h4 id="orgb2273a3"><span class="section-number-4">2.4.6</span> <span class="todo TODO">TODO</span> Implement even-odd merge</h4>
+<div id="outline-container-org46d1836" class="outline-4">
+<h4 id="org46d1836"><span class="section-number-4">2.4.6</span> <span class="todo TODO">TODO</span> Implement even-odd merge</h4>
 </div>
 
-<div id="outline-container-orgf2291a2" class="outline-4">
-<h4 id="orgf2291a2"><span class="section-number-4">2.4.7</span> <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</h4>
+<div id="outline-container-orgf9f0505" class="outline-4">
+<h4 id="orgf9f0505"><span class="section-number-4">2.4.7</span> <span class="todo TODO">TODO</span> Test whether a singly linked list is palindromic</h4>
 </div>
 </div>
 
-<div id="outline-container-orge1d4b89" class="outline-3">
-<h3 id="orge1d4b89"><span class="section-number-3">2.5</span> Stacks and Queues</h3>
+<div id="outline-container-org36f9e1a" class="outline-3">
+<h3 id="org36f9e1a"><span class="section-number-3">2.5</span> Stacks and Queues</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-orgaed4d60" class="outline-4">
-<h4 id="orgaed4d60"><span class="section-number-4">2.5.1</span> <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</h4>
+<div id="outline-container-orga8d6ce3" class="outline-4">
+<h4 id="orga8d6ce3"><span class="section-number-4">2.5.1</span> <span class="done DONE">DONE</span> Implement a stack with <code>max</code> API</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 Design a stack that includes a max operation, in addition to push and
@@ -1482,8 +1482,8 @@ pop. The max method should return the maximum value stored in the stack.
 </p>
 </div>
 
-<div id="outline-container-org844a018" class="outline-5">
-<h5 id="org844a018"><span class="section-number-5">2.5.1.1</span> Solution</h5>
+<div id="outline-container-orge52c81c" class="outline-5">
+<h5 id="orge52c81c"><span class="section-number-5">2.5.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-5-1-1">
 <p>
 We can use an augmentation of a &ldquo;vanilla&rdquo; stack for this purpose. Each
@@ -1564,13 +1564,13 @@ Space complexity is O(2n) = O(n), where n is the stack size.
 </div>
 </div>
 
-<div id="outline-container-org2607df7" class="outline-4">
-<h4 id="org2607df7"><span class="section-number-4">2.5.2</span> <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</h4>
+<div id="outline-container-org89001b6" class="outline-4">
+<h4 id="org89001b6"><span class="section-number-4">2.5.2</span> <span class="done DONE">DONE</span> Test a string of parentheses, braces, and brackets for well-formedness</h4>
 <div class="outline-text-4" id="text-2-5-2">
 </div>
 
-<div id="outline-container-org38ce61a" class="outline-5">
-<h5 id="org38ce61a"><span class="section-number-5">2.5.2.1</span> Solution</h5>
+<div id="outline-container-org5eb00a9" class="outline-5">
+<h5 id="org5eb00a9"><span class="section-number-5">2.5.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-5-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">is_well_formed</span>(S):
@@ -1612,13 +1612,13 @@ True
 </div>
 </div>
 
-<div id="outline-container-org474c010" class="outline-4">
-<h4 id="org474c010"><span class="section-number-4">2.5.3</span> <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</h4>
+<div id="outline-container-org1890db5" class="outline-4">
+<h4 id="org1890db5"><span class="section-number-4">2.5.3</span> <span class="done DONE">DONE</span> Compute binary tree nodes in order of increasing depth</h4>
 <div class="outline-text-4" id="text-2-5-3">
 </div>
 
-<div id="outline-container-org3ecc259" class="outline-5">
-<h5 id="org3ecc259"><span class="section-number-5">2.5.3.1</span> Solution</h5>
+<div id="outline-container-org1db0e05" class="outline-5">
+<h5 id="org1db0e05"><span class="section-number-5">2.5.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-5-3-1">
 <p>
 We use a queue as the basis of our solution. We start with the input tree T
@@ -1641,12 +1641,12 @@ complexity of O(n) and likewise for space.
 </div>
 </div>
 
-<div id="outline-container-org5dbf228" class="outline-3">
-<h3 id="org5dbf228"><span class="section-number-3">2.6</span> Binary Trees</h3>
+<div id="outline-container-orgefee940" class="outline-3">
+<h3 id="orgefee940"><span class="section-number-3">2.6</span> Binary Trees</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-orgd6fcc3e" class="outline-4">
-<h4 id="orgd6fcc3e"><span class="section-number-4">2.6.1</span> <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</h4>
+<div id="outline-container-orgaabda5d" class="outline-4">
+<h4 id="orgaabda5d"><span class="section-number-4">2.6.1</span> <span class="done DONE">DONE</span> Test if a binary tree is height-balanced</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 A binary tree is said to be balanced if for each node in the tree, the
@@ -1661,8 +1661,8 @@ whether the tree is balanced.
 </p>
 </div>
 
-<div id="outline-container-org6191bce" class="outline-5">
-<h5 id="org6191bce"><span class="section-number-5">2.6.1.1</span> Solution</h5>
+<div id="outline-container-org1407c94" class="outline-5">
+<h5 id="org1407c94"><span class="section-number-5">2.6.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-6-1-1">
 <p>
 We can use a post-order traversal as the backbone for our implementation.
@@ -1700,13 +1700,13 @@ is O(1) in space.
 </div>
 </div>
 
-<div id="outline-container-org67d5d1a" class="outline-4">
-<h4 id="org67d5d1a"><span class="section-number-4">2.6.2</span> <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</h4>
+<div id="outline-container-orgb6b66e7" class="outline-4">
+<h4 id="orgb6b66e7"><span class="section-number-4">2.6.2</span> <span class="done DONE">DONE</span> Compute the LCA when nodes have parent pointers</h4>
 <div class="outline-text-4" id="text-2-6-2">
 </div>
 
-<div id="outline-container-org74afb53" class="outline-5">
-<h5 id="org74afb53"><span class="section-number-5">2.6.2.1</span> Solution</h5>
+<div id="outline-container-org6fbf4c1" class="outline-5">
+<h5 id="org6fbf4c1"><span class="section-number-5">2.6.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-6-2-1">
 <p>
 We note that the solution is trivial if the nodes are at the same depth:
@@ -1734,8 +1734,8 @@ combined solution is O(log n) w.r.t. time and O(1) w.r.t. space.
 </div>
 </div>
 
-<div id="outline-container-orgc139abe" class="outline-4">
-<h4 id="orgc139abe"><span class="section-number-4">2.6.3</span> <span class="done DONE">DONE</span> Test if a binary tree is symmetric</h4>
+<div id="outline-container-org5f6129c" class="outline-4">
+<h4 id="org5f6129c"><span class="section-number-4">2.6.3</span> <span class="done DONE">DONE</span> Test if a binary tree is symmetric</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <p>
 A binary tree is symmetric if you can draw a vertical line through the root
@@ -1751,8 +1751,8 @@ Write a program that checks whether a binary tree is symmetric.
 </p>
 </div>
 
-<div id="outline-container-org34c6642" class="outline-5">
-<h5 id="org34c6642"><span class="section-number-5">2.6.3.1</span> Solution</h5>
+<div id="outline-container-org2004a74" class="outline-5">
+<h5 id="org2004a74"><span class="section-number-5">2.6.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-6-3-1">
 <p>
 We note that trees  T<sub>1</sub> and T<sub>2</sub> are symmetric if their root values are equal
@@ -1811,8 +1811,8 @@ True
 </div>
 
 
-<div id="outline-container-org1cd7cd6" class="outline-4">
-<h4 id="org1cd7cd6"><span class="section-number-4">2.6.4</span> <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</h4>
+<div id="outline-container-orgd1ce031" class="outline-4">
+<h4 id="orgd1ce031"><span class="section-number-4">2.6.4</span> <span class="done DONE">DONE</span> Reconstruct a binary tree from traversal data</h4>
 <div class="outline-text-4" id="text-2-6-4">
 <blockquote>
 <p>
@@ -1931,8 +1931,8 @@ respect to the number of elements in the tree.
 </p>
 </div>
 
-<div id="outline-container-orgcbbc9f3" class="outline-5">
-<h5 id="orgcbbc9f3"><span class="section-number-5">2.6.4.1</span> Corollary</h5>
+<div id="outline-container-org14cd715" class="outline-5">
+<h5 id="org14cd715"><span class="section-number-5">2.6.4.1</span> Corollary</h5>
 <div class="outline-text-5" id="text-2-6-4-1">
 <p>
 What about in-order and pre-order?
@@ -1941,8 +1941,8 @@ What about in-order and pre-order?
 </div>
 </div>
 
-<div id="outline-container-org444c8c2" class="outline-4">
-<h4 id="org444c8c2"><span class="section-number-4">2.6.5</span> <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</h4>
+<div id="outline-container-orgff2ed60" class="outline-4">
+<h4 id="orgff2ed60"><span class="section-number-4">2.6.5</span> <span class="todo TODO">TODO</span> Implement an inorder traversal with O(1) space</h4>
 <div class="outline-text-4" id="text-2-6-5">
 <p>
 The direct implementation of an inorder traversal using recursion has O(h)
@@ -1962,9 +1962,10 @@ its parent?
 </div>
 </div>
 
-<div id="outline-container-orgbeba650" class="outline-4">
-<h4 id="orgbeba650"><span class="section-number-4">2.6.6</span> <span class="todo TODO">TODO</span> Reconstruct a binary tree from a preorder traversal with markers</h4>
+<div id="outline-container-orgd8bde39" class="outline-4">
+<h4 id="orgd8bde39"><span class="section-number-4">2.6.6</span> <span class="done LOOKED_UP">LOOKED-UP</span> Reconstruct a binary tree from a preorder traversal with markers</h4>
 <div class="outline-text-4" id="text-2-6-6">
+<blockquote>
 <p>
 Design an algorithm for reconstructing a binary tree from a preorder
 traversal visit sequence that uses <code>null</code> to mark empty children.
@@ -1974,11 +1975,49 @@ traversal visit sequence that uses <code>null</code> to mark empty children.
 <i>Hint</i>: It&rsquo;s difficult to solve this problem by examining the preorder
 traversal visit sequence from left-to-right.
 </p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">teq</span>(lhs, rhs):
+    <span style="color: #81A1C1;">return</span> (lhs <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span> <span style="color: #81A1C1;">and</span> rhs <span style="color: #81A1C1;">is</span> <span style="color: #81A1C1;">None</span>) \
+        <span style="color: #81A1C1;">or</span> (lhs.v == rhs.v
+            <span style="color: #81A1C1;">and</span> teq(lhs.l, rhs.l)
+            <span style="color: #81A1C1;">and</span> teq(lhs.r, rhs.r))
+
+
+<span style="color: #81A1C1;">class</span> <span style="color: #8FBCBB;">Tree</span>():
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">__init__</span>(<span style="color: #81A1C1;">self</span>, v, l=<span style="color: #81A1C1;">None</span>, r=<span style="color: #81A1C1;">None</span>):
+        <span style="color: #81A1C1;">self</span>.v = v
+        <span style="color: #81A1C1;">self</span>.l = l
+        <span style="color: #81A1C1;">self</span>.r = r
+
+
+<span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">from_pre</span>(pre):
+    <span style="color: #D8DEE9;">idx</span> = {<span style="color: #A3BE8C;">'idx'</span>: 0}
+
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">_from_pre</span>(pre):
+        <span style="color: #D8DEE9;">v</span> = pre[idx[<span style="color: #A3BE8C;">'idx'</span>]]
+        <span style="color: #81A1C1;">if</span> <span style="color: #81A1C1;">not</span> v:
+            <span style="color: #81A1C1;">return</span> <span style="color: #81A1C1;">None</span>
+        <span style="color: #D8DEE9;">idx</span>[<span style="color: #A3BE8C;">'idx'</span>] += 1
+        <span style="color: #D8DEE9;">l</span> = _from_pre(pre)
+        <span style="color: #D8DEE9;">idx</span>[<span style="color: #A3BE8C;">'idx'</span>] += 1
+        <span style="color: #D8DEE9;">r</span> = _from_pre(pre)
+        <span style="color: #81A1C1;">return</span> Tree(v, l=l, r=r)
+
+    <span style="color: #81A1C1;">return</span> _from_pre(pre)
+
+
+<span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">test</span>():
+    <span style="color: #81A1C1;">assert</span> teq(from_pre([1, 2, <span style="color: #81A1C1;">None</span>, <span style="color: #81A1C1;">None</span>, 3, <span style="color: #81A1C1;">None</span>, <span style="color: #81A1C1;">None</span>]),
+               Tree(1, l=Tree(2), r=Tree(3)))
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgee198db" class="outline-4">
-<h4 id="orgee198db"><span class="section-number-4">2.6.7</span> <span class="todo TODO">TODO</span> Compute the right sibling tree</h4>
+<div id="outline-container-org5fae37c" class="outline-4">
+<h4 id="org5fae37c"><span class="section-number-4">2.6.7</span> <span class="todo TODO">TODO</span> Compute the right sibling tree</h4>
 <div class="outline-text-4" id="text-2-6-7">
 <p>
 Assume each binary tree node has an extra field, call it level-next, that
@@ -2000,24 +2039,24 @@ level-next field to the node on its right, if one exists.
 </div>
 </div>
 
-<div id="outline-container-org9596b20" class="outline-3">
-<h3 id="org9596b20"><span class="section-number-3">2.7</span> Heaps</h3>
+<div id="outline-container-orga48049a" class="outline-3">
+<h3 id="orga48049a"><span class="section-number-3">2.7</span> Heaps</h3>
 <div class="outline-text-3" id="text-2-7">
 </div>
-<div id="outline-container-orgb0aefa0" class="outline-4">
-<h4 id="orgb0aefa0"><span class="section-number-4">2.7.1</span> <span class="todo TODO">TODO</span> Merge sorted files</h4>
+<div id="outline-container-orgfcd46e5" class="outline-4">
+<h4 id="orgfcd46e5"><span class="section-number-4">2.7.1</span> <span class="todo TODO">TODO</span> Merge sorted files</h4>
 </div>
 
-<div id="outline-container-org1cde0e2" class="outline-4">
-<h4 id="org1cde0e2"><span class="section-number-4">2.7.2</span> <span class="todo TODO">TODO</span> Compute the k closest stars</h4>
+<div id="outline-container-org730a006" class="outline-4">
+<h4 id="org730a006"><span class="section-number-4">2.7.2</span> <span class="todo TODO">TODO</span> Compute the k closest stars</h4>
 </div>
 </div>
-<div id="outline-container-org0b62b20" class="outline-3">
-<h3 id="org0b62b20"><span class="section-number-3">2.8</span> Searching</h3>
+<div id="outline-container-org71278b2" class="outline-3">
+<h3 id="org71278b2"><span class="section-number-3">2.8</span> Searching</h3>
 <div class="outline-text-3" id="text-2-8">
 </div>
-<div id="outline-container-orge1bb801" class="outline-4">
-<h4 id="orge1bb801"><span class="section-number-4">2.8.1</span> <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></h4>
+<div id="outline-container-org8607f39" class="outline-4">
+<h4 id="org8607f39"><span class="section-number-4">2.8.1</span> <span class="done DONE">DONE</span> Search a sorted array for first occurrence of <code>k</code></h4>
 <div class="outline-text-4" id="text-2-8-1">
 <p>
 Binary search commonly asks for the index of <i>any</i> element of a sorted array
@@ -2031,8 +2070,8 @@ the <i>first</i> occurrence of the key in the array.
 </p>
 </div>
 
-<div id="outline-container-orge13a5ff" class="outline-5">
-<h5 id="orge13a5ff"><span class="section-number-5">2.8.1.1</span> Solution</h5>
+<div id="outline-container-org672ef0e" class="outline-5">
+<h5 id="org672ef0e"><span class="section-number-5">2.8.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-8-1-1">
 <p>
 A brute-force solution would be to iterate through the array A in its
@@ -2084,21 +2123,21 @@ True
 </div>
 
 
-<div id="outline-container-org121b00b" class="outline-4">
-<h4 id="org121b00b"><span class="section-number-4">2.8.2</span> <span class="todo TODO">TODO</span> Compute the integer square root</h4>
+<div id="outline-container-org0a1d09a" class="outline-4">
+<h4 id="org0a1d09a"><span class="section-number-4">2.8.2</span> <span class="todo TODO">TODO</span> Compute the integer square root</h4>
 </div>
 
-<div id="outline-container-org8da21c6" class="outline-4">
-<h4 id="org8da21c6"><span class="section-number-4">2.8.3</span> <span class="todo TODO">TODO</span> Find the k-th largest element</h4>
+<div id="outline-container-org410d7c6" class="outline-4">
+<h4 id="org410d7c6"><span class="section-number-4">2.8.3</span> <span class="todo TODO">TODO</span> Find the k-th largest element</h4>
 </div>
 </div>
 
-<div id="outline-container-org09df7cc" class="outline-3">
-<h3 id="org09df7cc"><span class="section-number-3">2.9</span> Hash Tables</h3>
+<div id="outline-container-orgd0c81fc" class="outline-3">
+<h3 id="orgd0c81fc"><span class="section-number-3">2.9</span> Hash Tables</h3>
 <div class="outline-text-3" id="text-2-9">
 </div>
-<div id="outline-container-org36f6eef" class="outline-4">
-<h4 id="org36f6eef"><span class="section-number-4">2.9.1</span> <span class="done DONE">DONE</span> Partition into anagrams</h4>
+<div id="outline-container-orgcde4e80" class="outline-4">
+<h4 id="orgcde4e80"><span class="section-number-4">2.9.1</span> <span class="done DONE">DONE</span> Partition into anagrams</h4>
 <div class="outline-text-4" id="text-2-9-1">
 <p>
 Write a program that takes as input a set of words and returns groups of
@@ -2106,8 +2145,8 @@ anagrams for those words. Each group must contain at least two words.
 </p>
 </div>
 
-<div id="outline-container-orga6a5850" class="outline-5">
-<h5 id="orga6a5850"><span class="section-number-5">2.9.1.1</span> Solution</h5>
+<div id="outline-container-org8debd14" class="outline-5">
+<h5 id="org8debd14"><span class="section-number-5">2.9.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-9-1-1">
 <p>
 We can implement solution that avoids the need to compare all pairs of
@@ -2159,8 +2198,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-orge524f46" class="outline-4">
-<h4 id="orge524f46"><span class="section-number-4">2.9.2</span> <span class="done DONE">DONE</span> Test for palindromic permutations</h4>
+<div id="outline-container-orgc100003" class="outline-4">
+<h4 id="orgc100003"><span class="section-number-4">2.9.2</span> <span class="done DONE">DONE</span> Test for palindromic permutations</h4>
 <div class="outline-text-4" id="text-2-9-2">
 <p>
 Write a program to test whether the letters forming a string can be permuted
@@ -2169,8 +2208,8 @@ to form a palindrome. For instance, &ldquo;edified&rdquo; can be permuted to for
 </p>
 </div>
 
-<div id="outline-container-org79d3739" class="outline-5">
-<h5 id="org79d3739"><span class="section-number-5">2.9.2.1</span> Solution</h5>
+<div id="outline-container-orgb9718df" class="outline-5">
+<h5 id="orgb9718df"><span class="section-number-5">2.9.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-9-2-1">
 <p>
 We assume that there is no requirement that the resulting palindrome be a
@@ -2229,8 +2268,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org55f8bdc" class="outline-4">
-<h4 id="org55f8bdc"><span class="section-number-4">2.9.3</span> <span class="done DONE">DONE</span> Is an anonymous letter constructible?</h4>
+<div id="outline-container-orgeaf0529" class="outline-4">
+<h4 id="orgeaf0529"><span class="section-number-4">2.9.3</span> <span class="done DONE">DONE</span> Is an anonymous letter constructible?</h4>
 <div class="outline-text-4" id="text-2-9-3">
 <p>
 Write a program which takes text for an anonymous letter and text for a
@@ -2241,8 +2280,8 @@ letter is no more than the number of times it appears in the magazine.
 </p>
 </div>
 
-<div id="outline-container-org92827f0" class="outline-5">
-<h5 id="org92827f0"><span class="section-number-5">2.9.3.1</span> Solution</h5>
+<div id="outline-container-org441433f" class="outline-5">
+<h5 id="org441433f"><span class="section-number-5">2.9.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-9-3-1">
 <p>
 We implement a solution that reduces the letter and the magazine into
@@ -2286,17 +2325,17 @@ each input on whitespace characters and iterating across sub-lists.
 </div>
 </div>
 
-<div id="outline-container-org21cb0be" class="outline-4">
-<h4 id="org21cb0be"><span class="section-number-4">2.9.4</span> <span class="todo TODO">TODO</span> Implement an ISBN cache</h4>
+<div id="outline-container-org98fed7b" class="outline-4">
+<h4 id="org98fed7b"><span class="section-number-4">2.9.4</span> <span class="todo TODO">TODO</span> Implement an ISBN cache</h4>
 </div>
 </div>
 
-<div id="outline-container-orgbcbb901" class="outline-3">
-<h3 id="orgbcbb901"><span class="section-number-3">2.10</span> Sorting</h3>
+<div id="outline-container-org4d0ea6a" class="outline-3">
+<h3 id="org4d0ea6a"><span class="section-number-3">2.10</span> Sorting</h3>
 <div class="outline-text-3" id="text-2-10">
 </div>
-<div id="outline-container-org8e60936" class="outline-4">
-<h4 id="org8e60936"><span class="section-number-4">2.10.1</span> <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</h4>
+<div id="outline-container-org2e42272" class="outline-4">
+<h4 id="org2e42272"><span class="section-number-4">2.10.1</span> <span class="done DONE">DONE</span> Compute the intersection of two sorted arrays</h4>
 <div class="outline-text-4" id="text-2-10-1">
 <p>
 Write a program which takes as input two sorted arrays, and returns a new
@@ -2307,8 +2346,8 @@ and <code>&lt;5,5,6,8,8,9,10,10&gt;</code>, your output should be <code>&lt;5,6,
 </p>
 </div>
 
-<div id="outline-container-org576f7c5" class="outline-5">
-<h5 id="org576f7c5"><span class="section-number-5">2.10.1.1</span> Solution</h5>
+<div id="outline-container-org829709d" class="outline-5">
+<h5 id="org829709d"><span class="section-number-5">2.10.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-10-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">intersection</span>(A,B):
@@ -2362,8 +2401,8 @@ This implementation is linear on its inputs.
 </div>
 </div>
 
-<div id="outline-container-orgb13592e" class="outline-4">
-<h4 id="orgb13592e"><span class="section-number-4">2.10.2</span> <span class="todo TODO">TODO</span> Implement mergesort in-place</h4>
+<div id="outline-container-orge41354a" class="outline-4">
+<h4 id="orge41354a"><span class="section-number-4">2.10.2</span> <span class="todo TODO">TODO</span> Implement mergesort in-place</h4>
 <div class="outline-text-4" id="text-2-10-2">
 <p>
 Write a program which takes as input two sorted arrays of integers, and
@@ -2378,8 +2417,8 @@ the result.
 </div>
 </div>
 
-<div id="outline-container-orgf2e8e72" class="outline-4">
-<h4 id="orgf2e8e72"><span class="section-number-4">2.10.3</span> <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</h4>
+<div id="outline-container-org55e2bbf" class="outline-4">
+<h4 id="org55e2bbf"><span class="section-number-4">2.10.3</span> <span class="done DONE">DONE</span> Count the frequencies of characters in a sentence</h4>
 <div class="outline-text-4" id="text-2-10-3">
 <p>
 Given a string, print in alphabetical order each character that appears in
@@ -2392,8 +2431,8 @@ string is &ldquo;bcdacebe&rdquo;, output <code>(a,1), (b,2), (c,2), (d,1), (e,2)
 </p>
 </div>
 
-<div id="outline-container-org3574d49" class="outline-5">
-<h5 id="org3574d49"><span class="section-number-5">2.10.3.1</span> Solution</h5>
+<div id="outline-container-org4c90cff" class="outline-5">
+<h5 id="org4c90cff"><span class="section-number-5">2.10.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-10-3-1">
 <p>
 We assume that the input string consists solely of lowercase alphabetic
@@ -2437,8 +2476,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-orga4e505d" class="outline-4">
-<h4 id="orga4e505d"><span class="section-number-4">2.10.4</span> <span class="done DONE">DONE</span> Render a calendar</h4>
+<div id="outline-container-org2e105b9" class="outline-4">
+<h4 id="org2e105b9"><span class="section-number-4">2.10.4</span> <span class="done DONE">DONE</span> Render a calendar</h4>
 <div class="outline-text-4" id="text-2-10-4">
 <p>
 Write a program that takes a set of events, and determines the maximum
@@ -2446,8 +2485,8 @@ number of events that can take place concurrently.
 </p>
 </div>
 
-<div id="outline-container-org45ff028" class="outline-5">
-<h5 id="org45ff028"><span class="section-number-5">2.10.4.1</span> Solution</h5>
+<div id="outline-container-org8abaa32" class="outline-5">
+<h5 id="org8abaa32"><span class="section-number-5">2.10.4.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-10-4-1">
 <p>
 We assume that the domain is unbounded &#x2013; that is, that any event can occur
@@ -2541,24 +2580,24 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgb451bb0" class="outline-4">
-<h4 id="orgb451bb0"><span class="section-number-4">2.10.5</span> <span class="todo TODO">TODO</span> Compute the union of intervals</h4>
+<div id="outline-container-org9309734" class="outline-4">
+<h4 id="org9309734"><span class="section-number-4">2.10.5</span> <span class="todo TODO">TODO</span> Compute the union of intervals</h4>
 </div>
 
-<div id="outline-container-org0f2b84c" class="outline-4">
-<h4 id="org0f2b84c"><span class="section-number-4">2.10.6</span> <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</h4>
+<div id="outline-container-org3737833" class="outline-4">
+<h4 id="org3737833"><span class="section-number-4">2.10.6</span> <span class="todo TODO">TODO</span> Implement a fast sorting algorithm for lists</h4>
 </div>
 
-<div id="outline-container-org6814f08" class="outline-4">
-<h4 id="org6814f08"><span class="section-number-4">2.10.7</span> <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</h4>
+<div id="outline-container-org7e703e4" class="outline-4">
+<h4 id="org7e703e4"><span class="section-number-4">2.10.7</span> <span class="todo TODO">TODO</span> Partitioning and sorting an array with many repeated entries</h4>
 </div>
 </div>
-<div id="outline-container-org59f6ec3" class="outline-3">
-<h3 id="org59f6ec3"><span class="section-number-3">2.11</span> Binary Search Trees</h3>
+<div id="outline-container-org6bff7e5" class="outline-3">
+<h3 id="org6bff7e5"><span class="section-number-3">2.11</span> Binary Search Trees</h3>
 <div class="outline-text-3" id="text-2-11">
 </div>
-<div id="outline-container-org185d4ae" class="outline-4">
-<h4 id="org185d4ae"><span class="section-number-4">2.11.1</span> <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</h4>
+<div id="outline-container-orgd1f70c2" class="outline-4">
+<h4 id="orgd1f70c2"><span class="section-number-4">2.11.1</span> <span class="done DONE">DONE</span> Test if a binary tree satisfies the BST property</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
 Write a program that takes as input a binary tree and checks if the tree
@@ -2566,8 +2605,8 @@ satisfies the BST property.
 </p>
 </div>
 
-<div id="outline-container-orgd37dea3" class="outline-5">
-<h5 id="orgd37dea3"><span class="section-number-5">2.11.1.1</span> Solution</h5>
+<div id="outline-container-org3be0eed" class="outline-5">
+<h5 id="org3be0eed"><span class="section-number-5">2.11.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-11-1-1">
 <p>
 Iterate through each subtree, keeping track of a local maximum and
@@ -2581,8 +2620,8 @@ recursed into.
 </div>
 </div>
 
-<div id="outline-container-org31265e2" class="outline-4">
-<h4 id="org31265e2"><span class="section-number-4">2.11.2</span> <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</h4>
+<div id="outline-container-org261d01b" class="outline-4">
+<h4 id="org261d01b"><span class="section-number-4">2.11.2</span> <span class="done DONE">DONE</span> Find the first key larger than a given value in a BST</h4>
 <div class="outline-text-4" id="text-2-11-2">
 <p>
 Write a program that takes as input a BST and a value, and returns the first
@@ -2595,8 +2634,8 @@ input value.
 </p>
 </div>
 
-<div id="outline-container-org63bca0c" class="outline-5">
-<h5 id="org63bca0c"><span class="section-number-5">2.11.2.1</span> Solution</h5>
+<div id="outline-container-org95d1710" class="outline-5">
+<h5 id="org95d1710"><span class="section-number-5">2.11.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-11-2-1">
 <p>
 Given BST T and value v, perform binary search, keeping track of the
@@ -2657,14 +2696,14 @@ True
 </div>
 
 
-<div id="outline-container-orgb9e599b" class="outline-4">
-<h4 id="orgb9e599b"><span class="section-number-4">2.11.3</span> <span class="done DONE">DONE</span> Find the k largest elements in a BST</h4>
+<div id="outline-container-org731bcd1" class="outline-4">
+<h4 id="org731bcd1"><span class="section-number-4">2.11.3</span> <span class="done DONE">DONE</span> Find the k largest elements in a BST</h4>
 <div class="outline-text-4" id="text-2-11-3">
 </div>
 </div>
 
-<div id="outline-container-org030e183" class="outline-4">
-<h4 id="org030e183"><span class="section-number-4">2.11.4</span> <span class="done DONE">DONE</span> Compute the LCA in a BST</h4>
+<div id="outline-container-orgbcb7c4b" class="outline-4">
+<h4 id="orgbcb7c4b"><span class="section-number-4">2.11.4</span> <span class="done DONE">DONE</span> Compute the LCA in a BST</h4>
 <div class="outline-text-4" id="text-2-11-4">
 <p>
 Design an algorithm that takes as input a BST and two nodes, and returns the
@@ -2677,8 +2716,8 @@ references to their parents.
 </p>
 </div>
 
-<div id="outline-container-org0cdcf75" class="outline-5">
-<h5 id="org0cdcf75"><span class="section-number-5">2.11.4.1</span> Solution</h5>
+<div id="outline-container-orgafeb5b6" class="outline-5">
+<h5 id="orgafeb5b6"><span class="section-number-5">2.11.4.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-11-4-1">
 <p>
 We note that the BST property gives us that the LCA is between the max of
@@ -2749,8 +2788,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org71d96a4" class="outline-4">
-<h4 id="org71d96a4"><span class="section-number-4">2.11.5</span> <span class="todo TODO">TODO</span> The most visited pages problem</h4>
+<div id="outline-container-orgab84772" class="outline-4">
+<h4 id="orgab84772"><span class="section-number-4">2.11.5</span> <span class="todo TODO">TODO</span> The most visited pages problem</h4>
 <div class="outline-text-4" id="text-2-11-5">
 <p>
 You are given a server log file containing billions of lines. Each line
@@ -2778,24 +2817,24 @@ a with a count of 4, and the next most common page is t with a count of 3.
 </div>
 </div>
 
-<div id="outline-container-orgddba169" class="outline-4">
-<h4 id="orgddba169"><span class="section-number-4">2.11.6</span> <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</h4>
+<div id="outline-container-orgf6ca158" class="outline-4">
+<h4 id="orgf6ca158"><span class="section-number-4">2.11.6</span> <span class="todo TODO">TODO</span> Reconstruct a BST from traversal data</h4>
 </div>
 
-<div id="outline-container-orgd89cd08" class="outline-4">
-<h4 id="orgd89cd08"><span class="section-number-4">2.11.7</span> <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</h4>
+<div id="outline-container-org0320ccf" class="outline-4">
+<h4 id="org0320ccf"><span class="section-number-4">2.11.7</span> <span class="todo TODO">TODO</span> Build a minimum height BST from a sorted array</h4>
 </div>
 
-<div id="outline-container-orge5091c2" class="outline-4">
-<h4 id="orge5091c2"><span class="section-number-4">2.11.8</span> <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</h4>
+<div id="outline-container-org414c7d5" class="outline-4">
+<h4 id="org414c7d5"><span class="section-number-4">2.11.8</span> <span class="todo TODO">TODO</span> Enumerate numbers of the form a + b sqrt(2)</h4>
 </div>
 
-<div id="outline-container-orgb7dd3e6" class="outline-4">
-<h4 id="orgb7dd3e6"><span class="section-number-4">2.11.9</span> <span class="todo TODO">TODO</span> Insertion and deletion in a BST</h4>
+<div id="outline-container-orgc16a108" class="outline-4">
+<h4 id="orgc16a108"><span class="section-number-4">2.11.9</span> <span class="todo TODO">TODO</span> Insertion and deletion in a BST</h4>
 <div class="outline-text-4" id="text-2-11-9">
 </div>
-<div id="outline-container-org5d0e8c9" class="outline-5">
-<h5 id="org5d0e8c9"><span class="section-number-5">2.11.9.1</span> Solution</h5>
+<div id="outline-container-org5b874af" class="outline-5">
+<h5 id="org5b874af"><span class="section-number-5">2.11.9.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-11-9-1">
 <p>
 We can use reverse in-order traversal, yielding values until the count has
@@ -2862,25 +2901,66 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgb25cabd" class="outline-3">
-<h3 id="orgb25cabd"><span class="section-number-3">2.12</span> Recursion</h3>
+<div id="outline-container-org8089db0" class="outline-3">
+<h3 id="org8089db0"><span class="section-number-3">2.12</span> Recursion</h3>
 <div class="outline-text-3" id="text-2-12">
 </div>
-<div id="outline-container-orgbe1a6a9" class="outline-4">
-<h4 id="orgbe1a6a9"><span class="section-number-4">2.12.1</span> <span class="todo TODO">TODO</span> Tower of Hanoi</h4>
+<div id="outline-container-orgd581cc9" class="outline-4">
+<h4 id="orgd581cc9"><span class="section-number-4">2.12.1</span> <span class="done DONE">DONE</span> Tower of Hanoi</h4>
+<div class="outline-text-4" id="text-2-12-1">
+<p>
+We note that the base condition &#x2013; a tower of height 1 &#x2013; is trivial.
+</p>
+
+<p>
+For each operation, each of the three pillars is assigned one of three
+&ldquo;purposes&rdquo;, as follows:
+</p>
+
+<ul class="org-ul">
+<li>One is the &ldquo;source&rdquo; pillar, from which we&rsquo;d like to move a tile;</li>
+<li>One is the &ldquo;destination&rdquo; pillar, to which we&rsquo;d like to move said tile; and</li>
+<li>One is the &ldquo;buffer&rdquo; pillar, where we move all tiles that are blocking our
+tile in question from being moved to its destination.</li>
+</ul>
+
+
+<p>
+For explanation&rsquo;s sake, let&rsquo;s say that all tiles start on Pillar 1, and that
+we&rsquo;d like to move them all to Pillar 3 according to the rules of the game.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">hanoi</span>(p1, p2=[], p3=[]):
+    <span style="color: #D8DEE9;">_source</span> = p1
+    <span style="color: #D8DEE9;">_buff</span> = p2
+    <span style="color: #D8DEE9;">_dest</span> = p3
+
+    <span style="color: #81A1C1;">def</span> <span style="color: #88C0D0;">move</span>(source=_source, dest=_dest, buff=_buff, n=<span style="color: #81A1C1;">len</span>(_source)):
+        <span style="color: #81A1C1;">if</span> n == 0:
+            <span style="color: #81A1C1;">return</span>
+        move(source=source, dest=buff, buff=dest, n=n-1)
+        dest.append(source.pop())
+        move(source=buff, dest=dest, buff=source, n=n-1)
+
+    move()
+    <span style="color: #81A1C1;">return</span> _source, _buff, _dest
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org81b2694" class="outline-4">
-<h4 id="org81b2694"><span class="section-number-4">2.12.2</span> <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</h4>
+<div id="outline-container-orgd6caa50" class="outline-4">
+<h4 id="orgd6caa50"><span class="section-number-4">2.12.2</span> <span class="todo TODO">TODO</span> Generate all nonattacking placements of n-Queens</h4>
 </div>
 </div>
 
-<div id="outline-container-org5abeacf" class="outline-3">
-<h3 id="org5abeacf"><span class="section-number-3">2.13</span> Dynamic Programming</h3>
+<div id="outline-container-org032d4dc" class="outline-3">
+<h3 id="org032d4dc"><span class="section-number-3">2.13</span> Dynamic Programming</h3>
 <div class="outline-text-3" id="text-2-13">
 </div>
-<div id="outline-container-orgf231cb6" class="outline-4">
-<h4 id="orgf231cb6"><span class="section-number-4">2.13.1</span> <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</h4>
+<div id="outline-container-orgca027f9" class="outline-4">
+<h4 id="orgca027f9"><span class="section-number-4">2.13.1</span> <span class="done WRITTEN">WRITTEN</span> Count the number of score combinations</h4>
 <div class="outline-text-4" id="text-2-13-1">
 <p>
 In an American football game, a play can lead to 2 points (safety), 3 points
@@ -2904,8 +2984,8 @@ score.
 </p>
 </div>
 
-<div id="outline-container-org40dd4d0" class="outline-5">
-<h5 id="org40dd4d0"><span class="section-number-5">2.13.1.1</span> Solution</h5>
+<div id="outline-container-org5c76438" class="outline-5">
+<h5 id="org5c76438"><span class="section-number-5">2.13.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-13-1-1">
 <p>
 We can memoize the number of combinations that lead to certain scores,
@@ -3013,17 +3093,17 @@ A solution that uses this memoization strategy will be <code>O(S \times |P|)</co
 </div>
 </div>
 
-<div id="outline-container-orgb6c64c7" class="outline-4">
-<h4 id="orgb6c64c7"><span class="section-number-4">2.13.2</span> <span class="todo TODO">TODO</span> Compute the Levenshtein distance</h4>
+<div id="outline-container-orgc8372cc" class="outline-4">
+<h4 id="orgc8372cc"><span class="section-number-4">2.13.2</span> <span class="todo TODO">TODO</span> Compute the Levenshtein distance</h4>
 </div>
 
-<div id="outline-container-org699acba" class="outline-4">
-<h4 id="org699acba"><span class="section-number-4">2.13.3</span> <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</h4>
+<div id="outline-container-org8277fb4" class="outline-4">
+<h4 id="org8277fb4"><span class="section-number-4">2.13.3</span> <span class="done DONE">DONE</span> Count the number of ways to traverse a 2D array</h4>
 <div class="outline-text-4" id="text-2-13-3">
 </div>
 
-<div id="outline-container-org35f24d1" class="outline-5">
-<h5 id="org35f24d1"><span class="section-number-5">2.13.3.1</span> Solution</h5>
+<div id="outline-container-org12a542b" class="outline-5">
+<h5 id="org12a542b"><span class="section-number-5">2.13.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-13-3-1">
 <p>
 Our memoization strategy is as follows. We use a matrix T of the same
@@ -3074,13 +3154,13 @@ number of elements in the input matrix.
 </div>
 </div>
 
-<div id="outline-container-org429b494" class="outline-4">
-<h4 id="org429b494"><span class="section-number-4">2.13.4</span> <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</h4>
+<div id="outline-container-org2ace0b8" class="outline-4">
+<h4 id="org2ace0b8"><span class="section-number-4">2.13.4</span> <span class="done DONE">DONE</span> Compute the binomial coefficient without overflow</h4>
 <div class="outline-text-4" id="text-2-13-4">
 </div>
 
-<div id="outline-container-orgb251253" class="outline-5">
-<h5 id="orgb251253"><span class="section-number-5">2.13.4.1</span> Solution</h5>
+<div id="outline-container-orgebf40d7" class="outline-5">
+<h5 id="orgebf40d7"><span class="section-number-5">2.13.4.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-13-4-1">
 <p>
 For illustration&rsquo;s purpose, we outline a C matrix, where C[n][k] = C(n+1,k+1)
@@ -3173,8 +3253,8 @@ This solution is O(nk) for both time and space.
 </div>
 </div>
 
-<div id="outline-container-orgbd2e449" class="outline-4">
-<h4 id="orgbd2e449"><span class="section-number-4">2.13.5</span> <span class="done DONE">DONE</span> Search for a sequence in a 2D array</h4>
+<div id="outline-container-org0287cdb" class="outline-4">
+<h4 id="org0287cdb"><span class="section-number-4">2.13.5</span> <span class="done DONE">DONE</span> Search for a sequence in a 2D array</h4>
 <div class="outline-text-4" id="text-2-13-5">
 <p>
 Write a program that takes as arguments a 2D array and a 1D array, and
@@ -3182,8 +3262,8 @@ checks whether the 1D array appears in the 2D array.
 </p>
 </div>
 
-<div id="outline-container-org9a60b43" class="outline-5">
-<h5 id="org9a60b43"><span class="section-number-5">2.13.5.1</span> Solution</h5>
+<div id="outline-container-org7a1c44c" class="outline-5">
+<h5 id="org7a1c44c"><span class="section-number-5">2.13.5.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-13-5-1">
 <p>
 We can use iteration through each element of the 2D array as the backbone
@@ -3281,12 +3361,12 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgf307ce2" class="outline-3">
-<h3 id="orgf307ce2"><span class="section-number-3">2.14</span> Greedy Algorithms and Invariants</h3>
+<div id="outline-container-org73a6c8a" class="outline-3">
+<h3 id="org73a6c8a"><span class="section-number-3">2.14</span> Greedy Algorithms and Invariants</h3>
 <div class="outline-text-3" id="text-2-14">
 </div>
-<div id="outline-container-org0807d62" class="outline-4">
-<h4 id="org0807d62"><span class="section-number-4">2.14.1</span> <span class="done DONE">DONE</span> The 3-sum problem</h4>
+<div id="outline-container-org82eec0a" class="outline-4">
+<h4 id="org82eec0a"><span class="section-number-4">2.14.1</span> <span class="done DONE">DONE</span> The 3-sum problem</h4>
 <div class="outline-text-4" id="text-2-14-1">
 <p>
 Design an algorithm that takes as input an array and a number, and
@@ -3304,8 +3384,8 @@ entries to get the specified number?
 </p>
 </div>
 
-<div id="outline-container-orge44ca52" class="outline-5">
-<h5 id="orge44ca52"><span class="section-number-5">2.14.1.1</span> Solution</h5>
+<div id="outline-container-org0af5281" class="outline-5">
+<h5 id="org0af5281"><span class="section-number-5">2.14.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-14-1-1">
 <p>
 Note that we do not need to return the specific set of three entries &#x2013;
@@ -3353,8 +3433,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org7a5adcc" class="outline-4">
-<h4 id="org7a5adcc"><span class="section-number-4">2.14.2</span> <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</h4>
+<div id="outline-container-org10a32e2" class="outline-4">
+<h4 id="org10a32e2"><span class="section-number-4">2.14.2</span> <span class="done LOOKED_UP">LOOKED-UP</span> The gasup problem</h4>
 <div class="outline-text-4" id="text-2-14-2">
 <p>
 A number of cities are arranged on a circular road. You need to visit all
@@ -3379,8 +3459,8 @@ circuit, gassing up at each city.
 </p>
 </div>
 
-<div id="outline-container-org2d58d0b" class="outline-5">
-<h5 id="org2d58d0b"><span class="section-number-5">2.14.2.1</span> Solution</h5>
+<div id="outline-container-orga489978" class="outline-5">
+<h5 id="orga489978"><span class="section-number-5">2.14.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-14-2-1">
 <p>
 Find the city/cities for which gas level is at minimum on arrival (ignoring
@@ -3396,8 +3476,8 @@ linear time.
 </div>
 </div>
 
-<div id="outline-container-org598eb92" class="outline-4">
-<h4 id="org598eb92"><span class="section-number-4">2.14.3</span> <span class="todo TODO">TODO</span> Find the majority element</h4>
+<div id="outline-container-org69ddaec" class="outline-4">
+<h4 id="org69ddaec"><span class="section-number-4">2.14.3</span> <span class="todo TODO">TODO</span> Find the majority element</h4>
 <div class="outline-text-4" id="text-2-14-3">
 <p>
 You are reading a sequence of strings. You know a priori that more than half
@@ -3415,25 +3495,25 @@ elimination.
 </div>
 </div>
 
-<div id="outline-container-org2a19c4f" class="outline-4">
-<h4 id="org2a19c4f"><span class="section-number-4">2.14.4</span> <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</h4>
+<div id="outline-container-org7093da9" class="outline-4">
+<h4 id="org7093da9"><span class="section-number-4">2.14.4</span> <span class="todo TODO">TODO</span> Compute the maximum water trapped by a pair of vertical lines</h4>
 </div>
 
-<div id="outline-container-org726f1b6" class="outline-4">
-<h4 id="org726f1b6"><span class="section-number-4">2.14.5</span> <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</h4>
+<div id="outline-container-orgfd0f791" class="outline-4">
+<h4 id="orgfd0f791"><span class="section-number-4">2.14.5</span> <span class="todo TODO">TODO</span> Compute the largest rectangle under the skyline</h4>
 </div>
 
-<div id="outline-container-orga9e133f" class="outline-4">
-<h4 id="orga9e133f"><span class="section-number-4">2.14.6</span> <span class="todo TODO">TODO</span> Implement Huffman coding</h4>
+<div id="outline-container-orgc8f4192" class="outline-4">
+<h4 id="orgc8f4192"><span class="section-number-4">2.14.6</span> <span class="todo TODO">TODO</span> Implement Huffman coding</h4>
 </div>
 </div>
 
-<div id="outline-container-org71dd43e" class="outline-3">
-<h3 id="org71dd43e"><span class="section-number-3">2.15</span> Graphs</h3>
+<div id="outline-container-org79285a6" class="outline-3">
+<h3 id="org79285a6"><span class="section-number-3">2.15</span> Graphs</h3>
 <div class="outline-text-3" id="text-2-15">
 </div>
-<div id="outline-container-org958ae5f" class="outline-4">
-<h4 id="org958ae5f"><span class="section-number-4">2.15.1</span> <span class="done DONE">DONE</span> Search a maze</h4>
+<div id="outline-container-org38e6e3f" class="outline-4">
+<h4 id="org38e6e3f"><span class="section-number-4">2.15.1</span> <span class="done DONE">DONE</span> Search a maze</h4>
 <div class="outline-text-4" id="text-2-15-1">
 <p>
 Given a 2D array of black and white entries representing a maze with
@@ -3446,8 +3526,8 @@ exit, if one exists.
 </p>
 </div>
 
-<div id="outline-container-org6010380" class="outline-5">
-<h5 id="org6010380"><span class="section-number-5">2.15.1.1</span> Solution</h5>
+<div id="outline-container-org48d43d3" class="outline-5">
+<h5 id="org48d43d3"><span class="section-number-5">2.15.1.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-15-1-1">
 <p>
 We assume the input is a matrix of integers, where any non-zero integer
@@ -3574,8 +3654,8 @@ True
 </div>
 </div>
 
-<div id="outline-container-org012dccf" class="outline-4">
-<h4 id="org012dccf"><span class="section-number-4">2.15.2</span> <span class="done WRITTEN">WRITTEN</span> Transform one string to another</h4>
+<div id="outline-container-org83fa0b2" class="outline-4">
+<h4 id="org83fa0b2"><span class="section-number-4">2.15.2</span> <span class="done WRITTEN">WRITTEN</span> Transform one string to another</h4>
 <div class="outline-text-4" id="text-2-15-2">
 <p>
 Let s and t be strings and D a dictionary, i.e. a set of strings. Define s
@@ -3601,8 +3681,8 @@ character.
 </p>
 </div>
 
-<div id="outline-container-org51206ad" class="outline-5">
-<h5 id="org51206ad"><span class="section-number-5">2.15.2.1</span> Solution</h5>
+<div id="outline-container-org360477c" class="outline-5">
+<h5 id="org360477c"><span class="section-number-5">2.15.2.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-15-2-1">
 <p>
 Create a graph according to the hint in time complexity O(n<sup>2</sup>). Traverse the
@@ -3618,8 +3698,8 @@ character off from the current vertex.
 </div>
 </div>
 
-<div id="outline-container-orgf8bf7b7" class="outline-4">
-<h4 id="orgf8bf7b7"><span class="section-number-4">2.15.3</span> <span class="done DONE">DONE</span> Paint a Boolean matrix</h4>
+<div id="outline-container-org0361761" class="outline-4">
+<h4 id="org0361761"><span class="section-number-4">2.15.3</span> <span class="done DONE">DONE</span> Paint a Boolean matrix</h4>
 <div class="outline-text-4" id="text-2-15-3">
 <p>
 Implement a routine that takes an n x m Boolean array A together with an
@@ -3632,8 +3712,8 @@ optimizations.
 </p>
 </div>
 
-<div id="outline-container-org6bf4c44" class="outline-5">
-<h5 id="org6bf4c44"><span class="section-number-5">2.15.3.1</span> Solution</h5>
+<div id="outline-container-orgcc35af5" class="outline-5">
+<h5 id="orgcc35af5"><span class="section-number-5">2.15.3.1</span> Solution</h5>
 <div class="outline-text-5" id="text-2-15-3-1">
 <p>
 Record the target value of (x,y); if (x,y) is True, target is False, and
@@ -3697,39 +3777,39 @@ True
 </div>
 </div>
 
-<div id="outline-container-orgfc150cb" class="outline-3">
-<h3 id="orgfc150cb"><span class="section-number-3">2.16</span> Parallel Computing</h3>
+<div id="outline-container-org9b714e5" class="outline-3">
+<h3 id="org9b714e5"><span class="section-number-3">2.16</span> Parallel Computing</h3>
 </div>
 </div>
 
-<div id="outline-container-org7ab14c8" class="outline-2">
-<h2 id="org7ab14c8"><span class="section-number-2">3</span> Domain Specific Problems</h2>
+<div id="outline-container-orgfd8b6f6" class="outline-2">
+<h2 id="orgfd8b6f6"><span class="section-number-2">3</span> Domain Specific Problems</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgd6a94c8" class="outline-3">
-<h3 id="orgd6a94c8"><span class="section-number-3">3.1</span> Design Problems</h3>
+<div id="outline-container-orga9b1264" class="outline-3">
+<h3 id="orga9b1264"><span class="section-number-3">3.1</span> Design Problems</h3>
 </div>
 
-<div id="outline-container-org94d08b1" class="outline-3">
-<h3 id="org94d08b1"><span class="section-number-3">3.2</span> Language Questions</h3>
+<div id="outline-container-orgbe67b63" class="outline-3">
+<h3 id="orgbe67b63"><span class="section-number-3">3.2</span> Language Questions</h3>
 </div>
 
-<div id="outline-container-org50ea4e9" class="outline-3">
-<h3 id="org50ea4e9"><span class="section-number-3">3.3</span> Object-Oriented Design</h3>
+<div id="outline-container-orgd9db00b" class="outline-3">
+<h3 id="orgd9db00b"><span class="section-number-3">3.3</span> Object-Oriented Design</h3>
 </div>
 
-<div id="outline-container-orgc6a97e4" class="outline-3">
-<h3 id="orgc6a97e4"><span class="section-number-3">3.4</span> Common Tools</h3>
+<div id="outline-container-org268cf3c" class="outline-3">
+<h3 id="org268cf3c"><span class="section-number-3">3.4</span> Common Tools</h3>
 </div>
 </div>
 
-<div id="outline-container-org18b2640" class="outline-2">
-<h2 id="org18b2640"><span class="section-number-2">4</span> Honors Class</h2>
+<div id="outline-container-org4e422e6" class="outline-2">
+<h2 id="org4e422e6"><span class="section-number-2">4</span> Honors Class</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Jonathan Jin</p>
-<p class="date">Created: 2018-04-29 Sun 18:06</p>
+<p class="date">Created: 2018-04-30 Mon 18:51</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -162,7 +162,78 @@
 
      Analogous to solution outlined in "Sample offline data."
 
-*** TODO Compute the spiral ordering of a 2D array                          :C1:
+*** DONE Compute the spiral ordering of a 2D array                          :C1:
+    CLOSED: [2018-04-30 Mon 23:18]
+
+    #+BEGIN_SRC python
+      def spiral(mtx):
+          bounds = {
+              "top": -1,
+              "bottom": len(mtx),
+              "left": -1,
+              "right": len(mtx[0]),
+          }
+          actions = {
+              "left": {
+                  "update": (lambda i,j: (i,j-1)),
+                  "within": lambda i,j: j>bounds["left"],
+                  "next": "up",
+              },
+              "right": {
+                  "update": (lambda i,j: (i,j+1)),
+                  "within": lambda i,j: j<bounds["right"],
+                  "next": "down",
+              },
+              "up": {
+                  "update": (lambda i,j: (i-1,j)),
+                  "within": lambda i,j: i>bounds["top"],
+                  "next": "right",
+              },
+              "down": {
+                  "update": (lambda i,j: (i+1,j)),
+                  "within": lambda i,j: i<bounds["bottom"],
+                  "next": "left",
+              },
+          }
+
+          action = "right"
+
+          i,j=0,0
+          moved = False
+
+          while True:
+              yield mtx[i][j]
+              _i, _j = actions[action]["update"](i,j)
+              if actions[action]["within"](_i, _j):
+                  i,j = _i, _j
+                  moved = True
+              else:
+                  if action == "right":
+                      bounds["top"]+=1
+                  elif action == "down":
+                      bounds["right"]-=1
+                  elif action == "left":
+                      bounds["bottom"]-=1
+                  elif action == "up":
+                      bounds["left"]+=1
+
+                  action = actions[action]["next"]
+                  _i, _j = actions[action]["update"](i,j)
+                  if not actions[action]["within"](_i, _j):
+                      break
+                  else:
+                      i,j = _i, _j
+    #+END_SRC
+
+    #+BEGIN_SRC python :results value :session
+      all([
+          list(spiral([[1,2],[3,4]])) == [1,2,4,3],
+          list(spiral([[1,2,3],[4,5,6],[7,8,9]])) == [1,2,3,6,9,8,7,4,5],
+      ])
+    #+END_SRC
+
+    #+RESULTS:
+    : True
 
 *** DONE Buy and sell a stock once                                          :C0:
     CLOSED: [2017-06-22 Thu 12:28]

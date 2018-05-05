@@ -2,7 +2,6 @@
 
 #+TITLE: Elements of Programming Interviews: Solutions
 #+AUTHOR: Jonathan Jin
-#+STARTUP: logdone 
 #+TODO: TODO(t) | WRITTEN(w) PSEUDOCODE(c) DONE(d) LOOKED-UP(l)
 
 #+OPTIONS: tags:nil H:4
@@ -2175,7 +2174,6 @@
 ** Graphs
 
 *** DONE Search a maze                                                      :C0:
-    CLOSED: [2017-06-26 Mon 16:50]
 
     Given a 2D array of black and white entries representing a maze with
     designated entrance and exit points, find a path from the entrance to the
@@ -2183,110 +2181,96 @@
 
     /Hint/: Model the maze as a graph.
 
-**** Solution
+**** <2018-05-05 Sat> Solution
 
-     We assume the input is a matrix of integers, where any non-zero integer
-     represents a wall and, similarly, 0 represents a walkable segment.
+     Without loss of generality, we make the following simplifying assumptions
+     for any maze of size MxN:
+     
+     - The entrance is at index (0,0); and
+     - The exit is at index (M-1,N-1).
 
-     We treat the 2D array as a graph and implement DFS, with two
-     optimizations.
 
-     First, our recursion keeps a record of the path taken, such that, if our
-     given recursion finds a cycle, it disqualifies itself as a possible path to
-     the exit. This will prevent our implementation from failing to return if
-     the maze contains a cycle, as in the following example input:
+     We can treat this problem as similar to a depth-first search on a graph,
+     where each element on our stack tracks:
 
-     #+BEGIN_VERBATIM
-     -> 1 1 1 0
-        1 0 1 0
-        1 1 1 0
-        0 0 0 0 ->
-     #+END_VERBATIM
+     - The "current" room; as well as
+     - All preceding rooms visited.
 
-     Secondly -- and building off of the first optimization -- we maintain a
-     "disqualification" memo matrix which tracks whether a given point (x,y) is
-     an exit candidate, i.e. has not been proven to not lead to the exit. if all
-     paths from a particular point (x,y) in the maze result in dead ends --
-     defined as either "no more paths to take, and still not at the exit" or
-     "entered a cycle" -- then that point (x,y) is also disqualified. This will
-     prevent us from computing subpaths repeatedly, as a naive implementation
-     would on the following input:
 
-     #+BEGIN_VERBATIM
-     -> 1 1 1 0
-        1 0 1 0
-        1 1 1 1
-        0 0 0 0 ->
-     #+END_VERBATIM
+     At worst, the problem is equivalent to depth-first traversal, with
+     complexity O(V+E) = O(V+4V) = O(V).
 
-     First, we implement a function to return all "edges" of a given "vertex" in
-     our matrix-graph:
 
-     #+BEGIN_SRC python :results silent :session
-       def get_edges(M, V):
-           for f, e in [
-               (lambda V: V[0] > 0, (V[0] - 1, V[1])),
-               (lambda V: V[1] > 0, (V[0], V[1] - 1)),
-               (lambda V: V[0] < len(M) - 1, (V[0] + 1, V[1])),
-               (lambda V: V[1] < len(M[0]) - 1, (V[0], V[1] + 1))
-           ]:
-               if f(V) and M[e[0]][e[1]] != 0:
-                   yield e
-     #+END_SRC
+     #+BEGIN_SRC python :session
+       def traverse(maze):
+           def _mark_visited(i,j):
+               maze[i][j]=0
+           def _is_unvisited_room(i, j):
+               return maze[i][j] == 1
 
-     #+BEGIN_SRC python :results value :session
-       all([
-           set(get_edges([
-               [1, 1, 0],
-               [1, 0, 0],
-               [0, 0, 0],
-           ], (0,0))) == set([(1,0), (0,1)]),
+           def _is_within_bounds(i, j):
+               return i >= 0 and i < len(maze) and j >= 0 and j < len(maze[0])
 
-           set(get_edges([
-               [1, 1, 0],
-               [0, 0, 0],
-               [0, 0, 0],
-           ], (0,0))) == set([(0,1)]),
-       ])
-     #+END_SRC
+           def _get_next_candidates(i, j):
+               return filter(
+                   lambda c: _is_within_bounds(c[0],c[1]) and _is_unvisited_room(c[0],c[1]),
+                   [(i+1, j), (i-1, j), (i, j+1), (i, j-1)],
+               )
 
-     #+BEGIN_SRC python :results output :session
-       def get_exit_path(M, xy_in, xy_out):
-           is_qualified = [[True for _ in M[0]] for _ in M]
-           def _get_exit_path(cursor, set_visited):
-               if cursor == xy_out:
-                   return [cursor]
-               if cursor in set_visited or not is_qualified[cursor[0]][cursor[1]]:
-                   is_qualified[cursor[0]][cursor[1]] = False
-                   return []
-               for e in get_edges(M, cursor):
-                   rest = _get_exit_path(e, set_visited | {cursor})
-                   if rest != []:
-                       return [cursor] + rest
-               return []
-           return _get_exit_path(xy_in, set())
+           ENTRANCE = (0, 0)
+           EXIT = (len(maze)-1, len(maze[0])-1)
+
+           progress = [([], ENTRANCE)]
+
+           while progress:
+               path, curr = progress.pop()
+
+               if curr == EXIT:
+                   return True, path + [curr]
+
+               progress.extend([
+                   (path + [curr], cand)
+                   for cand in _get_next_candidates(curr[0], curr[1])
+               ])
+
+               _mark_visited(curr[0],curr[1])
+
+           return False, []
      #+END_SRC
 
      #+RESULTS:
 
-     #+BEGIN_SRC python :results value :session
+     #+BEGIN_SRC python :session
        all([
-           get_exit_path([
+           traverse([
+               [1, 0, 0],
                [1, 1, 0],
-               [1, 0, 0],
-               [1, 1, 1],
-           ], (0,1), (2,2)) == [(0,1), (0,0), (1,0), (2,0), (2,1), (2,2)],
-           get_exit_path([
-               [0, 1, 0],
-               [1, 0, 0],
-               [1, 1, 1],
-           ], (0,1), (2,2)) == [],
+               [0, 1, 1],
+           ]) == (True, [(0, 0), (1, 0), (1, 1), (2, 1), (2, 2)]),
+
+           traverse([
+               [1, 1, 0, 0, 0],
+               [0, 1, 1, 1, 0],
+               [0, 0, 0, 1, 0],
+               [0, 1, 1, 1, 0],
+               [0, 1, 0, 0, 0],
+               [0, 1, 1, 1, 1],
+           ]) == (True, [
+               (0, 0), (0, 1), (1, 1), (1, 2), (1, 3), (2, 3), (3, 3), (3, 2), (3, 1),
+               (4, 1), (5, 1), (5, 2), (5, 3), (5, 4),
+           ]),
+
+           traverse([
+               [1,1,1],
+               [0,0,1],
+               [0,0,0],
+           ]) == (False, []),
        ])
      #+END_SRC
 
      #+RESULTS:
      : True
-
+     
 *** WRITTEN Transform one string to another                                 :C1:
     CLOSED: [2017-06-29 Thu 15:13]
 

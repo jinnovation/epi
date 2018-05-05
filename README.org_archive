@@ -1,0 +1,117 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/jjin/proj/epi/README.org
+
+
+* Solution
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-05-05 Sat 15:15
+  :ARCHIVE_FILE: ~/proj/epi/README.org
+  :ARCHIVE_OLPATH: Data Structures and Algorithms/Graphs/Search a maze
+  :ARCHIVE_CATEGORY: README
+  :ARCHIVE_ITAGS: C0
+  :END:
+
+  We assume the input is a matrix of integers, where any non-zero integer
+  represents a wall and, similarly, 0 represents a walkable segment.
+
+  We treat the 2D array as a graph and implement DFS, with two
+  optimizations.
+
+  First, our recursion keeps a record of the path taken, such that, if our
+  given recursion finds a cycle, it disqualifies itself as a possible path to
+  the exit. This will prevent our implementation from failing to return if
+  the maze contains a cycle, as in the following example input:
+
+  #+BEGIN_VERBATIM
+  -> 1 1 1 0
+     1 0 1 0
+     1 1 1 0
+     0 0 0 0 ->
+  #+END_VERBATIM
+
+  Secondly -- and building off of the first optimization -- we maintain a
+  "disqualification" memo matrix which tracks whether a given point (x,y) is
+  an exit candidate, i.e. has not been proven to not lead to the exit. if all
+  paths from a particular point (x,y) in the maze result in dead ends --
+  defined as either "no more paths to take, and still not at the exit" or
+  "entered a cycle" -- then that point (x,y) is also disqualified. This will
+  prevent us from computing subpaths repeatedly, as a naive implementation
+  would on the following input:
+
+  #+BEGIN_VERBATIM
+  -> 1 1 1 0
+     1 0 1 0
+     1 1 1 1
+     0 0 0 0 ->
+  #+END_VERBATIM
+
+  First, we implement a function to return all "edges" of a given "vertex" in
+  our matrix-graph:
+
+  #+BEGIN_SRC python :results silent :session
+    def get_edges(M, V):
+        for f, e in [
+            (lambda V: V[0] > 0, (V[0] - 1, V[1])),
+            (lambda V: V[1] > 0, (V[0], V[1] - 1)),
+            (lambda V: V[0] < len(M) - 1, (V[0] + 1, V[1])),
+            (lambda V: V[1] < len(M[0]) - 1, (V[0], V[1] + 1))
+        ]:
+            if f(V) and M[e[0]][e[1]] != 0:
+                yield e
+  #+END_SRC
+
+  #+BEGIN_SRC python :results value :session
+    all([
+        set(get_edges([
+            [1, 1, 0],
+            [1, 0, 0],
+            [0, 0, 0],
+        ], (0,0))) == set([(1,0), (0,1)]),
+
+        set(get_edges([
+            [1, 1, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+        ], (0,0))) == set([(0,1)]),
+    ])
+  #+END_SRC
+
+  #+BEGIN_SRC python :results output :session
+    def get_exit_path(M, xy_in, xy_out):
+        is_qualified = [[True for _ in M[0]] for _ in M]
+        def _get_exit_path(cursor, set_visited):
+            if cursor == xy_out:
+                return [cursor]
+            if cursor in set_visited or not is_qualified[cursor[0]][cursor[1]]:
+                is_qualified[cursor[0]][cursor[1]] = False
+                return []
+            for e in get_edges(M, cursor):
+                rest = _get_exit_path(e, set_visited | {cursor})
+                if rest != []:
+                    return [cursor] + rest
+            return []
+        return _get_exit_path(xy_in, set())
+  #+END_SRC
+
+  #+RESULTS:
+
+  #+BEGIN_SRC python :results value :session
+    all([
+        get_exit_path([
+            [1, 1, 0],
+            [1, 0, 0],
+            [1, 1, 1],
+        ], (0,1), (2,2)) == [(0,1), (0,0), (1,0), (2,0), (2,1), (2,2)],
+        get_exit_path([
+            [0, 1, 0],
+            [1, 0, 0],
+            [1, 1, 1],
+        ], (0,1), (2,2)) == [],
+    ])
+  #+END_SRC
+
+  #+RESULTS:
+  : True
+
